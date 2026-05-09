@@ -1,0 +1,9 @@
+C:\Users\Ka\source\repos\DVDL Project\DVLD_Buisness\obj\Debug\DVLD_Buisness.csproj.AssemblyReference.cache
+C:\Users\Ka\source\repos\DVDL Project\DVLD_Buisness\obj\Debug\DVLD_Buisness.csproj.CoreCompileInputs.cache
+C:\Users\Ka\source\repos\DVDL Project\DVLD_Buisness\obj\Debug\BusinessLayer.dll
+C:\Users\Ka\source\repos\DVDL Project\DVLD_Buisness\obj\Debug\BusinessLayer.pdb
+C:\Users\Ka\source\repos\DVDL Project\DVLD_Buisness\bin\Debug\BusinessLayer.dll
+C:\Users\Ka\source\repos\DVDL Project\DVLD_Buisness\bin\Debug\BusinessLayer.pdb
+C:\Users\Ka\source\repos\DVDL Project\DVLD_Buisness\bin\Debug\DataAccessLayer.dll
+C:\Users\Ka\source\repos\DVDL Project\DVLD_Buisness\bin\Debug\DataAccessLayer.pdb
+C:\Users\Ka\source\repos\DVDL Project\DVLD_Buisness\obj\Debug\DVLD_Bui.E5CEC4E3.Up2Date
