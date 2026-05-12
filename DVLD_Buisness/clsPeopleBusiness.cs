@@ -34,6 +34,13 @@ namespace BusinessLayer
         public int NationalityCountryID {get;set;}  
         public string ImagePath         { get; set; }
         public clsCountriesBusiness CountryInfo { get;set;}
+        public string FullName
+        {
+            get
+            {
+                return FirstName + " " + SecondName + " " + ThirdName + " " + LastName;
+            }
+        }
 
 
         public clsPeopleBusiness()

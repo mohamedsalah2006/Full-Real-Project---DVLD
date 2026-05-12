@@ -1,6 +1,6 @@
 ﻿namespace DVDL_Project
 {
-    partial class frmAddNewLocalLicense
+    partial class frmAddOrUpdateLocalLicense
     {
         /// <summary>
         /// Required designer variable.
@@ -28,9 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tcApplicationInfo = new System.Windows.Forms.TabControl();
             this.tabPersonInfo = new System.Windows.Forms.TabPage();
-            this.linklblNext = new System.Windows.Forms.LinkLabel();
             this.findPerson1 = new DVDL_Project.FindPerson();
             this.tabApplication = new System.Windows.Forms.TabPage();
             this.btnClose = new System.Windows.Forms.Button();
@@ -45,53 +44,43 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.tabControl1.SuspendLayout();
+            this.lblMode = new System.Windows.Forms.Label();
+            this.btnNext = new System.Windows.Forms.Button();
+            this.tcApplicationInfo.SuspendLayout();
             this.tabPersonInfo.SuspendLayout();
             this.tabApplication.SuspendLayout();
             this.SuspendLayout();
             // 
-            // tabControl1
+            // tcApplicationInfo
             // 
-            this.tabControl1.Controls.Add(this.tabPersonInfo);
-            this.tabControl1.Controls.Add(this.tabApplication);
-            this.tabControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabControl1.Location = new System.Drawing.Point(12, 92);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1025, 654);
-            this.tabControl1.TabIndex = 0;
+            this.tcApplicationInfo.Controls.Add(this.tabPersonInfo);
+            this.tcApplicationInfo.Controls.Add(this.tabApplication);
+            this.tcApplicationInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tcApplicationInfo.Location = new System.Drawing.Point(12, 92);
+            this.tcApplicationInfo.Name = "tcApplicationInfo";
+            this.tcApplicationInfo.SelectedIndex = 0;
+            this.tcApplicationInfo.Size = new System.Drawing.Size(1025, 602);
+            this.tcApplicationInfo.TabIndex = 0;
             // 
             // tabPersonInfo
             // 
-            this.tabPersonInfo.Controls.Add(this.linklblNext);
+            this.tabPersonInfo.Controls.Add(this.btnNext);
             this.tabPersonInfo.Controls.Add(this.findPerson1);
             this.tabPersonInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabPersonInfo.Location = new System.Drawing.Point(4, 34);
             this.tabPersonInfo.Name = "tabPersonInfo";
             this.tabPersonInfo.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPersonInfo.Size = new System.Drawing.Size(1017, 616);
+            this.tabPersonInfo.Size = new System.Drawing.Size(1017, 564);
             this.tabPersonInfo.TabIndex = 0;
             this.tabPersonInfo.Text = "Person Info";
             this.tabPersonInfo.UseVisualStyleBackColor = true;
             // 
-            // linklblNext
-            // 
-            this.linklblNext.AutoSize = true;
-            this.linklblNext.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.linklblNext.Location = new System.Drawing.Point(797, 556);
-            this.linklblNext.Name = "linklblNext";
-            this.linklblNext.Size = new System.Drawing.Size(87, 39);
-            this.linklblNext.TabIndex = 1;
-            this.linklblNext.TabStop = true;
-            this.linklblNext.Text = "Next";
-            this.linklblNext.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linklblNext_LinkClicked);
-            // 
             // findPerson1
             // 
-            this.findPerson1.Location = new System.Drawing.Point(16, 20);
+            this.findPerson1.FilterEnabled = true;
+            this.findPerson1.Location = new System.Drawing.Point(17, 20);
             this.findPerson1.Name = "findPerson1";
-            this.findPerson1.Size = new System.Drawing.Size(960, 533);
+            this.findPerson1.Size = new System.Drawing.Size(960, 456);
             this.findPerson1.TabIndex = 0;
             this.findPerson1.Load += new System.EventHandler(this.findPerson1_Load);
             // 
@@ -113,7 +102,7 @@
             this.tabApplication.Location = new System.Drawing.Point(4, 34);
             this.tabApplication.Name = "tabApplication";
             this.tabApplication.Padding = new System.Windows.Forms.Padding(3);
-            this.tabApplication.Size = new System.Drawing.Size(1017, 616);
+            this.tabApplication.Size = new System.Drawing.Size(1017, 564);
             this.tabApplication.TabIndex = 1;
             this.tabApplication.Text = "Application Info";
             this.tabApplication.UseVisualStyleBackColor = true;
@@ -122,7 +111,7 @@
             // 
             this.btnClose.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.btnClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClose.Location = new System.Drawing.Point(752, 483);
+            this.btnClose.Location = new System.Drawing.Point(756, 483);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(110, 53);
             this.btnClose.TabIndex = 13;
@@ -133,8 +122,9 @@
             // btnSave
             // 
             this.btnSave.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btnSave.Enabled = false;
             this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSave.Location = new System.Drawing.Point(599, 483);
+            this.btnSave.Location = new System.Drawing.Point(619, 483);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(110, 53);
             this.btnSave.TabIndex = 12;
@@ -241,30 +231,41 @@
             this.label2.TabIndex = 0;
             this.label2.Text = "D.L Application ID :";
             // 
-            // label1
+            // lblMode
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.Red;
-            this.label1.Location = new System.Drawing.Point(220, 23);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(658, 48);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Add New Local Driving Application";
+            this.lblMode.AutoSize = true;
+            this.lblMode.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMode.ForeColor = System.Drawing.Color.Red;
+            this.lblMode.Location = new System.Drawing.Point(207, 23);
+            this.lblMode.Name = "lblMode";
+            this.lblMode.Size = new System.Drawing.Size(658, 48);
+            this.lblMode.TabIndex = 1;
+            this.lblMode.Text = "Add New Local Driving Application";
+            // 
+            // btnNext
+            // 
+            this.btnNext.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNext.ForeColor = System.Drawing.Color.Blue;
+            this.btnNext.Location = new System.Drawing.Point(780, 482);
+            this.btnNext.Name = "btnNext";
+            this.btnNext.Size = new System.Drawing.Size(146, 42);
+            this.btnNext.TabIndex = 5;
+            this.btnNext.Text = "Next";
+            this.btnNext.UseVisualStyleBackColor = true;
+            this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
             // 
             // frmAddNewLocalLicense
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1087, 744);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.tabControl1);
+            this.ClientSize = new System.Drawing.Size(1087, 765);
+            this.Controls.Add(this.lblMode);
+            this.Controls.Add(this.tcApplicationInfo);
             this.Name = "frmAddNewLocalLicense";
             this.Text = "frmAddNewLocalLicense";
             this.Load += new System.EventHandler(this.frmAddNewLocalLicense_Load);
-            this.tabControl1.ResumeLayout(false);
+            this.tcApplicationInfo.ResumeLayout(false);
             this.tabPersonInfo.ResumeLayout(false);
-            this.tabPersonInfo.PerformLayout();
             this.tabApplication.ResumeLayout(false);
             this.tabApplication.PerformLayout();
             this.ResumeLayout(false);
@@ -274,7 +275,7 @@
 
         #endregion
 
-        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabControl tcApplicationInfo;
         private System.Windows.Forms.TabPage tabPersonInfo;
         private System.Windows.Forms.TabPage tabApplication;
         private FindPerson findPerson1;
@@ -283,7 +284,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblMode;
         private System.Windows.Forms.Label lblUserName;
         private System.Windows.Forms.Label lblAppFees;
         private System.Windows.Forms.Label lblAppDate;
@@ -291,6 +292,6 @@
         private System.Windows.Forms.ComboBox cbLicenseClass;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Button btnSave;
-        private System.Windows.Forms.LinkLabel linklblNext;
+        private System.Windows.Forms.Button btnNext;
     }
 }

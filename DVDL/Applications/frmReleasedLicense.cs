@@ -31,7 +31,7 @@ namespace DVDL_Project
             ReleaseApp.ApplicationDate = DateTime.Now;
             ReleaseApp.LastStatusDate = DateTime.Now;
             ReleaseApp.PaidFees = clsApplicationsTypesBusiness.GetApplicationTypeInfoByID(5).Fees;
-            ReleaseApp.ApplicationType = 5;
+            ReleaseApp.ApplicationType = clsApplicationsBusiness.enApplicationType.ReleaseDetainedDrivingLicsense;
             ReleaseApp.CreatedByUser = 1;
             ReleaseApp.PersonID = PersonID;
 

@@ -56,7 +56,7 @@ namespace DVDL_Project
 
                // _NewApp.ApplicationStatus = 1;
                 _NewApp.ApplicationDate = DateTime.Now;
-                _NewApp.ApplicationType = 6;
+                _NewApp.ApplicationType = clsApplicationsBusiness.enApplicationType.NewInternationalLicense;
                 _NewApp.LastStatusDate = DateTime.Now;
                 _NewApp.PaidFees = clsApplicationsTypesBusiness.GetApplicationTypeInfoByID(6).Fees;
                 _NewApp.CreatedByUser = 1;

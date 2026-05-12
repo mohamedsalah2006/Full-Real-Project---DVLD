@@ -1,6 +1,6 @@
 ﻿namespace DVDL_Project
 {
-    partial class frmLocalLicenseScreen
+    partial class frmLocalDrivingLicenseApplicationsScreen
     {
         /// <summary>
         /// Required designer variable.
@@ -92,6 +92,7 @@
             this.editApplicationToolStripMenuItem.Name = "editApplicationToolStripMenuItem";
             this.editApplicationToolStripMenuItem.Size = new System.Drawing.Size(288, 24);
             this.editApplicationToolStripMenuItem.Text = "Edit Application";
+            this.editApplicationToolStripMenuItem.Click += new System.EventHandler(this.editApplicationToolStripMenuItem_Click);
             // 
             // cancelApplicationToolStripMenuItem
             // 
@@ -225,7 +226,7 @@
             this.btnAddPerson.UseVisualStyleBackColor = false;
             this.btnAddPerson.Click += new System.EventHandler(this.btnAddPerson_Click);
             // 
-            // frmLocalLicenseScreen
+            // frmLocalDrivingLicenseApplicationsScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -237,7 +238,7 @@
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dgvLocalLicense);
-            this.Name = "frmLocalLicenseScreen";
+            this.Name = "frmLocalDrivingLicenseApplicationsScreen";
             this.Text = "frmLocalLicenseScreen";
             this.Load += new System.EventHandler(this.frmLocalLicenseScreen_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvLocalLicense)).EndInit();

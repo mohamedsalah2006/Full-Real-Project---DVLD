@@ -32,7 +32,7 @@ namespace DVDL_Project
             RenewApp.ApplicationDate = DateTime.Now;
             RenewApp.LastStatusDate = DateTime.Now;
             RenewApp.PaidFees = clsApplicationsTypesBusiness.GetApplicationTypeInfoByID(4).Fees;
-            RenewApp.ApplicationType = 4;
+            RenewApp.ApplicationType = clsApplicationsBusiness.enApplicationType.ReplaceDamagedDrivingLicense;
             RenewApp.CreatedByUser = 1;
             RenewApp.PersonID = PersonID;
 
@@ -72,8 +72,8 @@ namespace DVDL_Project
             _PersonID = DriverLicense.PersonID;
             driverLicense1.driverLicense = DriverLicense;
 
-            int LicenseFees = clsLicenseClassesBusiness.GetClassFees(DriverLicense.LicenseClassName);
-            int ValidityLength = clsLicenseClassesBusiness.GetValidityLength(DriverLicense.LicenseClassName);
+            float LicenseFees = clsLicenseClassesBusiness.GetLicenseClassInfo(DriverLicense.LicenseClassName).ClassFees;
+            int ValidityLength = clsLicenseClassesBusiness.GetLicenseClassInfo(DriverLicense.LicenseClassName).DefaultValidityLength;
 
             lblAppDate.Text = DateTime.Now.ToString();
             lblApplicationFees.Text = "5";

@@ -46,7 +46,7 @@ namespace DVDL_Project
 
             dgvAppointments.DataSource = clsTestAppointmentsBusiness.GetTestAppointmentsByTestTypeID(_L_D_App, _TestTypeID);
 
-            clsLocalDrivingLicenseApplicationsBusiness LocalLicenseInfo = clsLocalDrivingLicenseApplicationsBusiness.FindLocalLicenseApp(_L_D_App);
+            clsLocalDrivingLicenseApplicationsBusiness LocalLicenseInfo = clsLocalDrivingLicenseApplicationsBusiness.FindByLocalDrivingAppLicenseID(_L_D_App);
             clsLocalDrivingLicenseAppBusiness_View LocalLicenseView = clsLocalDrivingLicenseAppBusiness_View.FindLocalLicenseApp_View(_L_D_App);
             clsApplicationsBusiness App = clsApplicationsBusiness.FindApplication(LocalLicenseInfo.AppID);
 

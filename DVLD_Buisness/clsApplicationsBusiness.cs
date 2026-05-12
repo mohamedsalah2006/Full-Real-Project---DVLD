@@ -13,7 +13,7 @@ namespace BusinessLayer
     {
 
         public enum enMode { AddMode = 0, UpdateMode = 1 }
-        enMode Mode = enMode.AddMode;
+        public enMode Mode = enMode.AddMode;
 
         public enum enApplicationType
         {
@@ -26,10 +26,10 @@ namespace BusinessLayer
         public int ApplicationID { get; set; }
         public int PersonID { get; set; }
         public DateTime ApplicationDate { get; set; }
-        public int ApplicationType { get; set; }
+        public enApplicationType ApplicationType { get; set; }
         public enApplicationStatus ApplicationStatus { set; get; }
         public DateTime LastStatusDate { get; set; }
-        public int PaidFees { get; set; }
+        public float PaidFees { get; set; }
         public int CreatedByUser { get; set; }
         public clsApplicationsTypesBusiness ApplicationTypeInfo {  get; set; }
         public clsPeopleBusiness PersonInfo {  get; set; }
@@ -62,14 +62,14 @@ namespace BusinessLayer
             ApplicationID = -1;
             PersonID = -1;
             ApplicationDate = DateTime.Now;
-            ApplicationType = -1;
+           // ApplicationType = 
             ApplicationStatus = enApplicationStatus.New;
             LastStatusDate = DateTime.Now;
             PaidFees = -1;
             CreatedByUser = -1;
         }
         
-        clsApplicationsBusiness( int applicationID, int personID, DateTime applicationDate, int applicationType, enApplicationStatus applicationStatus, DateTime lastStatusDate, int paidFees, int createdByUser)        
+        clsApplicationsBusiness( int applicationID, int personID, DateTime applicationDate, enApplicationType applicationType, enApplicationStatus applicationStatus, DateTime lastStatusDate, float paidFees, int createdByUser)        
         {
             Mode = enMode.UpdateMode;
             ApplicationID = applicationID;
@@ -80,6 +80,11 @@ namespace BusinessLayer
             LastStatusDate = lastStatusDate;
             PaidFees = paidFees;
             CreatedByUser = createdByUser;
+
+            this.ApplicationTypeInfo=clsApplicationsTypesBusiness.GetApplicationTypeInfoByID((int)applicationType);
+            this.UserInfo=clsUsersBusiness.FindUserByPersonID(createdByUser);
+            this.PersonInfo=clsPeopleBusiness.FindPeopleByID(personID);
+
         }
 
         static public DataTable GetAllApplications()
@@ -93,7 +98,7 @@ namespace BusinessLayer
 
             appInfo.ApplicationStatus =(int) this.ApplicationStatus;
             appInfo.ApplicationDate = this.ApplicationDate;
-            appInfo.ApplicationType = this.ApplicationType;
+            appInfo.ApplicationType =(int) this.ApplicationType;
             appInfo.LastStatusDate = this.LastStatusDate;
             appInfo.PaidFees = this.PaidFees;
             appInfo.CreatedByUser = this.CreatedByUser;
@@ -109,7 +114,7 @@ namespace BusinessLayer
 
             appInfo.ApplicationStatus =(int) this.ApplicationStatus;
             appInfo.ApplicationDate = this.ApplicationDate;
-            appInfo.ApplicationType = this.ApplicationType;
+            appInfo.ApplicationType =(int) this.ApplicationType;
             appInfo.LastStatusDate = this.LastStatusDate;
             appInfo.PaidFees = this.PaidFees;
             appInfo.CreatedByUser = this.CreatedByUser;
@@ -156,7 +161,7 @@ namespace BusinessLayer
             clsApplicationsData AppInfo = new clsApplicationsData();
             if(clsApplicationsData.GetApplicationInfoByID(ApplicationID,ref AppInfo))
             {
-                return new clsApplicationsBusiness( AppInfo.ApplicationID, AppInfo.PersonID, AppInfo.ApplicationDate, AppInfo.ApplicationType,(clsApplicationsBusiness.enApplicationStatus) AppInfo.ApplicationStatus, AppInfo.LastStatusDate, AppInfo.PaidFees, AppInfo.CreatedByUser);
+                return new clsApplicationsBusiness( AppInfo.ApplicationID, AppInfo.PersonID, AppInfo.ApplicationDate,(enApplicationType) AppInfo.ApplicationType,(clsApplicationsBusiness.enApplicationStatus) AppInfo.ApplicationStatus, AppInfo.LastStatusDate, AppInfo.PaidFees, AppInfo.CreatedByUser);
             }
             return null;
         }
@@ -168,13 +173,31 @@ namespace BusinessLayer
         }
         public bool Complete()
         {
-            clsApplicationsBusiness App = clsApplicationsBusiness.FindApplication(this.ApplicationID);
-            App.ApplicationStatus = enApplicationStatus.Completed;
-            return (App.Save());
+            this.ApplicationStatus = enApplicationStatus.Completed;
+            return (this.Save());
         }
         public bool Delete()
         {
             return clsApplicationsData.DeleteApplication(this.ApplicationID);
         }
+        public static bool UpdateStatus(int ApplicationID, enApplicationStatus NewStatus)
+        {
+            return clsApplicationsData.UpdateStatus(ApplicationID,(short) NewStatus);
+        }
+
+        public static bool IsApplicationExist(int ApplicationID)
+        {
+            return clsApplicationsData.IsApplicationExist(ApplicationID);
+        }
+        public static bool DoesPersonHaveActiveApplication(int PersonID, int ApplicationTypeID)
+        {
+            return clsApplicationsData.DoesPersonHaveActiveApplication(PersonID, ApplicationTypeID);
+        }
+        public static int GetActiveApplicationIDForLicenseClass(int PersonID, clsApplicationsBusiness.enApplicationType ApplicationTypeID, int LicenseClassID)
+        {
+            return clsApplicationsData.GetActiveApplicationIDForLicenseClass(PersonID, (int)ApplicationTypeID, LicenseClassID);
+        }
+
+
     }
 }

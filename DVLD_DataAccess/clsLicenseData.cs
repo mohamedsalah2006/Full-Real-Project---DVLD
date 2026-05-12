@@ -80,37 +80,7 @@ namespace DataAccessLayer
             return _LicenseID;
 
         }
-        static public bool ISPersonHasThisLicense(int PersonID,int ClassID)
-        {
-            SqlConnection connection = new SqlConnection(ConnectionString);
-            string query = @"
-                             select IsFound=1 from Licenses inner join Applications on Applications.ApplicationID = Licenses.ApplicationID
-                             where ApplicantPersonID = @ApplicantPersonID and LicenseClass = @LicenseClass"; 
-            SqlCommand command = new SqlCommand(query, connection);
-            command.Parameters.AddWithValue("@ApplicantPersonID", PersonID);
-            command.Parameters.AddWithValue("@LicenseClass", ClassID);
-
-            bool IsFound = false;
-            try
-            {
-                connection.Open();
-                SqlDataReader reader = command.ExecuteReader();
-
-                IsFound = reader.HasRows;
-
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-            finally
-            {
-                connection.Close();
-            }
-            return IsFound;
-
-        }
-        public static bool FindActiveLicenseByID_ClassID(int LicenseID ,ref clsLicenseData LicenseData)
+        public static bool GetActiveLicenseByID_ClassID(int LicenseID ,ref clsLicenseData LicenseData)
         {
             SqlConnection connection = new SqlConnection(ConnectionString);
             string query = @"select Licenses.*,PersonID,NationalNo from Licenses inner join Drivers_View
@@ -298,6 +268,52 @@ namespace DataAccessLayer
                 connection.Close();
             }
             return (RowsAffected > 0);
+        }
+        static public int GetActiveLicenseIDByPersonID(int PersonID,int LicenseClassID)
+        {
+            int LicenseID = -1;
+
+            SqlConnection connection = new SqlConnection(ConnectionString);
+
+            string query = @"SELECT        Licenses.LicenseID
+                            FROM Licenses INNER JOIN
+                                                     Drivers ON Licenses.DriverID = Drivers.DriverID
+                            WHERE  
+                             
+                             Licenses.LicenseClass = @LicenseClass 
+                              AND Drivers.PersonID = @PersonID
+                              And IsActive=1;";
+
+            SqlCommand command = new SqlCommand(query, connection);
+
+            command.Parameters.AddWithValue("@PersonID", PersonID);
+            command.Parameters.AddWithValue("@LicenseClass", LicenseClassID);
+
+            try
+            {
+                connection.Open();
+
+                object result = command.ExecuteScalar();
+
+                if (result != null && int.TryParse(result.ToString(), out int insertedID))
+                {
+                    LicenseID = insertedID;
+                }
+            }
+
+            catch (Exception ex)
+            {
+                //Console.WriteLine("Error: " + ex.Message);
+
+            }
+
+            finally
+            {
+                connection.Close();
+            }
+
+
+            return LicenseID;
         }
     }
 }

@@ -50,7 +50,7 @@ namespace DVDL_Project
            // retake_app.ApplicationStatus = 1;
             retake_app.ApplicationDate = DateTime.Now;
             retake_app.LastStatusDate = DateTime.Now;
-            retake_app.ApplicationType = 8;
+            retake_app.ApplicationType = clsApplicationsBusiness.enApplicationType.RetakeTest;
             retake_app.PaidFees = clsApplicationsTypesBusiness.GetApplicationTypeInfoByID(8).Fees;
             retake_app.CreatedByUser = 1;
             retake_app.PersonID = _PersonID;

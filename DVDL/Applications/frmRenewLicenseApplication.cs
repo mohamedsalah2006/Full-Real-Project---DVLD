@@ -32,7 +32,7 @@ namespace DVDL_Project
             RenewApp.ApplicationDate = DateTime.Now;
             RenewApp.LastStatusDate = DateTime.Now;
             RenewApp.PaidFees = clsApplicationsTypesBusiness.GetApplicationTypeInfoByID(2).Fees;
-            RenewApp.ApplicationType = 2;
+            RenewApp.ApplicationType = clsApplicationsBusiness.enApplicationType.RenewDrivingLicense;
             RenewApp.CreatedByUser = 1;
             RenewApp.PersonID = PersonID;
 
@@ -52,7 +52,7 @@ namespace DVDL_Project
             RenewLicense.DriverID = OldLicense.DriverID;
             RenewLicense.LicenseClass = OldLicense.LicenseClass;
             RenewLicense.IssueDate = DateTime.Now;
-            RenewLicense.ExpirationDate = DateTime.Now.AddYears(clsLicenseClassesBusiness.GetValidityLength(RenewLicense.LicenseClass));
+            RenewLicense.ExpirationDate = DateTime.Now.AddYears(clsLicenseClassesBusiness.GetLicenseClassInfo(RenewLicense.LicenseClass).DefaultValidityLength);
             RenewLicense.Notes = Notes;
             RenewLicense.CreatedByUserID = 1;
             RenewLicense.IsActive = 1;
@@ -82,8 +82,8 @@ namespace DVDL_Project
             _PersonID= DriverLicense.PersonID;
             driverLicense1.driverLicense = DriverLicense;
 
-            int LicenseFees = clsLicenseClassesBusiness.GetClassFees(DriverLicense.LicenseClassName);
-            int ValidityLength = clsLicenseClassesBusiness.GetValidityLength(DriverLicense.LicenseClassName);
+            float LicenseFees = clsLicenseClassesBusiness.GetLicenseClassInfo(DriverLicense.LicenseClassName).ClassFees;
+            int ValidityLength = clsLicenseClassesBusiness.GetLicenseClassInfo(DriverLicense.LicenseClassName).DefaultValidityLength;
 
             
 

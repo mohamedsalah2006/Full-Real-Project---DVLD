@@ -115,10 +115,10 @@
     <Compile Include="Licenses\International License\InternationalLicenseInfo.Designer.cs">
       <DependentUpon>InternationalLicenseInfo.cs</DependentUpon>
     </Compile>
-    <Compile Include="Licenses\Local License\LocalDrivingLicenseAppInfo.cs">
+    <Compile Include="Applications\Local License\LocalDrivingLicenseAppInfo.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Licenses\Local License\LocalDrivingLicenseAppInfo.Designer.cs">
+    <Compile Include="Applications\Local License\LocalDrivingLicenseAppInfo.Designer.cs">
       <DependentUpon>LocalDrivingLicenseAppInfo.cs</DependentUpon>
     </Compile>
     <Compile Include="People\FindPerson.cs">
@@ -133,11 +133,11 @@
     <Compile Include="Applications\International License\frmAddNewInternationalLicense.Designer.cs">
       <DependentUpon>frmAddNewInternationalLicense.cs</DependentUpon>
     </Compile>
-    <Compile Include="Applications\Local License\frmAddNewLocalLicense.cs">
+    <Compile Include="Applications\Local License\frmAddOrUpdateLocalLicense.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Applications\Local License\frmAddNewLocalLicense.Designer.cs">
-      <DependentUpon>frmAddNewLocalLicense.cs</DependentUpon>
+    <Compile Include="Applications\Local License\frmAddOrUpdateLocalLicense.Designer.cs">
+      <DependentUpon>frmAddOrUpdateLocalLicense.cs</DependentUpon>
     </Compile>
     <Compile Include="Users\frmAddOrUpdateUser.cs">
       <SubType>Form</SubType>
@@ -175,11 +175,11 @@
     <Compile Include="Licenses\frmLicenseHistory.Designer.cs">
       <DependentUpon>frmLicenseHistory.cs</DependentUpon>
     </Compile>
-    <Compile Include="Licenses\Local License\frmLocalLicenseScreen.cs">
+    <Compile Include="Applications\Local License\frmLocalDrivingLicenseApplicationsScreen.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Licenses\Local License\frmLocalLicenseScreen.Designer.cs">
-      <DependentUpon>frmLocalLicenseScreen.cs</DependentUpon>
+    <Compile Include="Applications\Local License\frmLocalDrivingLicenseApplicationsScreen.Designer.cs">
+      <DependentUpon>frmLocalDrivingLicenseApplicationsScreen.cs</DependentUpon>
     </Compile>
     <Compile Include="Tests\Test Type\frmMangeTestsTypes.cs">
       <SubType>Form</SubType>
@@ -312,7 +312,7 @@
     <EmbeddedResource Include="Licenses\International License\InternationalLicenseInfo.resx">
       <DependentUpon>InternationalLicenseInfo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Licenses\Local License\LocalDrivingLicenseAppInfo.resx">
+    <EmbeddedResource Include="Applications\Local License\LocalDrivingLicenseAppInfo.resx">
       <DependentUpon>LocalDrivingLicenseAppInfo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="People\FindPerson.resx">
@@ -321,8 +321,8 @@
     <EmbeddedResource Include="Applications\International License\frmAddNewInternationalLicense.resx">
       <DependentUpon>frmAddNewInternationalLicense.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Applications\Local License\frmAddNewLocalLicense.resx">
-      <DependentUpon>frmAddNewLocalLicense.cs</DependentUpon>
+    <EmbeddedResource Include="Applications\Local License\frmAddOrUpdateLocalLicense.resx">
+      <DependentUpon>frmAddOrUpdateLocalLicense.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Users\frmAddOrUpdateUser.resx">
       <DependentUpon>frmAddOrUpdateUser.cs</DependentUpon>
@@ -342,8 +342,8 @@
     <EmbeddedResource Include="Licenses\frmLicenseHistory.resx">
       <DependentUpon>frmLicenseHistory.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Licenses\Local License\frmLocalLicenseScreen.resx">
-      <DependentUpon>frmLocalLicenseScreen.cs</DependentUpon>
+    <EmbeddedResource Include="Applications\Local License\frmLocalDrivingLicenseApplicationsScreen.resx">
+      <DependentUpon>frmLocalDrivingLicenseApplicationsScreen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Tests\Test Type\frmMangeTestsTypes.resx">
       <DependentUpon>frmMangeTestsTypes.cs</DependentUpon>

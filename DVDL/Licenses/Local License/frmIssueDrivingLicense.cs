@@ -39,7 +39,7 @@ namespace DVDL_Project
         private void frmIssueDrivingLicense_Load(object sender, EventArgs e)
         {
 
-            clsLocalDrivingLicenseApplicationsBusiness LocalLicenseInfo = clsLocalDrivingLicenseApplicationsBusiness.FindLocalLicenseApp(_L_D_App);
+            clsLocalDrivingLicenseApplicationsBusiness LocalLicenseInfo = clsLocalDrivingLicenseApplicationsBusiness.FindByLocalDrivingAppLicenseID(_L_D_App);
             clsLocalDrivingLicenseAppBusiness_View LocalLicenseView = clsLocalDrivingLicenseAppBusiness_View.FindLocalLicenseApp_View(_L_D_App);
             clsApplicationsBusiness App = clsApplicationsBusiness.FindApplication(LocalLicenseInfo.AppID);
 
@@ -53,7 +53,7 @@ namespace DVDL_Project
             NewLicense.DriverID = _GetDriver(App.PersonID);/////////////////
             NewLicense.LicenseClass = LocalLicenseInfo.LicenseClassID;
             NewLicense.IssueDate = DateTime.Now;
-            NewLicense.ExpirationDate = DateTime.Now.AddYears(clsLicenseClassesBusiness.GetValidityLength(LocalLicenseInfo.LicenseClassID));
+            NewLicense.ExpirationDate = DateTime.Now.AddYears(clsLicenseClassesBusiness.GetLicenseClassInfo(LocalLicenseInfo.LicenseClassID).DefaultValidityLength);
             NewLicense.Notes = textBox1.Text;
             NewLicense.CreatedByUserID = 1;//////////////////
             NewLicense.IsActive = 1;

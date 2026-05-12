@@ -12,12 +12,17 @@ namespace DVDL_Project
 {
     public partial class frmMain_Screen : Form
     {
-        public frmMain_Screen()
+
+        frmLogin _frmLogin;
+
+        public frmMain_Screen(frmLogin frm)
         {
             InitializeComponent();
+            _frmLogin = frm;
         }
+      
 
-        
+
         private void btnPeople_Click(object sender, EventArgs e)
         {
             Form1 form = new Form1();
@@ -62,7 +67,7 @@ namespace DVDL_Project
 
         private void localLicenseToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmAddNewLocalLicense frm = new frmAddNewLocalLicense();
+            frmAddOrUpdateLocalLicense frm = new frmAddOrUpdateLocalLicense();
             frm.ShowDialog();
         }
 
@@ -74,7 +79,7 @@ namespace DVDL_Project
 
         private void localLicensesToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            frmLocalLicenseScreen frm = new frmLocalLicenseScreen();
+            frmLocalDrivingLicenseApplicationsScreen frm = new frmLocalDrivingLicenseApplicationsScreen();
             frm.ShowDialog();
         }
 

@@ -18,49 +18,51 @@ namespace DVDL_Project
         {
             InitializeComponent();
         }
-        void _CheckRememberME()
-        {
-            if (chkRememberMe.Checked)
-            {
-                //store username and password
-                clsGlobal.RememberUsernameAndPassword(txtUserName.Text.Trim(), txtPassword.Text.Trim());
-
-            }
-            else
-            {
-                //store empty username and password
-                clsGlobal.RememberUsernameAndPassword("", "");
-
-            }
-        }
+       
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-           
-            clsUsersBusiness User = clsUsersBusiness.FindByUsernameAndPassword(txtUserName.Text.Trim(), txtPassword.Text);
-            if (User == null)
+
+            clsUsersBusiness user = clsUsersBusiness.FindByUsernameAndPassword(txtUserName.Text.Trim(), txtPassword.Text.Trim());
+
+            if (user != null)
+            {
+
+                if (chkRememberMe.Checked)
+                {
+                    //store username and password
+                    clsGlobal.RememberUsernameAndPassword(txtUserName.Text.Trim(), txtPassword.Text.Trim());
+
+                }
+                else
+                {
+                    //store empty username and password
+                    clsGlobal.RememberUsernameAndPassword("", "");
+
+                }
+
+                //incase the user is not active
+                if (!user.IsActive)
+                {
+
+                    txtUserName.Focus();
+                    MessageBox.Show("Your accound is not Active, Contact Admin.", "In Active Account", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                clsGlobal.CurrentUser = user;
+                frmMain_Screen frm = new frmMain_Screen(this);
+                frm.ShowDialog();
+
+
+            }
+            else
             {
                 txtUserName.Focus();
                 MessageBox.Show("Invalid Username/Password.", "Wrong Credintials", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            else
-            {
-                _CheckRememberME(); 
 
-                if (!User.IsActive)
-                {
 
-                    txtUserName.Focus();
-                    MessageBox.Show("Your account is not Active, Contact Admin.", "In Active Account", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-                clsGlobal.CurrentUser = User;
-                this.Hide();
-                frmMain_Screen frm = new frmMain_Screen();
-                frm.ShowDialog();
-            }
-              
         }
         private void frmLogin_Load(object sender, EventArgs e)
         {

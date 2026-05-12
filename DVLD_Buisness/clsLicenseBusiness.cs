@@ -78,15 +78,12 @@ namespace BusinessLayer
 
             return this.LicenseID != -1;
         }
-        static public bool ISPersonHasThisLicense(int PersonID,int ClassID)
-        {
-            return clsLicenseData.ISPersonHasThisLicense(PersonID, ClassID);
-        }
+       
         public static clsLicenseBusiness FindActiveLicenseByID_ClassID(int LicenseID)
         {
             clsLicenseData LicenseData = new clsLicenseData();
 
-            if(clsLicenseData.FindActiveLicenseByID_ClassID(LicenseID,ref LicenseData))
+            if(clsLicenseData.GetActiveLicenseByID_ClassID(LicenseID,ref LicenseData))
             {
                 return new clsLicenseBusiness(LicenseData.LicenseID, LicenseData.ApplicationID, LicenseData.DriverID, LicenseData.LicenseClass, LicenseData.IssueDate, LicenseData.ExpirationDate, LicenseData.Notes, LicenseData.PaidFees, LicenseData.IsActive, LicenseData.IssueReason, LicenseData.CreatedByUserID,LicenseData.PersonID);
             }
@@ -114,5 +111,15 @@ namespace BusinessLayer
         {
             return clsLicenseData.DeactivateLicense(LicenseID);
         }
+
+        static public int GetActiveLicenseIDByPersonID(int PersonID,int LicenseClassID)
+        {
+           return clsLicenseData.GetActiveLicenseIDByPersonID(PersonID, LicenseClassID);
+        }
+        static public bool IsLicenseExistByPersonID(int PersonID, int LicenseClassID)
+        {
+            return GetActiveLicenseIDByPersonID(PersonID,LicenseClassID) != -1;
+        }
+
     }
 }

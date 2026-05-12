@@ -91,6 +91,7 @@ namespace DataAccessLayer
         public int LicenseClassID { get; set; }
 
         public static string ConnectionString = "Server=.;Database=DVLD;User Id=sa;Password=123456;";
+
         static public DataTable GetAllLocalLicense()
         {
             SqlConnection connection = new SqlConnection(ConnectionString);
@@ -121,83 +122,8 @@ namespace DataAccessLayer
             return dt;
 
         }
-        static public int AddNewLocalDrivingLicenseApplications(int ApplicationID,int ClassID)
-        {
-            SqlConnection connection = new SqlConnection(ConnectionString);
-            string query = @"insert into LocalDrivingLicenseApplications (ApplicationID,LicenseClassID)
-                            values(@ApplicationID,@ClassID)
-                            Select SCOPE_IDENTITY();";
-            SqlCommand command = new SqlCommand(query, connection);
-
-            command.Parameters.AddWithValue("@ApplicationID", ApplicationID);
-            command.Parameters.AddWithValue("@ClassID", ClassID);
-
-            int LocalAppID = -1;
-
-            try
-            {
-
-
-                connection.Open();
-                object result = command.ExecuteScalar();
-
-                if (result != null && int.TryParse(result.ToString(), out int InsertID))
-                {
-                    LocalAppID = InsertID;
-                }
-
-
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-            finally
-            {
-                connection.Close();
-            }
-            return LocalAppID;
-        }
-        static public bool IsApplicationWright(int Status,int ClassLicense,int PersonID)
-        {
-            SqlConnection connection = new SqlConnection(ConnectionString);
-            string query = @"  
-                            Select Found=1 from 
-                            (
-                            select Applications.ApplicantPersonID , Applications.ApplicationStatus,LocalDrivingLicenseApplications.LicenseClassID from
-                            Applications inner join LocalDrivingLicenseApplications
-                            on LocalDrivingLicenseApplications.ApplicationID=Applications.ApplicationID
-                            where (Applications.ApplicantPersonID=@ApplicantPersonID and Applications.ApplicationStatus=@ApplicationStatus and LocalDrivingLicenseApplications.LicenseClassID=@LicenseClassID )
-                            )R1";
-            SqlCommand command = new SqlCommand(query,connection);
-
-            command.Parameters.AddWithValue("@ApplicantPersonID", PersonID);
-            command.Parameters.AddWithValue("@ApplicationStatus", Status);
-            command.Parameters.AddWithValue("@LicenseClassID", ClassLicense);
-
-
-
-            bool IsFound = false;
-            try
-            {
-                connection.Open();
-                SqlDataReader reader = command.ExecuteReader();
-
-                IsFound = reader.HasRows;
-
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-            finally
-            {
-                connection.Close();
-            }
-            return IsFound;
-
-        }
-        public static bool FindLocalLicenseApp(int LocalDrivingLicenseApplicationID, ref clsLocalDrivingLicenseApplicationsData AppInfo)
+        
+        public static bool GetLocalDrivingLicenseApplicationInfoByID(int LocalDrivingLicenseApplicationID, ref clsLocalDrivingLicenseApplicationsData AppInfo)
         {
             SqlConnection connection = new SqlConnection(ConnectionString);
             string query = @"select * from LocalDrivingLicenseApplications 
@@ -273,14 +199,50 @@ namespace DataAccessLayer
             return dt;
 
         }
+
+        static public int AddNewLocalDrivingLicenseApplications(int ApplicationID, int ClassID)
+        {
+            SqlConnection connection = new SqlConnection(ConnectionString);
+            string query = @"insert into LocalDrivingLicenseApplications (ApplicationID,LicenseClassID)
+                            values(@ApplicationID,@ClassID)
+                            Select SCOPE_IDENTITY();";
+            SqlCommand command = new SqlCommand(query, connection);
+
+            command.Parameters.AddWithValue("@ApplicationID", ApplicationID);
+            command.Parameters.AddWithValue("@ClassID", ClassID);
+
+            int LocalAppID = -1;
+
+            try
+            {
+
+
+                connection.Open();
+                object result = command.ExecuteScalar();
+
+                if (result != null && int.TryParse(result.ToString(), out int InsertID))
+                {
+                    LocalAppID = InsertID;
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return LocalAppID;
+        }
         public static bool DeleteLocalDrivingLicenseApplications(int L_D_L_ID )
         {
             SqlConnection connection= new SqlConnection(ConnectionString);
             string query = @"
-                              delete  from TestAppointments 
-                              where LocalDrivingLicenseApplicationID = @LocalDrivingLicenseApplicationID
-                              delete from LocalDrivingLicenseApplications
-                              where LocalDrivingLicenseApplicationID = @LocalDrivingLicenseApplicationID";
+                             Delete LocalDrivingLicenseApplications 
+                                where LocalDrivingLicenseApplicationID = @LocalDrivingLicenseApplicationID";
             SqlCommand command = new SqlCommand(query, connection);
 
             command.Parameters.AddWithValue("@LocalDrivingLicenseApplicationID", L_D_L_ID);
@@ -309,6 +271,49 @@ namespace DataAccessLayer
 
             return rowsAffected != 0;
         }
+        public static bool UpdateLocalDrivingLicenseApplication(
+            int LocalDrivingLicenseApplicationID, int ApplicationID, int LicenseClassID)
+        {
+
+            int rowsAffected = 0;
+            SqlConnection connection = new SqlConnection(ConnectionString);
+
+            string query = @"Update  LocalDrivingLicenseApplications  
+                            set ApplicationID = @ApplicationID,
+                                LicenseClassID = @LicenseClassID
+                            where LocalDrivingLicenseApplicationID=@LocalDrivingLicenseApplicationID";
+
+            SqlCommand command = new SqlCommand(query, connection);
+
+            command.Parameters.AddWithValue("@LocalDrivingLicenseApplicationID", LocalDrivingLicenseApplicationID);
+            command.Parameters.AddWithValue("ApplicationID", ApplicationID);
+            command.Parameters.AddWithValue("LicenseClassID", LicenseClassID);
+
+
+            try
+            {
+                connection.Open();
+                rowsAffected = command.ExecuteNonQuery();
+
+            }
+            catch (Exception ex)
+            {
+                //Console.WriteLine("Error: " + ex.Message);
+                return false;
+            }
+
+            finally
+            {
+                connection.Close();
+            }
+
+            return (rowsAffected > 0);
+        }
+
+
+    
+
+
     }
 
 

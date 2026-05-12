@@ -11,9 +11,9 @@ using BusinessLayer;
 
 namespace DVDL_Project
 {
-    public partial class frmLocalLicenseScreen : Form
+    public partial class frmLocalDrivingLicenseApplicationsScreen : Form
     {
-        public frmLocalLicenseScreen()
+        public frmLocalDrivingLicenseApplicationsScreen()
         {
             InitializeComponent();
 
@@ -33,7 +33,7 @@ namespace DVDL_Project
 
         private void btnAddPerson_Click(object sender, EventArgs e)
         {
-            frmAddNewLocalLicense frm = new frmAddNewLocalLicense();
+            frmAddOrUpdateLocalLicense frm = new frmAddOrUpdateLocalLicense();
             frm.ShowDialog();
             dgvLocalLicense.DataSource = clsLocalDrivingLicenseApplicationsBusiness.GetAllLocalLicense();
 
@@ -163,8 +163,10 @@ namespace DVDL_Project
         private void cancelApplicationToolStripMenuItem_Click(object sender, EventArgs e)
         {
             int L_D_L_App = (int)dgvLocalLicense.CurrentRow.Cells[0].Value;
+            clsLocalDrivingLicenseApplicationsBusiness Localapp = clsLocalDrivingLicenseApplicationsBusiness.FindByLocalDrivingAppLicenseID(L_D_L_App);
 
-            if (clsLocalDrivingLicenseApplicationsBusiness.DeleteLocalDrivingLicenseApplications(L_D_L_App))
+
+            if (Localapp.Delete())
             {
                 MessageBox.Show("Local Driving License Application Deleted Successfully");
             }
@@ -172,6 +174,14 @@ namespace DVDL_Project
             {
                 MessageBox.Show("Local Driving License Application Not Deleted");
             }
+        }
+
+        private void editApplicationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int LocalDrivingLicenseApplicationID = Convert.ToInt32(dgvLocalLicense.CurrentRow.Cells[0].Value);
+            frmAddOrUpdateLocalLicense frm = new frmAddOrUpdateLocalLicense(LocalDrivingLicenseApplicationID);
+            frm.ShowDialog();
+            dgvLocalLicense.DataSource = clsLocalDrivingLicenseApplicationsBusiness.GetAllLocalLicense();
         }
     }
 }

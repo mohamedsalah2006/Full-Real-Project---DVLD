@@ -16,7 +16,7 @@ namespace DVDL_Project
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmMain_Screen());
+            Application.Run(new frmLogin());
         }
     }
 }
