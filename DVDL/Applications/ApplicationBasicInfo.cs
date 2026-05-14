@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BusinessLayer;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace DVDL_Project
 {
@@ -18,77 +19,64 @@ namespace DVDL_Project
             InitializeComponent();
         }
 
-        int _personID;
+        clsApplicationsBusiness _AppInfo;
 
-
-
-        string _Set_Status(int status)
+        private int _AppID;
+        public int AppID
         {
-            if (status == 1)
-            {
-                return "New";
-            }
-            else if(status == 2)
-            {
+            get { return _AppID; }
+            set { _AppID = value; }
+        }
 
-                return "Canceled";
+
+
+        void _ResetDefaultValues()
+        {
+            lblAppID.Text = "[???]";
+            lblApplicant.Text= "[???]";
+            lblDate.Text= "[???]";
+            lblFees.Text= "[???]";
+            lblStatus.Text= "[???]";
+            lblStatusDate.Text= "[???]";
+            lblType.Text= "[???]";
+            lblUser.Text= "[???]";
+            
+        }
+        void _FillApplicationInfo()
+        {
+
+            lblAppID.Text = _AppInfo.ApplicationID.ToString();
+            lblApplicant.Text = _AppInfo.PersonInfo.FullName;
+            lblDate.Text = _AppInfo.ApplicationDate.ToString();
+            lblFees.Text = _AppInfo.PaidFees.ToString();
+            lblStatus.Text = _AppInfo.StatusText.ToString();
+            lblStatusDate.Text = _AppInfo.LastStatusDate.ToString();
+            lblType.Text = _AppInfo.ApplicationTypeInfo.Title;
+            lblUser.Text = _AppInfo.UserInfo.UserName;
+        }
+        public void LoadApplicationInfoByAppID(int AppID)
+        {
+            this.AppID=AppID;
+
+
+            _AppInfo = clsApplicationsBusiness.FindApplication(AppID);
+            if( _AppInfo == null )
+            {
+                _ResetDefaultValues();
+                MessageBox.Show("No Application with ApplicationID = " + AppID.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
-                return "Koko";
+                _FillApplicationInfo();
             }
         }
-        public string FullName
-        {
-            set
-            {
-                lblApplicant.Text = value;
-
-            }
-
-        }
-        public clsApplicationsBusiness ApplicationInfo
-        {
-            set
-            {
-                if (value == null)
-                {
-                    return;
-                }
-
-
-                _personID=value.PersonID;
-                lblAppID.Text = value.ApplicationID.ToString();
-                lblDate.Text=value.ApplicationDate.ToString();
-                lblFees.Text=value.PaidFees.ToString();
-             //   lblStatus.Text= _Set_Status(value.ApplicationStatus);
-                lblStatusDate.Text=value.LastStatusDate.ToString(); 
-                //lblType.Text= clsApplicationsTypesBusiness.GetApplicationTypeInfoByID(value.ApplicationType);
-                lblUser.Text = clsUsersBusiness.FindUserByUserID(value.CreatedByUser).UserName;
-                
-            }
-        }
-
-        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            frmShowPersonInfo frm = new frmShowPersonInfo(_personID);
-            frm.ShowDialog();
-        }
-
-        private void ApplicationBasicInfo_Load(object sender, EventArgs e)
-        {
-
-        }
-
+       
+       
         private void linkLabel1_LinkClicked_1(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            frmShowPersonInfo frm = new frmShowPersonInfo(_personID);   
+            frmShowPersonInfo frm = new frmShowPersonInfo(_AppInfo.PersonID);   
             frm.ShowDialog();
         }
 
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-
-        }
     }
 }

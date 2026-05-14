@@ -82,7 +82,7 @@ namespace BusinessLayer
             CreatedByUser = createdByUser;
 
             this.ApplicationTypeInfo=clsApplicationsTypesBusiness.GetApplicationTypeInfoByID((int)applicationType);
-            this.UserInfo=clsUsersBusiness.FindUserByPersonID(createdByUser);
+            this.UserInfo=clsUsersBusiness.FindUserByUserID(createdByUser);
             this.PersonInfo=clsPeopleBusiness.FindPeopleByID(personID);
 
         }

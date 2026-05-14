@@ -116,7 +116,7 @@ namespace BusinessLayer
         {
            return clsLicenseData.GetActiveLicenseIDByPersonID(PersonID, LicenseClassID);
         }
-        static public bool IsLicenseExistByPersonID(int PersonID, int LicenseClassID)
+        static public bool DidLicenseExistByPersonID(int PersonID, int LicenseClassID)
         {
             return GetActiveLicenseIDByPersonID(PersonID,LicenseClassID) != -1;
         }

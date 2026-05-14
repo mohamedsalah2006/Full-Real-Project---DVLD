@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.applicationBasicInfo1 = new DVDL_Project.ApplicationBasicInfo();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -36,16 +35,9 @@
             this.lblPassed = new System.Windows.Forms.Label();
             this.lblLicense = new System.Windows.Forms.Label();
             this.lblDLAppID = new System.Windows.Forms.Label();
+            this.applicationBasicInfo1 = new DVDL_Project.ApplicationBasicInfo();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // applicationBasicInfo1
-            // 
-            this.applicationBasicInfo1.Location = new System.Drawing.Point(0, 108);
-            this.applicationBasicInfo1.Name = "applicationBasicInfo1";
-            this.applicationBasicInfo1.Size = new System.Drawing.Size(777, 303);
-            this.applicationBasicInfo1.TabIndex = 0;
-            this.applicationBasicInfo1.Load += new System.EventHandler(this.applicationBasicInfo1_Load);
             // 
             // groupBox1
             // 
@@ -57,17 +49,16 @@
             this.groupBox1.Controls.Add(this.lblDLAppID);
             this.groupBox1.Location = new System.Drawing.Point(21, 2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(730, 119);
+            this.groupBox1.Size = new System.Drawing.Size(950, 119);
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "L.D.L.APP";
-            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(330, 32);
+            this.label3.Location = new System.Drawing.Point(383, 32);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(144, 26);
             this.label3.TabIndex = 12;
@@ -79,9 +70,9 @@
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(38, 75);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(99, 26);
+            this.label2.Size = new System.Drawing.Size(160, 26);
             this.label2.TabIndex = 11;
-            this.label2.Text = "License :";
+            this.label2.Text = "License Class :";
             // 
             // label1
             // 
@@ -97,41 +88,49 @@
             // 
             this.lblPassed.AutoSize = true;
             this.lblPassed.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPassed.Location = new System.Drawing.Point(502, 32);
+            this.lblPassed.Location = new System.Drawing.Point(553, 32);
             this.lblPassed.Name = "lblPassed";
-            this.lblPassed.Size = new System.Drawing.Size(70, 26);
+            this.lblPassed.Size = new System.Drawing.Size(60, 26);
             this.lblPassed.TabIndex = 9;
-            this.lblPassed.Text = "label3";
+            this.lblPassed.Text = "[???]";
             // 
             // lblLicense
             // 
             this.lblLicense.AutoSize = true;
             this.lblLicense.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLicense.Location = new System.Drawing.Point(201, 75);
+            this.lblLicense.Location = new System.Drawing.Point(253, 75);
             this.lblLicense.Name = "lblLicense";
-            this.lblLicense.Size = new System.Drawing.Size(70, 26);
+            this.lblLicense.Size = new System.Drawing.Size(60, 26);
             this.lblLicense.TabIndex = 8;
-            this.lblLicense.Text = "label2";
+            this.lblLicense.Text = "[???]";
             // 
             // lblDLAppID
             // 
             this.lblDLAppID.AutoSize = true;
             this.lblDLAppID.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDLAppID.Location = new System.Drawing.Point(201, 32);
+            this.lblDLAppID.Location = new System.Drawing.Point(253, 32);
             this.lblDLAppID.Name = "lblDLAppID";
-            this.lblDLAppID.Size = new System.Drawing.Size(70, 26);
+            this.lblDLAppID.Size = new System.Drawing.Size(60, 26);
             this.lblDLAppID.TabIndex = 7;
-            this.lblDLAppID.Text = "label1";
+            this.lblDLAppID.Text = "[???]";
             // 
-            // DrivingLicenseAppInfo
+            // applicationBasicInfo1
+            // 
+            this.applicationBasicInfo1.AppID = 0;
+            this.applicationBasicInfo1.Location = new System.Drawing.Point(0, 108);
+            this.applicationBasicInfo1.Name = "applicationBasicInfo1";
+            this.applicationBasicInfo1.Size = new System.Drawing.Size(971, 283);
+            this.applicationBasicInfo1.TabIndex = 0;
+            // 
+            // LocalDrivingLicenseAppInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.applicationBasicInfo1);
-            this.Name = "DrivingLicenseAppInfo";
-            this.Size = new System.Drawing.Size(768, 423);
-            this.Load += new System.EventHandler(this.DrivingLicenseAppInfo_Load);
+            this.Name = "LocalDrivingLicenseAppInfo";
+            this.Size = new System.Drawing.Size(986, 423);
+            this.Load += new System.EventHandler(this.LocalDrivingLicenseAppInfo_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);

@@ -52,6 +52,12 @@
     <Compile Include="Applications\ApplicationBasicInfo.Designer.cs">
       <DependentUpon>ApplicationBasicInfo.cs</DependentUpon>
     </Compile>
+    <Compile Include="Applications\Local License\frmShowLocalDrivingLicenseApplicationInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Applications\Local License\frmShowLocalDrivingLicenseApplicationInfo.Designer.cs">
+      <DependentUpon>frmShowLocalDrivingLicenseApplicationInfo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Global Classes\clsGlobal.cs" />
     <Compile Include="Global Classes\clsUtil.cs" />
     <Compile Include="frmLogin.cs">
@@ -281,6 +287,9 @@
     </Compile>
     <EmbeddedResource Include="Applications\ApplicationBasicInfo.resx">
       <DependentUpon>ApplicationBasicInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Applications\Local License\frmShowLocalDrivingLicenseApplicationInfo.resx">
+      <DependentUpon>frmShowLocalDrivingLicenseApplicationInfo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>

@@ -44,8 +44,7 @@ namespace DVDL_Project
             clsApplicationsBusiness App = clsApplicationsBusiness.FindApplication(LocalLicenseInfo.AppID);
 
 
-            drivingLicenseAppInfo1.L_D_L_App_Info = LocalLicenseView;
-            drivingLicenseAppInfo1.AppInfo = App;
+            drivingLicenseAppInfo1.LoadLocalDrivingLicenseAppInfo(_L_D_App);
 
             
 

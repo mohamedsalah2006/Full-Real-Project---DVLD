@@ -14,10 +14,13 @@ namespace BusinessLayer
         {
             return (clsTestData.TakeTest(TestAppointmentID, TestResult, Notes, CreatedByUserID) != -1);
         }
-        static public bool IsPassed(int LocalDrivingLicenseApplicationID, int TestTypeID)
+        static public bool DidThePersonPassInThisTestType(int LocalDrivingLicenseApplicationID, int TestTypeID)
         {
-            return clsTestData.IsPassed(LocalDrivingLicenseApplicationID, TestTypeID);
+            return clsTestData.DidThePersonPassInThisTestType(LocalDrivingLicenseApplicationID, TestTypeID);
         }
-
+        static public int GetPassedTestCount(int LocalDrivingLicenseAppID)
+        {
+            return clsTestData.GetPassedTestCount(LocalDrivingLicenseAppID);    
+        }
     }
 }

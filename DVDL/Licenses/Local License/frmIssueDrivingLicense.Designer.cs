@@ -79,9 +79,11 @@
             // 
             // drivingLicenseAppInfo1
             // 
+            this.drivingLicenseAppInfo1.AppID = 0;
+            this.drivingLicenseAppInfo1.LocalDrivingLicenseAppID = 0;
             this.drivingLicenseAppInfo1.Location = new System.Drawing.Point(12, 24);
             this.drivingLicenseAppInfo1.Name = "drivingLicenseAppInfo1";
-            this.drivingLicenseAppInfo1.Size = new System.Drawing.Size(768, 423);
+            this.drivingLicenseAppInfo1.Size = new System.Drawing.Size(768, 393);
             this.drivingLicenseAppInfo1.TabIndex = 0;
             // 
             // frmIssueDrivingLicense

@@ -39,7 +39,7 @@ namespace DVDL_Project
 
             if(clsInternationalLicenseBusiness.IsPersonHasInternationalLicense(LicenseID))
             {
-                applicationBasicInfo1.ApplicationInfo = clsApplicationsBusiness.FindApplication(_LicenseInfo.ApplicationID);
+                //applicationBasicInfo1.LoadApplicationInfoByAppID(AppID);
                 clsDriverLicenseBusiness DriverLicense = clsDriverLicenseBusiness.GetDriverLicenseInfoBY_LocalLicenseID(LicenseID);
                 driverLicense1.driverLicense = DriverLicense;
 
@@ -68,7 +68,6 @@ namespace DVDL_Project
                 //============================================
 
 
-                applicationBasicInfo1.ApplicationInfo = _NewApp;
                 driverLicense1.driverLicense = clsDriverLicenseBusiness.GetDriverLicenseInfoBY_LocalLicenseID(LicenseID);
 
             }

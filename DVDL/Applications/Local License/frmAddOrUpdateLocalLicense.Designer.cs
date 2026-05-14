@@ -30,6 +30,7 @@
         {
             this.tcApplicationInfo = new System.Windows.Forms.TabControl();
             this.tabPersonInfo = new System.Windows.Forms.TabPage();
+            this.btnNext = new System.Windows.Forms.Button();
             this.findPerson1 = new DVDL_Project.FindPerson();
             this.tabApplication = new System.Windows.Forms.TabPage();
             this.btnClose = new System.Windows.Forms.Button();
@@ -45,7 +46,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.lblMode = new System.Windows.Forms.Label();
-            this.btnNext = new System.Windows.Forms.Button();
             this.tcApplicationInfo.SuspendLayout();
             this.tabPersonInfo.SuspendLayout();
             this.tabApplication.SuspendLayout();
@@ -59,7 +59,7 @@
             this.tcApplicationInfo.Location = new System.Drawing.Point(12, 92);
             this.tcApplicationInfo.Name = "tcApplicationInfo";
             this.tcApplicationInfo.SelectedIndex = 0;
-            this.tcApplicationInfo.Size = new System.Drawing.Size(1025, 602);
+            this.tcApplicationInfo.Size = new System.Drawing.Size(1025, 599);
             this.tcApplicationInfo.TabIndex = 0;
             // 
             // tabPersonInfo
@@ -70,10 +70,22 @@
             this.tabPersonInfo.Location = new System.Drawing.Point(4, 34);
             this.tabPersonInfo.Name = "tabPersonInfo";
             this.tabPersonInfo.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPersonInfo.Size = new System.Drawing.Size(1017, 564);
+            this.tabPersonInfo.Size = new System.Drawing.Size(1017, 561);
             this.tabPersonInfo.TabIndex = 0;
             this.tabPersonInfo.Text = "Person Info";
             this.tabPersonInfo.UseVisualStyleBackColor = true;
+            // 
+            // btnNext
+            // 
+            this.btnNext.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNext.ForeColor = System.Drawing.Color.Blue;
+            this.btnNext.Location = new System.Drawing.Point(791, 468);
+            this.btnNext.Name = "btnNext";
+            this.btnNext.Size = new System.Drawing.Size(146, 42);
+            this.btnNext.TabIndex = 5;
+            this.btnNext.Text = "Next";
+            this.btnNext.UseVisualStyleBackColor = true;
+            this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
             // 
             // findPerson1
             // 
@@ -102,7 +114,7 @@
             this.tabApplication.Location = new System.Drawing.Point(4, 34);
             this.tabApplication.Name = "tabApplication";
             this.tabApplication.Padding = new System.Windows.Forms.Padding(3);
-            this.tabApplication.Size = new System.Drawing.Size(1017, 564);
+            this.tabApplication.Size = new System.Drawing.Size(1017, 561);
             this.tabApplication.TabIndex = 1;
             this.tabApplication.Text = "Application Info";
             this.tabApplication.UseVisualStyleBackColor = true;
@@ -242,27 +254,16 @@
             this.lblMode.TabIndex = 1;
             this.lblMode.Text = "Add New Local Driving Application";
             // 
-            // btnNext
-            // 
-            this.btnNext.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNext.ForeColor = System.Drawing.Color.Blue;
-            this.btnNext.Location = new System.Drawing.Point(780, 482);
-            this.btnNext.Name = "btnNext";
-            this.btnNext.Size = new System.Drawing.Size(146, 42);
-            this.btnNext.TabIndex = 5;
-            this.btnNext.Text = "Next";
-            this.btnNext.UseVisualStyleBackColor = true;
-            this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
-            // 
-            // frmAddNewLocalLicense
+            // frmAddOrUpdateLocalLicense
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1087, 765);
+            this.ClientSize = new System.Drawing.Size(1087, 697);
             this.Controls.Add(this.lblMode);
             this.Controls.Add(this.tcApplicationInfo);
-            this.Name = "frmAddNewLocalLicense";
+            this.Name = "frmAddOrUpdateLocalLicense";
             this.Text = "frmAddNewLocalLicense";
+            this.Activated += new System.EventHandler(this.frmAddOrUpdateLocalLicense_Activated);
             this.Load += new System.EventHandler(this.frmAddNewLocalLicense_Load);
             this.tcApplicationInfo.ResumeLayout(false);
             this.tabPersonInfo.ResumeLayout(false);

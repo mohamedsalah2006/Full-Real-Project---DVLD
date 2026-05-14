@@ -125,7 +125,7 @@
             this.Controls.Add(this.gbFilter);
             this.Controls.Add(this.personInfo1);
             this.Name = "FindPerson";
-            this.Size = new System.Drawing.Size(960, 521);
+            this.Size = new System.Drawing.Size(960, 448);
             this.Load += new System.EventHandler(this.FindPerson_Load);
             this.gbFilter.ResumeLayout(false);
             this.gbFilter.PerformLayout();

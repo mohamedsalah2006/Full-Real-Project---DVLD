@@ -70,17 +70,16 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(21, 21);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(731, 253);
+            this.groupBox1.Size = new System.Drawing.Size(934, 247);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "ApplicationInfo";
-            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // linkLabel1
             // 
             this.linkLabel1.AutoSize = true;
             this.linkLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.linkLabel1.Location = new System.Drawing.Point(423, 172);
+            this.linkLabel1.Location = new System.Drawing.Point(470, 168);
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.Size = new System.Drawing.Size(177, 26);
             this.linkLabel1.TabIndex = 36;
@@ -91,12 +90,12 @@
             // lblType
             // 
             this.lblType.AutoSize = true;
-            this.lblType.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblType.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblType.Location = new System.Drawing.Point(182, 202);
             this.lblType.Name = "lblType";
-            this.lblType.Size = new System.Drawing.Size(70, 26);
+            this.lblType.Size = new System.Drawing.Size(57, 25);
             this.lblType.TabIndex = 35;
-            this.lblType.Text = "label5";
+            this.lblType.Text = "[???]";
             // 
             // label6
             // 
@@ -111,18 +110,18 @@
             // lblDate
             // 
             this.lblDate.AutoSize = true;
-            this.lblDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDate.Location = new System.Drawing.Point(608, 33);
+            this.lblDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDate.Location = new System.Drawing.Point(655, 33);
             this.lblDate.Name = "lblDate";
-            this.lblDate.Size = new System.Drawing.Size(82, 26);
+            this.lblDate.Size = new System.Drawing.Size(57, 25);
             this.lblDate.TabIndex = 32;
-            this.lblDate.Text = "label15";
+            this.lblDate.Text = "[???]";
             // 
             // label16
             // 
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(423, 33);
+            this.label16.Location = new System.Drawing.Point(470, 33);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(76, 26);
             this.label16.TabIndex = 31;
@@ -131,18 +130,18 @@
             // lblUser
             // 
             this.lblUser.AutoSize = true;
-            this.lblUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUser.Location = new System.Drawing.Point(608, 115);
+            this.lblUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUser.Location = new System.Drawing.Point(655, 115);
             this.lblUser.Name = "lblUser";
-            this.lblUser.Size = new System.Drawing.Size(82, 26);
+            this.lblUser.Size = new System.Drawing.Size(57, 25);
             this.lblUser.TabIndex = 30;
-            this.lblUser.Text = "label13";
+            this.lblUser.Text = "[???]";
             // 
             // label14
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(423, 115);
+            this.label14.Location = new System.Drawing.Point(470, 115);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(132, 26);
             this.label14.TabIndex = 29;
@@ -151,18 +150,18 @@
             // lblStatusDate
             // 
             this.lblStatusDate.AutoSize = true;
-            this.lblStatusDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStatusDate.Location = new System.Drawing.Point(608, 75);
+            this.lblStatusDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStatusDate.Location = new System.Drawing.Point(655, 75);
             this.lblStatusDate.Name = "lblStatusDate";
-            this.lblStatusDate.Size = new System.Drawing.Size(82, 26);
+            this.lblStatusDate.Size = new System.Drawing.Size(57, 25);
             this.lblStatusDate.TabIndex = 28;
-            this.lblStatusDate.Text = "label11";
+            this.lblStatusDate.Text = "[???]";
             // 
             // label12
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(423, 75);
+            this.label12.Location = new System.Drawing.Point(470, 75);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(151, 26);
             this.label12.TabIndex = 27;
@@ -171,12 +170,12 @@
             // lblApplicant
             // 
             this.lblApplicant.AutoSize = true;
-            this.lblApplicant.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblApplicant.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblApplicant.Location = new System.Drawing.Point(182, 115);
             this.lblApplicant.Name = "lblApplicant";
-            this.lblApplicant.Size = new System.Drawing.Size(70, 26);
+            this.lblApplicant.Size = new System.Drawing.Size(57, 25);
             this.lblApplicant.TabIndex = 26;
-            this.lblApplicant.Text = "label9";
+            this.lblApplicant.Text = "[???]";
             // 
             // label10
             // 
@@ -191,12 +190,12 @@
             // lblFees
             // 
             this.lblFees.AutoSize = true;
-            this.lblFees.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFees.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblFees.Location = new System.Drawing.Point(180, 159);
             this.lblFees.Name = "lblFees";
-            this.lblFees.Size = new System.Drawing.Size(70, 26);
+            this.lblFees.Size = new System.Drawing.Size(57, 25);
             this.lblFees.TabIndex = 24;
-            this.lblFees.Text = "label7";
+            this.lblFees.Text = "[???]";
             // 
             // label8
             // 
@@ -211,12 +210,12 @@
             // lblStatus
             // 
             this.lblStatus.AutoSize = true;
-            this.lblStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblStatus.Location = new System.Drawing.Point(180, 75);
             this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(70, 26);
+            this.lblStatus.Size = new System.Drawing.Size(57, 25);
             this.lblStatus.TabIndex = 20;
-            this.lblStatus.Text = "label3";
+            this.lblStatus.Text = "[???]";
             // 
             // label4
             // 
@@ -231,12 +230,12 @@
             // lblAppID
             // 
             this.lblAppID.AutoSize = true;
-            this.lblAppID.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAppID.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAppID.Location = new System.Drawing.Point(180, 33);
             this.lblAppID.Name = "lblAppID";
-            this.lblAppID.Size = new System.Drawing.Size(70, 26);
+            this.lblAppID.Size = new System.Drawing.Size(57, 25);
             this.lblAppID.TabIndex = 18;
-            this.lblAppID.Text = "label2";
+            this.lblAppID.Text = "[???]";
             // 
             // label1
             // 
@@ -254,8 +253,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.groupBox1);
             this.Name = "ApplicationBasicInfo";
-            this.Size = new System.Drawing.Size(762, 281);
-            this.Load += new System.EventHandler(this.ApplicationBasicInfo_Load);
+            this.Size = new System.Drawing.Size(980, 281);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);

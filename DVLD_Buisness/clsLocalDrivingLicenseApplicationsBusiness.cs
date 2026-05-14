@@ -170,7 +170,19 @@ namespace BusinessLayer
         {
             return clsLocalDrivingLicenseApplicationsData.GetPersonLocalLicense(NationalNo);
         }
-        
+        public int GetPassedTestCount()
+        {
+            return clsTestBusiness.GetPassedTestCount(this.LocalDrivingLicenseApplicationID);
+        }
+        public bool DidLicenseIssued ()
+        {
+            return clsLicenseBusiness.DidLicenseExistByPersonID(this.PersonID, LicenseClassID);
+        }
+        public bool DidThePersonPassInThisTestType(int TestType)
+        {
+            return clsTestBusiness.DidThePersonPassInThisTestType(this.LocalDrivingLicenseApplicationID, TestType);
+        }
+
     }
 
 }

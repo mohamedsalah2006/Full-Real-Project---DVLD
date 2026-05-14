@@ -13,44 +13,60 @@ namespace DVDL_Project
 {
     public partial class LocalDrivingLicenseAppInfo : UserControl
     {
+
+        private int _AppID;
+        public int AppID
+        {
+            get { return _AppID; }
+            set { _AppID = value; }
+        }
+
+        private int _LocalDrivingLicenseAppID;
+        public int LocalDrivingLicenseAppID
+        {
+            get { return _LocalDrivingLicenseAppID; }
+            set { _LocalDrivingLicenseAppID = value; }
+        }
+
+        clsLocalDrivingLicenseApplicationsBusiness _LocalDrivingLicenseAppInfo;
+
         public LocalDrivingLicenseAppInfo()
         {
             InitializeComponent();
         }
-        public clsLocalDrivingLicenseAppBusiness_View L_D_L_App_Info
-        {
-            set
-            {
-                lblDLAppID.Text = value.LD_LicenseID.ToString();
-                lblLicense.Text = value.ClassName;
-                lblPassed.Text = "["+value.PassedTestCount+"/3]";
 
-                applicationBasicInfo1.FullName = value.FullName;
+        void _ResetLocalDrivingLicenseAppInfo()
+        {
+            lblDLAppID.Text = "[???]";
+            lblLicense.Text = "[???]";
+            lblPassed.Text = "[???]";
+        }
+        void _FillLocalDrivingLicenseAppInfo()
+        {
+            lblDLAppID.Text = _LocalDrivingLicenseAppInfo.LocalDrivingLicenseApplicationID.ToString();
+            lblLicense.Text = _LocalDrivingLicenseAppInfo.LicenseClassInfo.ClassName;
+            lblPassed.Text = _LocalDrivingLicenseAppInfo.GetPassedTestCount().ToString() + "/3";
+
+            applicationBasicInfo1.LoadApplicationInfoByAppID(_LocalDrivingLicenseAppInfo.ApplicationID);
+
+        }
+        public void LoadLocalDrivingLicenseAppInfo(int LocalDrivingLicenseAppID)
+        {
+            this.LocalDrivingLicenseAppID= LocalDrivingLicenseAppID;
+            _LocalDrivingLicenseAppInfo = clsLocalDrivingLicenseApplicationsBusiness.FindByLocalDrivingAppLicenseID(LocalDrivingLicenseAppID);
+
+            if(_LocalDrivingLicenseAppInfo==null)
+            {
+                _ResetLocalDrivingLicenseAppInfo();
+                MessageBox.Show("No Application with ApplicationID = " + LocalDrivingLicenseAppID.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                _FillLocalDrivingLicenseAppInfo();
             }
         }
-        public clsApplicationsBusiness AppInfo
-        {
-            set
-            {
-                applicationBasicInfo1.ApplicationInfo = value;
-            }
-        }
 
-        private void DrivingLicenseAppInfo_Load(object sender, EventArgs e)
-        {
-            //if (_AppId <= 0)
-            //    return;
-
-            //applicationBasicInfo1.ApplicationInfo =
-            //    clsApplicationsBusiness.FindApplication(_AppId);
-        }
-
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void applicationBasicInfo1_Load(object sender, EventArgs e)
+        private void LocalDrivingLicenseAppInfo_Load(object sender, EventArgs e)
         {
 
         }

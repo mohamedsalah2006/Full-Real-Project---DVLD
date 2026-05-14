@@ -126,7 +126,7 @@ namespace DVDL_Project
             }
 
             _PersonID = findPerson1.PersonID;
-            if (_PersonID != -1)
+            if (_PersonID != 0)
             {
                 tcApplicationInfo.SelectedIndex = 1;
                 btnSave.Enabled = true;
@@ -180,7 +180,7 @@ namespace DVDL_Project
                 return;
             }
 
-            if (clsLicenseBusiness.IsLicenseExistByPersonID(_PersonID, cbLicenseClass.SelectedIndex+1))
+            if (clsLicenseBusiness.DidLicenseExistByPersonID(_PersonID, cbLicenseClass.SelectedIndex+1))
             {
 
                 MessageBox.Show("Person already have a license with the same applied driving class, Choose diffrent driving class", "Not allowed", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -189,7 +189,7 @@ namespace DVDL_Project
 
 
 
-
+            
 
 
             if(AddNewApplication())
@@ -219,6 +219,9 @@ namespace DVDL_Project
 
         }
 
-       
+        private void frmAddOrUpdateLocalLicense_Activated(object sender, EventArgs e)
+        {
+            findPerson1.FilterFocus();
+        }
     }
 }

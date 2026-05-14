@@ -51,8 +51,7 @@ namespace DVDL_Project
             clsApplicationsBusiness App = clsApplicationsBusiness.FindApplication(LocalLicenseInfo.AppID);
 
 
-            drivingLicenseAppInfo2.L_D_L_App_Info = LocalLicenseView;
-            drivingLicenseAppInfo2.AppInfo = App;
+            drivingLicenseAppInfo2.LoadLocalDrivingLicenseAppInfo(_L_D_App);
 
             _UserID = App.CreatedByUser;
             _PersonID=App.PersonID;
@@ -66,7 +65,7 @@ namespace DVDL_Project
         private void btnAddPerson_Click(object sender, EventArgs e)
         {
 
-            if(clsTestBusiness.IsPassed(_L_D_App, _TestTypeID))
+            if(clsTestBusiness.DidThePersonPassInThisTestType(_L_D_App, _TestTypeID))
             {
                 MessageBox.Show("This Person Already Passed In This Test");
                 return;

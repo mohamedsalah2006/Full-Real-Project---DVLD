@@ -65,19 +65,22 @@ namespace DataAccessLayer
 
 
         }
-        static public bool IsPassed(int LocalDrivingLicenseApplicationID, int TestTypeID)
+        static public bool DidThePersonPassInThisTestType(int LocalDrivingLicenseApplicationID, int TestTypeID)
         {
             SqlConnection connection = new SqlConnection(ConnectionString);
 
             
 
-            string query = @"SELECT IsFound = 1
-                           FROM Tests T
-                           JOIN TestAppointments A 
-                               ON T.TestAppointmentID = A.TestAppointmentID
-                           WHERE A.LocalDrivingLicenseApplicationID = @LocalDrivingLicenseApplicationID
-                           AND A.TestTypeID = @TestTypeID
-                           AND T.TestResult = 1";
+            string query = @"
+                                    select IsPassed = 1 from
+                                    LocalDrivingLicenseApplications inner join TestAppointments 
+                                    on LocalDrivingLicenseApplications.LocalDrivingLicenseApplicationID = TestAppointments.LocalDrivingLicenseApplicationID
+                                    inner join Tests
+                                    on Tests.TestAppointmentID = TestAppointments.TestAppointmentID
+                                    Where (Tests.TestResult=1) and (LocalDrivingLicenseApplications.LocalDrivingLicenseApplicationID = @LocalDrivingLicenseApplicationID)
+                                     AND(TestAppointments.TestTypeID = @TestTypeID)
+                                    ORDER BY TestAppointments.TestAppointmentID desc";
+
             SqlCommand command = new SqlCommand(query, connection);
 
             command.Parameters.AddWithValue("@LocalDrivingLicenseApplicationID", LocalDrivingLicenseApplicationID);
@@ -102,6 +105,46 @@ namespace DataAccessLayer
                 connection.Close();
             }
             return IsFound;
+
+        }
+        static public int GetPassedTestCount(int LocalDrivingLicenseAppID)
+        {
+            SqlConnection connection = new SqlConnection(ConnectionString);
+
+            string query = @"
+                            select PassedTestCount =COUNT(TestAppointments.TestAppointmentID) from
+                            TestAppointments inner join Tests 
+                            on TestAppointments.TestAppointmentID = Tests.TestAppointmentID
+                            where TestAppointments.LocalDrivingLicenseApplicationID =@LocalDrivingLicenseAppID  and Tests.TestResult=1";
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@LocalDrivingLicenseAppID", LocalDrivingLicenseAppID);
+
+            int PassedTestCount = 0;
+
+            try
+            {
+                connection.Open();
+
+                object result = command.ExecuteScalar();
+
+                if (result != null && byte.TryParse(result.ToString(), out byte ptCount))
+                {
+                    PassedTestCount = ptCount;
+                }
+            }
+
+            catch (Exception ex)
+            {
+                //Console.WriteLine("Error: " + ex.Message);
+
+            }
+
+            finally
+            {
+                connection.Close();
+            }
+
+            return PassedTestCount;
 
         }
 
