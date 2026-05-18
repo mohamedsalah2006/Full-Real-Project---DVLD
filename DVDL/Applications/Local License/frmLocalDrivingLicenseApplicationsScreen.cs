@@ -14,7 +14,7 @@ namespace DVDL_Project
 {
     public partial class frmLocalDrivingLicenseApplicationsScreen : Form
     {
-        DataTable _dtLocalDrivingLicenseApp = clsLocalDrivingLicenseApplicationsBusiness.GetAllLocalLicense();
+        DataTable _dtLocalDrivingLicenseApp;
         public frmLocalDrivingLicenseApplicationsScreen()
         {
             InitializeComponent();
@@ -25,9 +25,10 @@ namespace DVDL_Project
 
         void _Refresh()
         {
+            _dtLocalDrivingLicenseApp = clsLocalDrivingLicenseApplicationsBusiness.GetAllLocalLicense();
             dgvLocalLicense.DataSource = _dtLocalDrivingLicenseApp;
 
-            
+
         }
         private void frmLocalLicenseScreen_Load(object sender, EventArgs e)
         {
@@ -238,7 +239,7 @@ namespace DVDL_Project
         }
 
 
-        void ScheduleTestType(int TestType)
+        void ScheduleTestType(clsTestsTypesBusiness.enTestType TestType)
         {
             int D_L_App = (int)dgvLocalLicense.CurrentRow.Cells[0].Value;
 
@@ -248,16 +249,16 @@ namespace DVDL_Project
         }
         private void scheduleVisionTestToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ScheduleTestType(1);
+            ScheduleTestType(clsTestsTypesBusiness.enTestType.VisionTest);
         }
         private void scheduleWrittenTestToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ScheduleTestType(2);
+            ScheduleTestType(clsTestsTypesBusiness.enTestType.WrittenTest);
 
         }
         private void scheduleStreetTestToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ScheduleTestType(3);
+            ScheduleTestType(clsTestsTypesBusiness.enTestType.StreetTest);
 
         }
 
@@ -279,6 +280,11 @@ namespace DVDL_Project
             frm.ShowDialog();
 
             _Refresh();
+        }
+
+        private void ScheduleTestsMenue_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

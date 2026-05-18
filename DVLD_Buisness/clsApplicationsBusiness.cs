@@ -28,7 +28,7 @@ namespace BusinessLayer
         public DateTime ApplicationDate { get; set; }
         public enApplicationType ApplicationType { get; set; }
         public enApplicationStatus ApplicationStatus { set; get; }
-        public DateTime LastStatusDate { get; set; }
+        public DateTime LastStatusDate { get; set; } 
         public float PaidFees { get; set; }
         public int CreatedByUser { get; set; }
         public clsApplicationsTypesBusiness ApplicationTypeInfo {  get; set; }
@@ -67,6 +67,11 @@ namespace BusinessLayer
             LastStatusDate = DateTime.Now;
             PaidFees = -1;
             CreatedByUser = -1;
+
+            this.ApplicationTypeInfo = clsApplicationsTypesBusiness.GetApplicationTypeInfoByID((int)this.ApplicationType);
+            this.UserInfo = clsUsersBusiness.FindUserByUserID(this.CreatedByUser);
+            this.PersonInfo = clsPeopleBusiness.FindPeopleByID(this.PersonID);
+
         }
         
         clsApplicationsBusiness( int applicationID, int personID, DateTime applicationDate, enApplicationType applicationType, enApplicationStatus applicationStatus, DateTime lastStatusDate, float paidFees, int createdByUser)        
@@ -83,7 +88,7 @@ namespace BusinessLayer
 
             this.ApplicationTypeInfo=clsApplicationsTypesBusiness.GetApplicationTypeInfoByID((int)applicationType);
             this.UserInfo=clsUsersBusiness.FindUserByUserID(createdByUser);
-            this.PersonInfo=clsPeopleBusiness.FindPeopleByID(personID);
+            this.PersonInfo = clsPeopleBusiness.FindPeopleByID(personID);
 
         }
 

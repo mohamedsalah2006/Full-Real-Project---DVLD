@@ -1,4 +1,4 @@
-﻿namespace DVDL_Project
+﻿namespace DVDL_Project.Tests
 {
     partial class frmTakeTest
     {
@@ -28,137 +28,134 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.vesionTestcs1 = new DVDL_Project.TestInfo();
-            this.label1 = new System.Windows.Forms.Label();
-            this.rbPass = new System.Windows.Forms.RadioButton();
-            this.rbFail = new System.Windows.Forms.RadioButton();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtMassage = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.scheduledTest1 = new DVDL_Project.Tests.ScheduledTest();
+            this.lblUserMessage = new System.Windows.Forms.Label();
+            this.btnClose = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
-            this.lblMassage = new System.Windows.Forms.Label();
+            this.txtNotes = new System.Windows.Forms.TextBox();
+            this.rbFail = new System.Windows.Forms.RadioButton();
+            this.rbPass = new System.Windows.Forms.RadioButton();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // vesionTestcs1
+            // scheduledTest1
             // 
-            this.vesionTestcs1.AppointmentDate = new System.DateTime(2026, 3, 23, 22, 45, 13, 652);
-            this.vesionTestcs1.Location = new System.Drawing.Point(12, 12);
-            this.vesionTestcs1.Name = "vesionTestcs1";
-            this.vesionTestcs1.Size = new System.Drawing.Size(715, 642);
-            this.vesionTestcs1.TabIndex = 0;
+            this.scheduledTest1.Location = new System.Drawing.Point(12, 12);
+            this.scheduledTest1.Name = "scheduledTest1";
+            this.scheduledTest1.Size = new System.Drawing.Size(614, 600);
+            this.scheduledTest1.TabIndex = 0;
             // 
-            // label1
+            // lblUserMessage
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(35, 684);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(80, 26);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Result ";
+            this.lblUserMessage.AutoSize = true;
+            this.lblUserMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUserMessage.ForeColor = System.Drawing.Color.Red;
+            this.lblUserMessage.Location = new System.Drawing.Point(268, 620);
+            this.lblUserMessage.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.lblUserMessage.Name = "lblUserMessage";
+            this.lblUserMessage.Size = new System.Drawing.Size(304, 25);
+            this.lblUserMessage.TabIndex = 209;
+            this.lblUserMessage.Text = "You cannot change the results";
+            this.lblUserMessage.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblUserMessage.Visible = false;
             // 
-            // rbPass
+            // btnClose
             // 
-            this.rbPass.AutoSize = true;
-            this.rbPass.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbPass.Location = new System.Drawing.Point(169, 684);
-            this.rbPass.Name = "rbPass";
-            this.rbPass.Size = new System.Drawing.Size(82, 30);
-            this.rbPass.TabIndex = 2;
-            this.rbPass.TabStop = true;
-            this.rbPass.Text = "Pass";
-            this.rbPass.UseVisualStyleBackColor = true;
+            this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnClose.Location = new System.Drawing.Point(274, 755);
+            this.btnClose.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(126, 37);
+            this.btnClose.TabIndex = 208;
+            this.btnClose.Text = "Close";
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
+            // btnSave
+            // 
+            this.btnSave.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSave.Location = new System.Drawing.Point(410, 756);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(137, 36);
+            this.btnSave.TabIndex = 207;
+            this.btnSave.Text = "Save";
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // txtNotes
+            // 
+            this.txtNotes.Location = new System.Drawing.Point(139, 652);
+            this.txtNotes.Multiline = true;
+            this.txtNotes.Name = "txtNotes";
+            this.txtNotes.Size = new System.Drawing.Size(408, 91);
+            this.txtNotes.TabIndex = 206;
             // 
             // rbFail
             // 
             this.rbFail.AutoSize = true;
-            this.rbFail.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbFail.Location = new System.Drawing.Point(303, 684);
+            this.rbFail.Location = new System.Drawing.Point(207, 618);
             this.rbFail.Name = "rbFail";
-            this.rbFail.Size = new System.Drawing.Size(68, 30);
-            this.rbFail.TabIndex = 3;
-            this.rbFail.TabStop = true;
+            this.rbFail.Size = new System.Drawing.Size(50, 20);
+            this.rbFail.TabIndex = 205;
             this.rbFail.Text = "Fail";
             this.rbFail.UseVisualStyleBackColor = true;
             // 
-            // label2
+            // rbPass
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(35, 740);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(69, 26);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "Notes";
+            this.rbPass.AutoSize = true;
+            this.rbPass.Checked = true;
+            this.rbPass.Location = new System.Drawing.Point(139, 618);
+            this.rbPass.Name = "rbPass";
+            this.rbPass.Size = new System.Drawing.Size(59, 20);
+            this.rbPass.TabIndex = 204;
+            this.rbPass.TabStop = true;
+            this.rbPass.Text = "Pass";
+            this.rbPass.UseVisualStyleBackColor = true;
             // 
-            // txtMassage
+            // label10
             // 
-            this.txtMassage.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMassage.Location = new System.Drawing.Point(169, 740);
-            this.txtMassage.Multiline = true;
-            this.txtMassage.Name = "txtMassage";
-            this.txtMassage.Size = new System.Drawing.Size(543, 83);
-            this.txtMassage.TabIndex = 5;
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(25, 652);
+            this.label10.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(75, 25);
+            this.label10.TabIndex = 202;
+            this.label10.Text = "Notes:";
             // 
-            // button1
+            // label8
             // 
-            this.button1.BackColor = System.Drawing.Color.Gray;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.Red;
-            this.button1.Image = global::DVDL_Project.Properties.Resources.direct_x;
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(140, 861);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(111, 57);
-            this.button1.TabIndex = 43;
-            this.button1.Text = "Close";
-            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // btnSave
-            // 
-            this.btnSave.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSave.ForeColor = System.Drawing.Color.Red;
-            this.btnSave.Image = global::DVDL_Project.Properties.Resources.diskette;
-            this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(350, 861);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(102, 57);
-            this.btnSave.TabIndex = 42;
-            this.btnSave.Text = "Save";
-            this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnSave.UseVisualStyleBackColor = false;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            // 
-            // lblMassage
-            // 
-            this.lblMassage.AutoSize = true;
-            this.lblMassage.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMassage.ForeColor = System.Drawing.Color.Red;
-            this.lblMassage.Location = new System.Drawing.Point(213, 322);
-            this.lblMassage.Name = "lblMassage";
-            this.lblMassage.Size = new System.Drawing.Size(0, 20);
-            this.lblMassage.TabIndex = 44;
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(20, 616);
+            this.label8.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(79, 25);
+            this.label8.TabIndex = 200;
+            this.label8.Text = "Result:";
             // 
             // frmTakeTest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(742, 937);
-            this.Controls.Add(this.lblMassage);
-            this.Controls.Add(this.button1);
+            this.ClientSize = new System.Drawing.Size(636, 800);
+            this.Controls.Add(this.lblUserMessage);
+            this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnSave);
-            this.Controls.Add(this.txtMassage);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.txtNotes);
             this.Controls.Add(this.rbFail);
             this.Controls.Add(this.rbPass);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.vesionTestcs1);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.scheduledTest1);
             this.Name = "frmTakeTest";
-            this.Text = "Take Test";
+            this.Text = "frmTakeTest";
             this.Load += new System.EventHandler(this.frmTakeTest_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -167,14 +164,14 @@
 
         #endregion
 
-        private TestInfo vesionTestcs1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.RadioButton rbPass;
-        private System.Windows.Forms.RadioButton rbFail;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txtMassage;
-        private System.Windows.Forms.Button button1;
+        private ScheduledTest scheduledTest1;
+        private System.Windows.Forms.Label lblUserMessage;
+        private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Button btnSave;
-        private System.Windows.Forms.Label lblMassage;
+        private System.Windows.Forms.TextBox txtNotes;
+        private System.Windows.Forms.RadioButton rbFail;
+        private System.Windows.Forms.RadioButton rbPass;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label8;
     }
 }

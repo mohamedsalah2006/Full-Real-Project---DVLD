@@ -14,18 +14,24 @@ namespace BusinessLayer
 
         public int TestAppointmentID {  get; set; }
         public int TestTypeID {  get; set; }
-        public int LocalDrivingLicenseID {  get; set; }
+        public int LocalDrivingLicenseApplicationID {  get; set; }
         public DateTime AppointmentDate {  get; set; }
-        public int PaidFees {  get; set; }
+        public float PaidFees {  get; set; }
         public int CreatedByUserID {  get; set; }
         public int IsLocked {  get; set; }
+        public int RetakeTestApplicationID {  get; set; }
+        public clsApplicationsBusiness RetakeTestAppInfo { set; get; }
 
-        clsTestAppointmentsBusiness( int testAppointmentID, int testTypeID, int localDrivingLicenseID, DateTime appointmentDate, int paidFees, int createdByUserID, int isLocked)
+        public int TestID
+        {
+            get { return GetTestID(this.TestAppointmentID); }
+        }
+        clsTestAppointmentsBusiness( int testAppointmentID, int testTypeID, int localDrivingLicenseID, DateTime appointmentDate, float paidFees, int createdByUserID, int isLocked)
         {
             Mode = enMode.UpdateMode;
             TestAppointmentID = testAppointmentID;
             TestTypeID = testTypeID;
-            LocalDrivingLicenseID = localDrivingLicenseID;
+            LocalDrivingLicenseApplicationID = localDrivingLicenseID;
             AppointmentDate = appointmentDate;
             PaidFees = paidFees;
             CreatedByUserID = createdByUserID;
@@ -38,7 +44,7 @@ namespace BusinessLayer
             this.TestTypeID = -1;
             this.PaidFees = -1;
             this.CreatedByUserID = -1;
-            this.LocalDrivingLicenseID= -1;
+            this.LocalDrivingLicenseApplicationID= -1;
             this.CreatedByUserID= -1;
             this.IsLocked = 0;
 
@@ -57,7 +63,7 @@ namespace BusinessLayer
             TestAppointment.PaidFees= this.PaidFees;
             TestAppointment.IsLocked = this.IsLocked;
             TestAppointment.AppointmentDate = this.AppointmentDate;
-            TestAppointment.LocalDrivingLicenseID = this.LocalDrivingLicenseID;
+            TestAppointment.LocalDrivingLicenseID = this.LocalDrivingLicenseApplicationID;
             TestAppointment.CreatedByUserID =this.CreatedByUserID;
 
 
@@ -65,7 +71,17 @@ namespace BusinessLayer
         }
         bool _UpdateTestAppointment()
         {
-            return clsTestAppointmentsData.UpdateTestAppointment(this.TestAppointmentID,this.AppointmentDate);
+            clsTestAppointmentsData testAppointmentsData = new clsTestAppointmentsData();
+
+            testAppointmentsData.RetakeTestApplicationID = this.RetakeTestApplicationID;
+            testAppointmentsData.TestTypeID = this.TestTypeID;
+            testAppointmentsData.LocalDrivingLicenseID =this.LocalDrivingLicenseApplicationID;
+            testAppointmentsData. AppointmentDate = this.AppointmentDate;
+            testAppointmentsData. PaidFees = this.PaidFees;
+            testAppointmentsData.CreatedByUserID=this.CreatedByUserID;
+            testAppointmentsData.IsLocked =this.IsLocked;
+
+            return clsTestAppointmentsData.UpdateTestAppointment(this.TestAppointmentID, testAppointmentsData);
         }
         public bool Save()
         {
@@ -96,26 +112,37 @@ namespace BusinessLayer
             }
             return false;
         }
-        public static clsTestAppointmentsBusiness FindTestAppointmentByID(int TestAppointmentID)
+        public static clsTestAppointmentsBusiness GetTestAppointmentByID(int TestAppointmentID)
         {
             clsTestAppointmentsData TestAppointment = new clsTestAppointmentsData();
 
-            if(clsTestAppointmentsData.FindTestAppointmentByID(TestAppointmentID,ref TestAppointment))
+            if(clsTestAppointmentsData.GetTestAppointmentByID(TestAppointmentID,ref TestAppointment))
             {
                 return new clsTestAppointmentsBusiness(TestAppointmentID, TestAppointment.TestTypeID, TestAppointment.LocalDrivingLicenseID, TestAppointment.AppointmentDate, TestAppointment.PaidFees, TestAppointment.CreatedByUserID, TestAppointment.IsLocked);
             }
             return null;
         }
-        static public bool IsPersonHasActiveAppointmentt(int LD_License,int TestTypeID)
+        static public bool IsPersonHasActiveAppointment(int LD_License,int TestTypeID)
         {
             return clsTestAppointmentsData.IsPersonHasActiveTestAppointment(LD_License, TestTypeID);
         }
-
-
-        static public bool IsFailedInTest(int LocalDrivingLicenseApplicationID, int TestTypeID)
+        public static clsTestAppointmentsBusiness GetLastTestAppointment( int LocalDrivingLicenseApplicationID, int TestTypeID)
         {
-            return clsTestAppointmentsData.IsFailedInTest(LocalDrivingLicenseApplicationID, TestTypeID);
+            clsTestAppointmentsData TestAppointment = new clsTestAppointmentsData();
+
+            if (clsTestAppointmentsData.GetLastTestAppointment(LocalDrivingLicenseApplicationID, TestTypeID, ref TestAppointment))
+            {
+                return new clsTestAppointmentsBusiness(TestAppointment.TestAppointmentID, TestTypeID, LocalDrivingLicenseApplicationID, TestAppointment.AppointmentDate, TestAppointment.PaidFees, TestAppointment.CreatedByUserID, TestAppointment.IsLocked);
+            }
+            return null;
+
         }
 
+        
+
+        public static int GetTestID(int TestAppointmentID)
+        {
+            return clsTestAppointmentsData.GetTestID(TestAppointmentID);
+        }
     }
 }

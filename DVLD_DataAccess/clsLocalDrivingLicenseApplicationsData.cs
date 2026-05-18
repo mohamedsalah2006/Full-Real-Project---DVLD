@@ -140,8 +140,8 @@ namespace DataAccessLayer
 
                 if (reader.Read())
                 {
+                    AppInfo.LocalDrivingLicenseApplicationID = LocalDrivingLicenseApplicationID;
                     AppInfo.ApplicationID = Convert.ToInt32(reader["ApplicationID"]);
-                    AppInfo.LocalDrivingLicenseApplicationID = Convert.ToInt32(reader["LocalDrivingLicenseApplicationID"]);
                     AppInfo.LicenseClassID = Convert.ToInt32(reader["LicenseClassID"]);
                 }
                 else
@@ -164,42 +164,7 @@ namespace DataAccessLayer
             return IsFound;
 
         }
-        public static DataTable GetPersonLocalLicense(string NationalNo)
-        {
-            SqlConnection connection = new SqlConnection(ConnectionString);
-            string query = @"
-                            select LicenseID,ApplicationID,ClassName,IssueDate,ExpirationDate,IsActive from Licenses inner join LicenseClasses
-                            on LicenseClasses.LicenseClassID=LicenseClass inner join Drivers_View on Drivers_View.DriverID=Licenses.DriverID
-                            where NationalNo = @NationalNo";
-            SqlCommand command = new SqlCommand(query, connection);
-
-            command.Parameters.AddWithValue("@NationalNo", NationalNo);
-
-            DataTable dt = new DataTable();
-
-            try
-            {
-                connection.Open();
-                SqlDataReader reader = command.ExecuteReader();
-                if (reader.HasRows)
-                {
-                    dt.Load(reader);
-                }
-
-
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-            finally
-            {
-                connection.Close();
-            }
-            return dt;
-
-        }
-
+       
         static public int AddNewLocalDrivingLicenseApplications(int ApplicationID, int ClassID)
         {
             SqlConnection connection = new SqlConnection(ConnectionString);
@@ -310,8 +275,96 @@ namespace DataAccessLayer
             return (rowsAffected > 0);
         }
 
+        public static int TotalTrialsPerTest(int LocalDrivingLicenseApplicationID, int TestTypeID)
 
-    
+        {
+
+
+            byte TotalTrialsPerTest = 0;
+
+            SqlConnection connection = new SqlConnection(ConnectionString);
+
+            string query = @" SELECT TotalTrialsPerTest = count(TestID)
+                            FROM LocalDrivingLicenseApplications INNER JOIN
+                                 TestAppointments ON LocalDrivingLicenseApplications.LocalDrivingLicenseApplicationID = TestAppointments.LocalDrivingLicenseApplicationID INNER JOIN
+                                 Tests ON TestAppointments.TestAppointmentID = Tests.TestAppointmentID
+                            WHERE
+                            (LocalDrivingLicenseApplications.LocalDrivingLicenseApplicationID = @LocalDrivingLicenseApplicationID) 
+                            AND(TestAppointments.TestTypeID = @TestTypeID)
+                       ";
+
+            SqlCommand command = new SqlCommand(query, connection);
+
+            command.Parameters.AddWithValue("@LocalDrivingLicenseApplicationID", LocalDrivingLicenseApplicationID);
+            command.Parameters.AddWithValue("@TestTypeID", TestTypeID);
+
+            try
+            {
+                connection.Open();
+
+                object result = command.ExecuteScalar();
+
+                if (result != null && byte.TryParse(result.ToString(), out byte Trials))
+                {
+                    TotalTrialsPerTest = Trials;
+                }
+            }
+
+            catch (Exception ex)
+            {
+                //Console.WriteLine("Error: " + ex.Message);
+
+            }
+
+            finally
+            {
+                connection.Close();
+            }
+
+            return TotalTrialsPerTest;
+
+        }
+        static public bool IsFailedInTest(int LocalDrivingLicenseApplicationID, int TestTypeID)
+        {
+            SqlConnection connection = new SqlConnection(ConnectionString);
+            string query = @" SELECT top 1 Found=1
+                            FROM LocalDrivingLicenseApplications INNER JOIN
+                                 TestAppointments ON LocalDrivingLicenseApplications.LocalDrivingLicenseApplicationID = TestAppointments.LocalDrivingLicenseApplicationID INNER JOIN
+                                 Tests ON TestAppointments.TestAppointmentID = Tests.TestAppointmentID
+                            WHERE
+                            (LocalDrivingLicenseApplications.LocalDrivingLicenseApplicationID = @LocalDrivingLicenseApplicationID) 
+                            AND(TestAppointments.TestTypeID = @TestTypeID)
+                            ORDER BY TestAppointments.TestAppointmentID desc";
+
+
+            SqlCommand command = new SqlCommand(query, connection);
+
+            command.Parameters.AddWithValue("@TestTypeID", TestTypeID);
+            command.Parameters.AddWithValue("@LocalDrivingLicenseApplicationID", LocalDrivingLicenseApplicationID);
+
+
+
+            bool IsFound = false;
+            try
+            {
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+
+                IsFound = (reader.HasRows);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return IsFound;
+
+        }
+
+
 
 
     }

@@ -24,12 +24,13 @@ namespace DVDL_Project
 
         int _GetDriver(int PersonId)
         {
-            int DriverID = clsDriverBusiness.IsThePersonADriver(PersonId);
-            if (DriverID==-1)
-            {
-                DriverID = clsDriverBusiness.InsertDriver(PersonId, DateTime.Now, 1);
-            }
-            return DriverID;
+            //int DriverID;
+            //if (clsDriverBusiness.IsThePersonADriver(PersonId))
+            //{
+            //    DriverID = clsDriverBusiness.InsertDriver(PersonId, DateTime.Now, 1);
+            //}
+            //return DriverID;
+            return 1;
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -40,7 +41,7 @@ namespace DVDL_Project
         {
 
             clsLocalDrivingLicenseApplicationsBusiness LocalLicenseInfo = clsLocalDrivingLicenseApplicationsBusiness.FindByLocalDrivingAppLicenseID(_L_D_App);
-            clsLocalDrivingLicenseAppBusiness_View LocalLicenseView = clsLocalDrivingLicenseAppBusiness_View.FindLocalLicenseApp_View(_L_D_App);
+            //clsLocalDrivingLicenseAppBusiness_View LocalLicenseView = clsLocalDrivingLicenseAppBusiness_View.FindLocalLicenseApp_View(_L_D_App);
             clsApplicationsBusiness App = clsApplicationsBusiness.FindApplication(LocalLicenseInfo.AppID);
 
 

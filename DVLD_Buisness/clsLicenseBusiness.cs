@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -119,6 +120,10 @@ namespace BusinessLayer
         static public bool DidLicenseExistByPersonID(int PersonID, int LicenseClassID)
         {
             return GetActiveLicenseIDByPersonID(PersonID,LicenseClassID) != -1;
+        }
+        public static DataTable GetPersonLocalLicense(string NationalNo)
+        {
+            return clsLicenseData.GetPersonLocalLicense(NationalNo);
         }
 
     }

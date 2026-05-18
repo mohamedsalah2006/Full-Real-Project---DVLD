@@ -8,69 +8,60 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BusinessLayer;
+using DVDL_Project.Global_Classes;
 
-namespace DVDL_Project
+namespace DVDL_Project.Tests
 {
     public partial class frmTakeTest : Form
     {
-        int _TestAppointmentID;
-        public frmTakeTest(int TestAppointmentID)
+        int _AppointmentID;
+        clsTestsTypesBusiness.enTestType _TestType;
+        int _TestID = -1;
+        clsTestsTypesBusiness _Test;
+        clsTestBusiness _TestInfo = new clsTestBusiness();
+
+        public frmTakeTest(int AppointmentID, clsTestsTypesBusiness.enTestType TestType)
         {
-            _TestAppointmentID=TestAppointmentID;
             InitializeComponent();
-
-            _LoadData();
+            _AppointmentID = AppointmentID;
+            _TestType = TestType;
         }
 
-        void _LoadData()
-        {
-
-            clsTestAppointmentsBusiness _TestAppointment = clsTestAppointmentsBusiness.FindTestAppointmentByID(_TestAppointmentID);
-
-            vesionTestcs1.LD_AppInf = clsLocalDrivingLicenseAppBusiness_View.FindLocalLicenseApp_View(_TestAppointment.LocalDrivingLicenseID);
-
-            vesionTestcs1.AppointmentDate = _TestAppointment.AppointmentDate;
-
-            vesionTestcs1.dateTimePicker1.Enabled = false;
-            if (_TestAppointment.IsLocked == 1)
-            {
-               
-                rbFail.Enabled = false;
-                rbPass.Enabled = false;
-                txtMassage.Enabled = false;
-                btnSave.Enabled = false;
-                lblMassage.Text = "Person already sat for the test , appointment locked";
-            }
-            
-
-        }
-        private void btnSave_Click(object sender, EventArgs e)
-        {
-            int Result = Convert.ToInt32(rbPass.Checked);
-            string Notes = txtMassage.Text.ToString();
-            
-
-            if(clsTestBusiness.TakeTest(_TestAppointmentID, Result, Notes, 1))
-            {
-                MessageBox.Show("Data Saved Successfully");
-            }
-            else
-            {
-                MessageBox.Show("Data Not Saved ");
-
-            }
-            this.Close();
-
-        }
+       
 
         private void frmTakeTest_Load(object sender, EventArgs e)
         {
-
+            scheduledTest1.LoadInfo(_AppointmentID, _TestType);
         }
-
-        private void button1_Click(object sender, EventArgs e)
+        private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Are you sure you want to save? After that you cannot change the Pass/Fail results after you save?.",
+                      "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No
+             )
+            {
+                return;
+            }
+
+            _TestInfo.TestAppointmentID = _AppointmentID;
+            _TestInfo.TestResult = rbPass.Checked;
+            _TestInfo.Notes = txtNotes.Text.Trim();
+            _TestInfo.CreatedByUserID = clsGlobal.CurrentUser.UserID;
+
+            if (_TestInfo.TakeTest())
+            {
+                MessageBox.Show("Data Saved Successfully.", "Saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                btnSave.Enabled = false;
+
+            }
+            else
+                MessageBox.Show("Error: Data Is not Saved Successfully.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+
         }
     }
 }

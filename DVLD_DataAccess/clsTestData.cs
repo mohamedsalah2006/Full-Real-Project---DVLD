@@ -12,11 +12,72 @@ namespace DataAccessLayer
     public class clsTestData
     {
         
-
+        public int TestID { get; set; }
+        public int TestAppointmentID {  get; set; }
+        public string Notes {  get; set; }
+        public int CreatedByUserID {  get; set; }
+        public bool TestResult {  get; set; }
 
         public static string ConnectionString = "Server=.;Database=DVLD;User Id=sa;Password=123456;";
 
-        static public int TakeTest(int TestAppointmentID, int TestResult, string Notes, int CreatedByUserID)
+        static public bool GetTestInfo(int TestID,ref clsTestData TestInfo)
+        {
+            bool isFound = false;
+
+            SqlConnection connection = new SqlConnection(ConnectionString);
+
+            string query = "SELECT * FROM Tests WHERE TestID = @TestID";
+
+            SqlCommand command = new SqlCommand(query, connection);
+
+            command.Parameters.AddWithValue("@TestID", TestID);
+
+            try
+            {
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.Read())
+                {
+
+                    // The record was found
+                    isFound = true;
+
+                    TestInfo.TestID = TestID;
+                    TestInfo.TestAppointmentID = (int)reader["TestAppointmentID"];
+                    TestInfo.TestResult = (bool)reader["TestResult"];
+                    if (reader["Notes"] == DBNull.Value)
+
+                        TestInfo.Notes = "";
+                    else
+                        TestInfo.Notes = (string)reader["Notes"];
+
+                    TestInfo.CreatedByUserID = (int)reader["CreatedByUserID"];
+
+                }
+                else
+                {
+                    // The record was not found
+                    isFound = false;
+                }
+
+                reader.Close();
+
+
+            }
+            catch (Exception ex)
+            {
+                //Console.WriteLine("Error: " + ex.Message);
+                isFound = false;
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return isFound;
+        }
+        static public int TakeTest(int TestAppointmentID, bool TestResult, string Notes, int CreatedByUserID)
         {
             SqlConnection connection = new SqlConnection(ConnectionString);
             string query = @"Insert into Tests(TestAppointmentID,TestResult,Notes,CreatedByUserID)
@@ -33,8 +94,13 @@ namespace DataAccessLayer
 
             command.Parameters.AddWithValue("@TestAppointmentID", TestAppointmentID);
             command.Parameters.AddWithValue("@TestResult", TestResult);
-            command.Parameters.AddWithValue("@Notes", Notes);
             command.Parameters.AddWithValue("@CreatedByUserID", CreatedByUserID);
+
+            if (Notes != "" && Notes != null)
+                command.Parameters.AddWithValue("@Notes", Notes);
+            else
+                command.Parameters.AddWithValue("@Notes", System.DBNull.Value);
+
 
             int test_ID = -1;
 

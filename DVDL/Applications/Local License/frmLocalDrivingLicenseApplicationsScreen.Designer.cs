@@ -153,6 +153,7 @@
             this.ScheduleTestsMenue.Name = "ScheduleTestsMenue";
             this.ScheduleTestsMenue.Size = new System.Drawing.Size(292, 24);
             this.ScheduleTestsMenue.Text = "Sechdule &Tests";
+            this.ScheduleTestsMenue.Click += new System.EventHandler(this.ScheduleTestsMenue_Click);
             // 
             // scheduleVisionTestToolStripMenuItem
             // 

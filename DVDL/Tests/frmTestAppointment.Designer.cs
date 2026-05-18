@@ -39,6 +39,7 @@
             this.pbMode = new System.Windows.Forms.PictureBox();
             this.button1 = new System.Windows.Forms.Button();
             this.drivingLicenseAppInfo2 = new DVDL_Project.LocalDrivingLicenseAppInfo();
+            this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAppointments)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbMode)).BeginInit();
@@ -144,19 +145,40 @@
             this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // drivingLicenseAppInfo2
             // 
+            this.drivingLicenseAppInfo2.AppID = 0;
+            this.drivingLicenseAppInfo2.LocalDrivingLicenseAppID = 0;
             this.drivingLicenseAppInfo2.Location = new System.Drawing.Point(12, 190);
             this.drivingLicenseAppInfo2.Name = "drivingLicenseAppInfo2";
             this.drivingLicenseAppInfo2.Size = new System.Drawing.Size(773, 395);
             this.drivingLicenseAppInfo2.TabIndex = 27;
             // 
-            // frmVisionTestAppointment
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.Color.Gray;
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.ForeColor = System.Drawing.Color.Red;
+            this.button2.Image = global::DVDL_Project.Properties.Resources.direct_x;
+            this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button2.Location = new System.Drawing.Point(335, 569);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(128, 57);
+            this.button2.TabIndex = 31;
+            this.button2.Text = "Close";
+            this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // frmTestAppointment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(825, 908);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.btnAddPerson);
             this.Controls.Add(this.pbMode);
             this.Controls.Add(this.lblMode);
@@ -164,9 +186,9 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dgvAppointments);
-            this.Name = "frmVisionTestAppointment";
+            this.Name = "frmTestAppointment";
             this.Text = "Test Appointments";
-            this.Load += new System.EventHandler(this.frmVisionTestAppointment_Load);
+            this.Load += new System.EventHandler(this.frmTestAppointment_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvAppointments)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pbMode)).EndInit();
@@ -188,5 +210,6 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem takeToolStripMenuItem;
+        private System.Windows.Forms.Button button2;
     }
 }

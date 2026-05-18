@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -315,6 +316,42 @@ namespace DataAccessLayer
 
             return LicenseID;
         }
+        public static DataTable GetPersonLocalLicense(string NationalNo)
+        {
+            SqlConnection connection = new SqlConnection(ConnectionString);
+            string query = @"
+                            select LicenseID,ApplicationID,ClassName,IssueDate,ExpirationDate,IsActive from Licenses inner join LicenseClasses
+                            on LicenseClasses.LicenseClassID=LicenseClass inner join Drivers_View on Drivers_View.DriverID=Licenses.DriverID
+                            where NationalNo = @NationalNo";
+            SqlCommand command = new SqlCommand(query, connection);
+
+            command.Parameters.AddWithValue("@NationalNo", NationalNo);
+
+            DataTable dt = new DataTable();
+
+            try
+            {
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    dt.Load(reader);
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return dt;
+
+        }
+
 
 
 

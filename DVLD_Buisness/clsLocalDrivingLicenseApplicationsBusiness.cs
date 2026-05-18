@@ -11,40 +11,6 @@ namespace BusinessLayer
 {
 
 
-    public class clsLocalDrivingLicenseAppBusiness_View
-    {
-        public int    LD_LicenseID;
-        public string ClassName;
-        public string NationalNo;
-        public string FullName;
-        public DateTime ApplicationDate;
-        public int    PassedTestCount;
-        public string Status;
-
-        clsLocalDrivingLicenseAppBusiness_View(int LD_LicenseID, string ClassName, string NationalNo, string FullName, DateTime ApplicationDate, int PassedTestCount, string status)
-        {
-            this.LD_LicenseID = LD_LicenseID;
-            this.ClassName = ClassName;
-            this.NationalNo = NationalNo;
-            this.FullName= FullName;
-            this.ApplicationDate = ApplicationDate;
-            this.PassedTestCount = PassedTestCount;
-            this.Status= status;
-
-
-        }
-        public static clsLocalDrivingLicenseAppBusiness_View FindLocalLicenseApp_View(int id)
-        {
-            clsLocalDrivingLicenseAppData_View AppInfo = new clsLocalDrivingLicenseAppData_View();
-            if( clsLocalDrivingLicenseAppData_View.FindLocalLicenseApp_View(id,ref AppInfo))
-            {
-                return new clsLocalDrivingLicenseAppBusiness_View(AppInfo.LD_LicenseID, AppInfo.ClassName, AppInfo.NationalNo, AppInfo.FullName, AppInfo.ApplicationDate, AppInfo.PassedTestCount, AppInfo.Status);
-            }
-            return null;
-        }
-
-
-    }
 
     public class clsLocalDrivingLicenseApplicationsBusiness : clsApplicationsBusiness
     {
@@ -76,6 +42,8 @@ namespace BusinessLayer
             this.CreatedByUser = CreatedByUserID;
             this.LicenseClassID = LicenseClassID;
             this.LicenseClassInfo = clsLicenseClassesBusiness.GetLicenseClassInfo(LicenseClassID);
+            this.PersonInfo = clsPeopleBusiness.FindPeopleByID(PersonID);
+
             Mode = enMode.Update;
         }
 
@@ -133,7 +101,7 @@ namespace BusinessLayer
             }
             return false;
         }
-
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
         public static clsLocalDrivingLicenseApplicationsBusiness FindByLocalDrivingAppLicenseID(int LocalDrivingLicenseApplicationID)
         {
             clsLocalDrivingLicenseApplicationsData LocalDrivingAppInfo = new clsLocalDrivingLicenseApplicationsData();
@@ -166,10 +134,7 @@ namespace BusinessLayer
 
         
        
-        public static DataTable GetPersonLocalLicense(string NationalNo)
-        {
-            return clsLocalDrivingLicenseApplicationsData.GetPersonLocalLicense(NationalNo);
-        }
+        
         public int GetPassedTestCount()
         {
             return clsTestBusiness.GetPassedTestCount(this.LocalDrivingLicenseApplicationID);
@@ -183,6 +148,14 @@ namespace BusinessLayer
             return clsTestBusiness.DidThePersonPassInThisTestType(this.LocalDrivingLicenseApplicationID, TestType);
         }
 
+        public  int TotalTrialsPerTest( int TestTypeID)
+        {
+            return clsLocalDrivingLicenseApplicationsData.TotalTrialsPerTest(this.LocalDrivingLicenseApplicationID, TestTypeID);
+        }
+        public bool IsFailedInTest( int TestTypeID)
+        {
+            return clsLocalDrivingLicenseApplicationsData.IsFailedInTest(this.LocalDrivingLicenseApplicationID, TestTypeID);
+        }
     }
 
 }

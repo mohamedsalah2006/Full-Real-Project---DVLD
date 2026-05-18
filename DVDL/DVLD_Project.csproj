@@ -145,6 +145,30 @@
     <Compile Include="Applications\Local License\frmAddOrUpdateLocalLicense.Designer.cs">
       <DependentUpon>frmAddOrUpdateLocalLicense.cs</DependentUpon>
     </Compile>
+    <Compile Include="Tests\frmSchedule_Test.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tests\frmSchedule_Test.Designer.cs">
+      <DependentUpon>frmSchedule_Test.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tests\frmTakeTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tests\frmTakeTest.Designer.cs">
+      <DependentUpon>frmTakeTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tests\ScheduledTest.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Tests\ScheduledTest.Designer.cs">
+      <DependentUpon>ScheduledTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tests\ScheduleTest.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Tests\ScheduleTest.Designer.cs">
+      <DependentUpon>ScheduleTest.cs</DependentUpon>
+    </Compile>
     <Compile Include="Users\frmAddOrUpdateUser.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -217,23 +241,11 @@
     <Compile Include="People\frmEditOrAddPerson.Designer.cs">
       <DependentUpon>frmEditOrAddPerson.cs</DependentUpon>
     </Compile>
-    <Compile Include="Tests\frmSchedule_Test.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Tests\frmSchedule_Test.Designer.cs">
-      <DependentUpon>frmSchedule_Test.cs</DependentUpon>
-    </Compile>
     <Compile Include="Drivers\frmShowDrivers.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Drivers\frmShowDrivers.Designer.cs">
       <DependentUpon>frmShowDrivers.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Tests\frmTakeTest.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Tests\frmTakeTest.Designer.cs">
-      <DependentUpon>frmTakeTest.cs</DependentUpon>
     </Compile>
     <Compile Include="People\PersonInfo.cs">
       <SubType>UserControl</SubType>
@@ -278,12 +290,6 @@
     </Compile>
     <Compile Include="Tests\frmTestAppointment.Designer.cs">
       <DependentUpon>frmTestAppointment.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Tests\TestInfo.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Tests\TestInfo.Designer.cs">
-      <DependentUpon>TestInfo.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Applications\ApplicationBasicInfo.resx">
       <DependentUpon>ApplicationBasicInfo.cs</DependentUpon>
@@ -333,6 +339,18 @@
     <EmbeddedResource Include="Applications\Local License\frmAddOrUpdateLocalLicense.resx">
       <DependentUpon>frmAddOrUpdateLocalLicense.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Tests\frmSchedule_Test.resx">
+      <DependentUpon>frmSchedule_Test.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tests\frmTakeTest.resx">
+      <DependentUpon>frmTakeTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tests\ScheduledTest.resx">
+      <DependentUpon>ScheduledTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tests\ScheduleTest.resx">
+      <DependentUpon>ScheduleTest.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Users\frmAddOrUpdateUser.resx">
       <DependentUpon>frmAddOrUpdateUser.cs</DependentUpon>
     </EmbeddedResource>
@@ -369,14 +387,8 @@
     <EmbeddedResource Include="People\frmEditOrAddPerson.resx">
       <DependentUpon>frmEditOrAddPerson.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Tests\frmSchedule_Test.resx">
-      <DependentUpon>frmSchedule_Test.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Drivers\frmShowDrivers.resx">
       <DependentUpon>frmShowDrivers.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Tests\frmTakeTest.resx">
-      <DependentUpon>frmTakeTest.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="People\PersonInfo.resx">
       <DependentUpon>PersonInfo.cs</DependentUpon>
@@ -408,9 +420,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Tests\frmTestAppointment.resx">
       <DependentUpon>frmTestAppointment.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Tests\TestInfo.resx">
-      <DependentUpon>TestInfo.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

@@ -23,7 +23,7 @@ namespace DVDL_Project
         private void frmLicenseHistory_Load(object sender, EventArgs e)
         {
             personInfo1.LoadPersonInfo(_NationalNo);
-            dgvLocalLicenses.DataSource = clsLocalDrivingLicenseApplicationsBusiness.GetPersonLocalLicense(_NationalNo);
+            dgvLocalLicenses.DataSource = clsLicenseBusiness.GetPersonLocalLicense(_NationalNo);
             dgvInternationalLicenses.DataSource = clsInternationalLicenseBusiness.GetAllInternationalLicenseToPerson(_NationalNo);
 
             
