@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +15,8 @@ namespace DVDL_Project
     public partial class frmLicenseHistory : Form
     {
         int _DriverID;
+        clsDriverBusiness _DriverInfo;
+
         public frmLicenseHistory(int DriverID)
         {
             InitializeComponent();
@@ -22,16 +25,22 @@ namespace DVDL_Project
 
         private void frmLicenseHistory_Load(object sender, EventArgs e)
         {
-            personInfo1.LoadPersonInfo(clsDriverBusiness.GetDriverInfoByDriverID(_DriverID).PersonID);
-            dgvLocalLicenses.DataSource = clsLicenseBusiness.GetDriverLocalLicense(_DriverID);
-            dgvInternationalLicenses.DataSource = clsInternationalLicenseBusiness.GetAllInternationalLicenseToPerson(_DriverID);
+            _DriverInfo = clsDriverBusiness.GetDriverInfoByDriverID(_DriverID);
+            if (_DriverInfo == null ) 
+            {
 
+            }
+
+            findPerson1.LoadPersonInfo(_DriverInfo.PersonID);
+            findPerson1.FilterEnabled = false;
+
+            driverLicenseHistory1.LoadDriverLicense(_DriverID);
             
         }
 
-        private void personInfo1_Load(object sender, EventArgs e)
+        private void btnClose_Click(object sender, EventArgs e)
         {
-
+            this.Close();
         }
     }
 }

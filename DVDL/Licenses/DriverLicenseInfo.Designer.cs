@@ -1,6 +1,6 @@
 ﻿namespace DVDL_Project
 {
-    partial class DriverLicense
+    partial class DriverLicenseInfo
     {
         /// <summary> 
         /// Required designer variable.

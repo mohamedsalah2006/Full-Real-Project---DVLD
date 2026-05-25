@@ -38,7 +38,7 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.applicationBasicInfo1 = new DVDL_Project.ApplicationBasicInfo();
-            this.driverLicense1 = new DVDL_Project.DriverLicense();
+            this.driverLicense1 = new DVDL_Project.DriverLicenseInfo();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -183,7 +183,7 @@
 
         #endregion
 
-        private DriverLicense driverLicense1;
+        private DriverLicenseInfo driverLicense1;
         private ApplicationBasicInfo applicationBasicInfo1;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox txtLicenseID;

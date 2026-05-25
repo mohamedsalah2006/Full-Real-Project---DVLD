@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lblApplication = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             this.lblIntLicense = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.lblExDate = new System.Windows.Forms.Label();
@@ -52,8 +54,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.lblApplication = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -91,6 +91,27 @@
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "International Driver License Info";
+            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
+            // 
+            // lblApplication
+            // 
+            this.lblApplication.AutoSize = true;
+            this.lblApplication.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblApplication.Location = new System.Drawing.Point(555, 106);
+            this.lblApplication.Name = "lblApplication";
+            this.lblApplication.Size = new System.Drawing.Size(42, 24);
+            this.lblApplication.TabIndex = 57;
+            this.lblApplication.Text = "{??}";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(362, 106);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(145, 24);
+            this.label9.TabIndex = 56;
+            this.label9.Text = "ApplicationID :";
             // 
             // lblIntLicense
             // 
@@ -320,26 +341,6 @@
             this.label1.Size = new System.Drawing.Size(77, 24);
             this.label1.TabIndex = 29;
             this.label1.Text = "Name :";
-            // 
-            // lblApplication
-            // 
-            this.lblApplication.AutoSize = true;
-            this.lblApplication.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblApplication.Location = new System.Drawing.Point(555, 106);
-            this.lblApplication.Name = "lblApplication";
-            this.lblApplication.Size = new System.Drawing.Size(42, 24);
-            this.lblApplication.TabIndex = 57;
-            this.lblApplication.Text = "{??}";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(362, 106);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(145, 24);
-            this.label9.TabIndex = 56;
-            this.label9.Text = "ApplicationID :";
             // 
             // InternationalLicenseInfo
             // 

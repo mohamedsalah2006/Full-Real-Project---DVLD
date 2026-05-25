@@ -13,7 +13,7 @@ using DVDL_Project.Properties;
 
 namespace DVDL_Project
 {
-    public partial class DriverLicense : UserControl
+    public partial class DriverLicenseInfo : UserControl
     {
         int _LicenseID;
         public int LicenseID
@@ -27,7 +27,7 @@ namespace DVDL_Project
         { get { return _LicenseInfo; } }
 
 
-        public DriverLicense()
+        public DriverLicenseInfo()
         {
             InitializeComponent();
         }

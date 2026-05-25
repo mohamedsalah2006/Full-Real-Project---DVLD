@@ -53,7 +53,7 @@
             this.txtLicenseID = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.driverLicense1 = new DVDL_Project.DriverLicense();
+            this.driverLicense1 = new DVDL_Project.DriverLicenseInfo();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -383,7 +383,7 @@
         private System.Windows.Forms.TextBox txtLicenseID;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.GroupBox groupBox2;
-        private DriverLicense driverLicense1;
+        private DriverLicenseInfo driverLicense1;
         private System.Windows.Forms.Label lblAppID;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label lblTotalFees;

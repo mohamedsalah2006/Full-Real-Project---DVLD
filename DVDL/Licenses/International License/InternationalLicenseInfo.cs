@@ -17,7 +17,10 @@ namespace DVDL_Project
         {
             InitializeComponent();
         }
-
+        public void LoadInternationalLicenseInfo(int InternationalLicenseID)
+        {
+            //clsI
+        }
         public clsInternationalDrivingLicenseBusiness InternationalDrivingLicense
         {
             set
@@ -45,6 +48,11 @@ namespace DVDL_Project
         }
 
         private void InternationalLicenseInfo_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
         {
 
         }

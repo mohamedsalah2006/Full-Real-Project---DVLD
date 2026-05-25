@@ -31,7 +31,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.driverLicense1 = new DVDL_Project.DriverLicense();
+            this.driverLicense1 = new DVDL_Project.DriverLicenseInfo();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -102,7 +102,7 @@
 
         #endregion
         private System.Windows.Forms.Label label1;
-        private DriverLicense driverLicense1;
+        private DriverLicenseInfo driverLicense1;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button button1;
     }

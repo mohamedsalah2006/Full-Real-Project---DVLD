@@ -33,7 +33,7 @@
             this.btnFind = new System.Windows.Forms.Button();
             this.txtLicenseID = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.driverLicense1 = new DVDL_Project.DriverLicense();
+            this.driverLicense1 = new DVDL_Project.DriverLicenseInfo();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.gbFilters.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
@@ -115,7 +115,7 @@
 
         #endregion
 
-        private DriverLicense driverLicense1;
+        private DriverLicenseInfo driverLicense1;
         private System.Windows.Forms.GroupBox gbFilters;
         private System.Windows.Forms.Button btnFind;
         private System.Windows.Forms.TextBox txtLicenseID;

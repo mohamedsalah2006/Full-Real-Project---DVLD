@@ -98,8 +98,13 @@ namespace DataAccessLayer
         static public DataTable GetAllInternationalLicenseToPerson(int DriverID)
         {
             SqlConnection connection = new SqlConnection(ConnectionString);
-            string query = @"select InternationalLicenses.* from InternationalLicenses 
-                             where DriverID = @DriverID";
+            string query = @"
+                             SELECT    InternationalLicenseID, ApplicationID,
+		                     IssuedUsingLocalLicenseID , IssueDate, 
+                             ExpirationDate, IsActive
+		                     from InternationalLicenses where DriverID=@DriverID
+                             order by ExpirationDate desc";
+
             SqlCommand command = new SqlCommand(query, connection);
             command.Parameters.AddWithValue("@DriverID", DriverID);
 

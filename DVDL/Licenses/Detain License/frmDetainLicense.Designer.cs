@@ -47,7 +47,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtFees = new System.Windows.Forms.TextBox();
-            this.driverLicense1 = new DVDL_Project.DriverLicense();
+            this.driverLicense1 = new DVDL_Project.DriverLicenseInfo();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -304,7 +304,7 @@
         private System.Windows.Forms.Label lblR_L_AppID;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Button btnDetain;
-        private DriverLicense driverLicense1;
+        private DriverLicenseInfo driverLicense1;
         private System.Windows.Forms.Label lblUser;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label3;

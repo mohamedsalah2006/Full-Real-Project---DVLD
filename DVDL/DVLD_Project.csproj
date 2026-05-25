@@ -67,11 +67,17 @@
       <DependentUpon>frmLogin.cs</DependentUpon>
     </Compile>
     <Compile Include="Global Classes\clsValidation.cs" />
-    <Compile Include="Licenses\DriverLicense.cs">
+    <Compile Include="Licenses\DriverLicenseHistory.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Licenses\DriverLicense.Designer.cs">
-      <DependentUpon>DriverLicense.cs</DependentUpon>
+    <Compile Include="Licenses\DriverLicenseHistory.Designer.cs">
+      <DependentUpon>DriverLicenseHistory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Licenses\DriverLicenseInfo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Licenses\DriverLicenseInfo.Designer.cs">
+      <DependentUpon>DriverLicenseInfo.cs</DependentUpon>
     </Compile>
     <Compile Include="Licenses\Detain License\frmDetainLicense.cs">
       <SubType>Form</SubType>
@@ -306,8 +312,11 @@
     <EmbeddedResource Include="frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Licenses\DriverLicense.resx">
-      <DependentUpon>DriverLicense.cs</DependentUpon>
+    <EmbeddedResource Include="Licenses\DriverLicenseHistory.resx">
+      <DependentUpon>DriverLicenseHistory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Licenses\DriverLicenseInfo.resx">
+      <DependentUpon>DriverLicenseInfo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Licenses\Detain License\frmDetainLicense.resx">
       <DependentUpon>frmDetainLicense.cs</DependentUpon>
