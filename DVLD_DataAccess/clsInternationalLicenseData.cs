@@ -95,14 +95,13 @@ namespace DataAccessLayer
             }
             return I_LicenseID;
         }
-        static public DataTable GetAllInternationalLicenseToPerson(string NationalNo)
+        static public DataTable GetAllInternationalLicenseToPerson(int DriverID)
         {
             SqlConnection connection = new SqlConnection(ConnectionString);
-            string query = @"select InternationalLicenses.* from InternationalLicenses inner join Drivers_View
-                             on Drivers_View.DriverID = InternationalLicenses.DriverID
-                             where NationalNo = @NationalNo";
+            string query = @"select InternationalLicenses.* from InternationalLicenses 
+                             where DriverID = @DriverID";
             SqlCommand command = new SqlCommand(query, connection);
-            command.Parameters.AddWithValue("@NationalNo", NationalNo);
+            command.Parameters.AddWithValue("@DriverID", DriverID);
 
             DataTable dt = new DataTable();
             try

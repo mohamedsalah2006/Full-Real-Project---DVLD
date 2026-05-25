@@ -24,6 +24,11 @@ namespace BusinessLayer
         public DateTime DateOfBirth { get; set; }
         public int Gendor { get; set; }
         public string ImagePath { get; set; }
+        public bool ISDetained
+        {
+            get { return clsDetainLicenseBusiness.IsTheLicenseDetained(LicenseID); }
+        }
+           
 
 
         public clsDriverLicenseBusiness(string FullName, string LicenseClassName, int LicenseID, string NationalNo, DateTime IssueDate, int IssueReason, string Notes, int IsActive, DateTime ExpirationDate, int DriverID, DateTime DateOfBirth, int Gendor,string ImagePath, int personID)

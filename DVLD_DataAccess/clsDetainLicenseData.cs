@@ -13,7 +13,7 @@ namespace DataAccessLayer
         public int DetainID {  get; set; }
         public int LicenseID {  get; set; }
         public DateTime DetainDate {  get; set; }
-        public int FineFees {  get; set; }
+        public float FineFees {  get; set; }
         public int CreateByUserID {  get; set; }
         public int IsReleased {  get; set; }
         public DateTime? ReleasedDate { get;set; }
@@ -53,7 +53,7 @@ namespace DataAccessLayer
             }
             return dt;
         }
-        static public int DetainLicense(int LicenseID,int FineFees,int CreateByUserID)
+        static public int DetainLicense(int LicenseID,float FineFees,int CreateByUserID)
         {
 
             SqlConnection connection = new SqlConnection(ConnectionString);

@@ -40,9 +40,9 @@ namespace BusinessLayer
             return this.INT_LicenseID != -1;
             
         }
-        static public DataTable GetAllInternationalLicenseToPerson(string NationalNo)
+        static public DataTable GetAllInternationalLicenseToPerson(int DriverID)
         {
-            return clsInternationalLicenseData.GetAllInternationalLicenseToPerson(NationalNo);
+            return clsInternationalLicenseData.GetAllInternationalLicenseToPerson(DriverID);
         }
         static public DataTable GetAllInternationalLicense()
         {

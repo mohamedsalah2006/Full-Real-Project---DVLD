@@ -8,68 +8,102 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BusinessLayer;
+using DVDL_Project.Global_Classes;
 using static System.Net.Mime.MediaTypeNames;
 
 namespace DVDL_Project
 {
     public partial class frmIssueDrivingLicense : Form
     {
-        int _L_D_App;
-        clsLicenseBusiness NewLicense = new clsLicenseBusiness();
-        public frmIssueDrivingLicense(int l_D_App)
+        int _LocalDrivingLicenseAppID;
+        clsDriverBusiness DriverInfo;
+        clsLocalDrivingLicenseApplicationsBusiness _LocalDrivingLicenseAppInfo;
+        public frmIssueDrivingLicense(int LocalDrivingLicenseAppID)
         {
             InitializeComponent();
-            _L_D_App = l_D_App;
+            _LocalDrivingLicenseAppID = LocalDrivingLicenseAppID;
+
+
         }
 
-        int _GetDriver(int PersonId)
+        void _GetDriver(int PersonId)
         {
-            //int DriverID;
-            //if (clsDriverBusiness.IsThePersonADriver(PersonId))
-            //{
-            //    DriverID = clsDriverBusiness.InsertDriver(PersonId, DateTime.Now, 1);
-            //}
-            //return DriverID;
-            return 1;
-        }
+            
+            if (clsDriverBusiness.IsThePersonADriver(PersonId))
+            {
+                DriverInfo=clsDriverBusiness.GetDriverInfoByPersonID(PersonId);
+            }
+            else
+            {
+                DriverInfo = new clsDriverBusiness();
+                DriverInfo.PersonID= PersonId;
+                DriverInfo.CreatedDate= DateTime.Now;
+                DriverInfo.CreatedByUserID= clsGlobal.CurrentUser.UserID;
 
-        private void btnClose_Click(object sender, EventArgs e)
-        {
-            this.Close();
+                DriverInfo.Save();
+            }
+           
         }
         private void frmIssueDrivingLicense_Load(object sender, EventArgs e)
         {
-
-            clsLocalDrivingLicenseApplicationsBusiness LocalLicenseInfo = clsLocalDrivingLicenseApplicationsBusiness.FindByLocalDrivingAppLicenseID(_L_D_App);
-            //clsLocalDrivingLicenseAppBusiness_View LocalLicenseView = clsLocalDrivingLicenseAppBusiness_View.FindLocalLicenseApp_View(_L_D_App);
-            clsApplicationsBusiness App = clsApplicationsBusiness.FindApplication(LocalLicenseInfo.AppID);
+            txtNote.Focus();
+            _LocalDrivingLicenseAppInfo = clsLocalDrivingLicenseApplicationsBusiness.FindByLocalDrivingAppLicenseID(_LocalDrivingLicenseAppID);
 
 
-            drivingLicenseAppInfo1.LoadLocalDrivingLicenseAppInfo(_L_D_App);
+            if (_LocalDrivingLicenseAppInfo == null)
+            {
+
+                MessageBox.Show("No Applicaiton with ID=" + _LocalDrivingLicenseAppID.ToString(), "Not Allowed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.Close();
+                return;
+            }
+            if (!_LocalDrivingLicenseAppInfo.PassedAllTests())
+            {
+
+                MessageBox.Show("Person Should Pass All Tests First.", "Not Allowed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.Close();
+                return;
+            }
+            int LicenseID = _LocalDrivingLicenseAppInfo.GetActiveLicenseID();
+            if (LicenseID != -1)
+            {
+
+                MessageBox.Show("Person already has License before with License ID=" + LicenseID.ToString(), "Not Allowed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.Close();
+                return;
+
+            }
+
+
+            drivingLicenseAppInfo1.LoadLocalDrivingLicenseAppInfo(_LocalDrivingLicenseAppID);
+
+
+            _GetDriver(_LocalDrivingLicenseAppInfo.PersonID);
+
 
             
-
-            NewLicense.ApplicationID = LocalLicenseInfo.AppID;
-            NewLicense.DriverID = _GetDriver(App.PersonID);/////////////////
-            NewLicense.LicenseClass = LocalLicenseInfo.LicenseClassID;
-            NewLicense.IssueDate = DateTime.Now;
-            NewLicense.ExpirationDate = DateTime.Now.AddYears(clsLicenseClassesBusiness.GetLicenseClassInfo(LocalLicenseInfo.LicenseClassID).DefaultValidityLength);
-            NewLicense.Notes = textBox1.Text;
-            NewLicense.CreatedByUserID = 1;//////////////////
-            NewLicense.IsActive = 1;
-            NewLicense.IssueReason = 1;/////////////////////
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if(NewLicense.AddNewLicense())
+            int LicenseID = _LocalDrivingLicenseAppInfo.IssueLicenseForTheFirstTime(txtNote.Text, clsGlobal.CurrentUser.UserID);
+
+            if (LicenseID != -1)
             {
-                MessageBox.Show("Local License Added Successfully");
+                MessageBox.Show("License Issued Successfully with License ID = " + LicenseID.ToString(),
+                    "Succeeded", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                this.Close();
             }
             else
             {
-                MessageBox.Show("Local License not Added");
+                MessageBox.Show("License Was not Issued ! ",
+                 "Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
+        }
+        private void btnClose_Click(object sender, EventArgs e)
+        {
             this.Close();
         }
     }

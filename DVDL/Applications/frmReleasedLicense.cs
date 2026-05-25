@@ -52,7 +52,7 @@ namespace DVDL_Project
         {
             _DriverLicenseID = Convert.ToInt32(txtLicenseID.Text);
             clsDriverLicenseBusiness DriverLicense = clsDriverLicenseBusiness.GetDriverLicenseInfoBY_LocalLicenseID(_DriverLicenseID);
-            driverLicense1.driverLicense = DriverLicense;
+            driverLicense1.LoadDriverLicenseInfo(_DriverLicenseID);
             _NationalNo = DriverLicense.NationalNo;
             _PersonID=DriverLicense.PersonID;
 
@@ -100,6 +100,11 @@ namespace DVDL_Project
                 MessageBox.Show("License Not Released");
             }
             btnRelease.Enabled = false;
+        }
+
+        private void frmReleasedLicense_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

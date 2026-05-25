@@ -58,8 +58,8 @@ namespace DVDL_Project
             int LocalLicenseID = (int)dgvInterLicense.CurrentRow.Cells[3].Value;
             clsDriverLicenseBusiness DriverLicense = clsDriverLicenseBusiness.GetDriverLicenseInfoBY_LocalLicenseID(LocalLicenseID);
 
-            frmLicenseHistory frm = new frmLicenseHistory(DriverLicense.NationalNo);
-            frm.ShowDialog();
+            //frmLicenseHistory frm = new frmLicenseHistory(DriverLicense.NationalNo);
+            //frm.ShowDialog();
         }
     }
 }

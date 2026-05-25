@@ -24,7 +24,7 @@ namespace DVDL_Project
         {
             _DriverLicenseID = Convert.ToInt32(txtLicenseID.Text);
             clsDriverLicenseBusiness DriverLicense = clsDriverLicenseBusiness.GetDriverLicenseInfoBY_LocalLicenseID(_DriverLicenseID);
-            driverLicense1.driverLicense = DriverLicense;
+            driverLicense1.LoadDriverLicenseInfo(_DriverLicenseID);
             _NationalNo=DriverLicense.NationalNo;
 
             lblAppDate.Text = DateTime.Now.ToString();
@@ -56,7 +56,7 @@ namespace DVDL_Project
 
            
 
-            if (clsDetainLicenseBusiness.DetainLicense(_DriverLicenseID, DetainFees, 1) != -1)
+            if (clsDetainLicenseBusiness.DetainLicense(_DriverLicenseID, DetainFees, 1))
             {
                 MessageBox.Show("This License Detained Successfully");
             }
@@ -70,14 +70,14 @@ namespace DVDL_Project
         private void link_lblLicenseHistory_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
 
-            frmLicenseHistory frm = new frmLicenseHistory(_NationalNo);
-            frm.ShowDialog();
+            //frmLicenseHistory frm = new frmLicenseHistory(_NationalNo);
+            //frm.ShowDialog();
         }
 
         private void link_lblNewLicenseInfo_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            frmDriverLicense frm = new frmDriverLicense(_DriverLicenseID, true);
-            frm.ShowDialog();
+            //frmDriverLicense frm = new frmDriverLicense(_DriverLicenseID, true);
+            //frm.ShowDialog();
         }
 
         private void btnClose_Click(object sender, EventArgs e)

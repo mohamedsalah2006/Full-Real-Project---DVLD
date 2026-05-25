@@ -13,14 +13,14 @@ namespace BusinessLayer
         public int DetainID;
         public int LicenseID;
    public DateTime DetainDate;
-        public int FineFees;
+        public float FineFees;
         public int CreateByUserID;
         public int IsReleased;
         public DateTime? ReleasedDate;
         public int ReleasedByUserID;
         public int ReleasedAppID;
 
-        clsDetainLicenseBusiness(int detainID, int licenseID, DateTime detainDate, int fineFees, int createByUserID, int isReleased, DateTime? releasedDate, int releasedByUserID, int releasedAppID)
+        clsDetainLicenseBusiness(int detainID, int licenseID, DateTime detainDate, float fineFees, int createByUserID, int isReleased, DateTime? releasedDate, int releasedByUserID, int releasedAppID)
         {
             DetainID = detainID;
             LicenseID = licenseID;
@@ -45,13 +45,14 @@ namespace BusinessLayer
             this.ReleasedAppID = -1;
         }
 
+
         static public DataTable GetAllDetainedLicense()
         {
             return clsDetainLicenseData.GetAllDetainedLicense();
         }
-        static public int DetainLicense(int LicenseID, int FineFees, int CreateByUserID)
+        static public bool DetainLicense(int LicenseID, float FineFees, int CreateByUserID)
         {
-            return clsDetainLicenseData.DetainLicense(LicenseID, FineFees, CreateByUserID);
+            return clsDetainLicenseData.DetainLicense(LicenseID, FineFees, CreateByUserID) != -1;
         }
         static public bool ReleasedLicense(int LicenseID, int ReleasedByUserID, int ReleasedAppID)
         {

@@ -28,7 +28,7 @@ namespace DVDL_Project
         private void btnFindLocalLicense_Click(object sender, EventArgs e)
         {
             int LicenseID = Convert.ToInt32(txtLicenseID.Text);
-            _LicenseInfo = clsLicenseBusiness.FindActiveLicenseByID_ClassID(LicenseID);
+           // _LicenseInfo = clsLicenseBusiness.FindActiveLicenseByID_ClassID(LicenseID);
 
             if (_LicenseInfo == null)
             {
@@ -41,7 +41,8 @@ namespace DVDL_Project
             {
                 //applicationBasicInfo1.LoadApplicationInfoByAppID(AppID);
                 clsDriverLicenseBusiness DriverLicense = clsDriverLicenseBusiness.GetDriverLicenseInfoBY_LocalLicenseID(LicenseID);
-                driverLicense1.driverLicense = DriverLicense;
+                //driverLicense1.LoadDriverLicenseInfo(_DriverLicenseID);
+
 
                 _NationalNo = DriverLicense.NationalNo;
 
@@ -60,7 +61,7 @@ namespace DVDL_Project
                 _NewApp.LastStatusDate = DateTime.Now;
                 _NewApp.PaidFees = clsApplicationsTypesBusiness.GetApplicationTypeInfoByID(6).Fees;
                 _NewApp.CreatedByUser = 1;
-                _NewApp.PersonID = _LicenseInfo.PersonID;
+                _NewApp.PersonID = _LicenseInfo.DriverInfo.PersonID;
                 _NewApp.Save();
                 
                 
@@ -68,7 +69,7 @@ namespace DVDL_Project
                 //============================================
 
 
-                driverLicense1.driverLicense = clsDriverLicenseBusiness.GetDriverLicenseInfoBY_LocalLicenseID(LicenseID);
+                //driverLicense1.driverLicense = clsDriverLicenseBusiness.GetDriverLicenseInfoBY_LocalLicenseID(LicenseID);
 
             }
             
@@ -109,8 +110,8 @@ namespace DVDL_Project
 
         private void linklblShowLicenseHistory_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            frmLicenseHistory frm = new frmLicenseHistory(_NationalNo);
-            frm.ShowDialog();
+            //frmLicenseHistory frm = new frmLicenseHistory(_NationalNo);
+            //frm.ShowDialog();
         }
 
         private void btnClose_Click(object sender, EventArgs e)

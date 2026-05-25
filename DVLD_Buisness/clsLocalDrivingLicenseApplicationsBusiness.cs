@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -19,7 +21,6 @@ namespace BusinessLayer
 
         enMode Mode = enMode.AddNew;
         public int LocalDrivingLicenseApplicationID { get; set; }
-        public int AppID { get; set; }
         public int LicenseClassID { get; set; }
         public clsLicenseClassesBusiness LicenseClassInfo { get; set; }
        
@@ -50,7 +51,6 @@ namespace BusinessLayer
         public clsLocalDrivingLicenseApplicationsBusiness()
         {
             this.LocalDrivingLicenseApplicationID = -1;
-            this.AppID = -1;
             this.LicenseClassID = -1;
 
             Mode = enMode.AddNew;
@@ -156,6 +156,74 @@ namespace BusinessLayer
         {
             return clsLocalDrivingLicenseApplicationsData.IsFailedInTest(this.LocalDrivingLicenseApplicationID, TestTypeID);
         }
+        public  bool PassedAllTests()
+        {
+            return clsTestBusiness.GetPassedTestCount(this.LocalDrivingLicenseApplicationID) == 3;
+        }
+        public int GetActiveLicenseID()
+        {
+            return clsLicenseBusiness.GetActiveLicenseIDByPersonID(this.PersonID, this.LicenseClassID);
+     
+        }
+
+
+        public int IssueLicenseForTheFirstTime(string Notes, int CreatedByUserID)
+        {
+            int DriverID = -1;
+
+            clsDriverBusiness Driver = clsDriverBusiness.GetDriverInfoByPersonID(this.PersonID);
+
+            if (Driver == null)
+            {
+                //we check if the driver already there for this person.
+                Driver = new clsDriverBusiness();
+
+                Driver.PersonID = this.PersonID;
+                Driver.CreatedByUserID = CreatedByUserID;
+                if (Driver.Save())
+                {
+                    DriverID = Driver.DriverID;
+                }
+                else
+                {
+                    return -1;
+                }
+            }
+            else
+            {
+                DriverID = Driver.DriverID;
+            }
+
+            clsLicenseBusiness NewLicense = new clsLicenseBusiness();
+
+
+            NewLicense.ApplicationID = this.ApplicationID;
+            NewLicense.DriverID = DriverID;
+            NewLicense.LicenseClass = this.LicenseClassID;
+            NewLicense.IssueDate = DateTime.Now;
+            NewLicense.ExpirationDate = DateTime.Now.AddYears(clsLicenseClassesBusiness.GetLicenseClassInfo(LicenseClassID).DefaultValidityLength);
+            NewLicense.Notes = Notes;
+            NewLicense.CreatedByUserID = CreatedByUserID;
+            NewLicense.IsActive = 1;
+            NewLicense.IssueReason = clsLicenseBusiness.enIssueReason.FirstTime;
+            NewLicense.PaidFees = this.LicenseClassInfo.ClassFees;
+
+
+
+           
+
+            if (NewLicense.Save())
+            {
+                //now we should set the application status to complete.
+                clsApplicationsBusiness.UpdateStatus(ApplicationID, clsApplicationsBusiness.enApplicationStatus.Completed);
+
+                return NewLicense.LicenseID;
+            }
+
+            else
+                return -1;
+        }
+
     }
 
 }

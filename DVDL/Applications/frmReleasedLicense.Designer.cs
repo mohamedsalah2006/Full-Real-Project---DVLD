@@ -40,6 +40,13 @@
             this.label4 = new System.Windows.Forms.Label();
             this.link_lblLiceseHistory = new System.Windows.Forms.LinkLabel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lblAppID = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.lblTotalFees = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.lblAppFees = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.lblDetainFees = new System.Windows.Forms.Label();
             this.lblDetainID = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.btnCheckLicense = new System.Windows.Forms.Button();
@@ -47,13 +54,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.driverLicense1 = new DVDL_Project.DriverLicense();
-            this.lblDetainFees = new System.Windows.Forms.Label();
-            this.lblAppFees = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.lblTotalFees = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.lblAppID = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -200,6 +200,76 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Detain Info";
             // 
+            // lblAppID
+            // 
+            this.lblAppID.AutoSize = true;
+            this.lblAppID.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAppID.Location = new System.Drawing.Point(200, 158);
+            this.lblAppID.Name = "lblAppID";
+            this.lblAppID.Size = new System.Drawing.Size(42, 24);
+            this.lblAppID.TabIndex = 47;
+            this.lblAppID.Text = "{??}";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(8, 158);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(151, 24);
+            this.label11.TabIndex = 46;
+            this.label11.Text = "Application ID :";
+            // 
+            // lblTotalFees
+            // 
+            this.lblTotalFees.AutoSize = true;
+            this.lblTotalFees.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotalFees.Location = new System.Drawing.Point(639, 158);
+            this.lblTotalFees.Name = "lblTotalFees";
+            this.lblTotalFees.Size = new System.Drawing.Size(42, 24);
+            this.lblTotalFees.TabIndex = 45;
+            this.lblTotalFees.Text = "{??}";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(447, 158);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(121, 24);
+            this.label9.TabIndex = 44;
+            this.label9.Text = "Total Fees :";
+            // 
+            // lblAppFees
+            // 
+            this.lblAppFees.AutoSize = true;
+            this.lblAppFees.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAppFees.Location = new System.Drawing.Point(639, 117);
+            this.lblAppFees.Name = "lblAppFees";
+            this.lblAppFees.Size = new System.Drawing.Size(42, 24);
+            this.lblAppFees.TabIndex = 43;
+            this.lblAppFees.Text = "{??}";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(447, 117);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(179, 24);
+            this.label6.TabIndex = 42;
+            this.label6.Text = "Application Fees :";
+            // 
+            // lblDetainFees
+            // 
+            this.lblDetainFees.AutoSize = true;
+            this.lblDetainFees.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDetainFees.Location = new System.Drawing.Point(200, 117);
+            this.lblDetainFees.Name = "lblDetainFees";
+            this.lblDetainFees.Size = new System.Drawing.Size(42, 24);
+            this.lblDetainFees.TabIndex = 41;
+            this.lblDetainFees.Text = "{??}";
+            // 
             // lblDetainID
             // 
             this.lblDetainID.AutoSize = true;
@@ -268,76 +338,6 @@
             this.driverLicense1.Size = new System.Drawing.Size(916, 355);
             this.driverLicense1.TabIndex = 34;
             // 
-            // lblDetainFees
-            // 
-            this.lblDetainFees.AutoSize = true;
-            this.lblDetainFees.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDetainFees.Location = new System.Drawing.Point(200, 117);
-            this.lblDetainFees.Name = "lblDetainFees";
-            this.lblDetainFees.Size = new System.Drawing.Size(42, 24);
-            this.lblDetainFees.TabIndex = 41;
-            this.lblDetainFees.Text = "{??}";
-            // 
-            // lblAppFees
-            // 
-            this.lblAppFees.AutoSize = true;
-            this.lblAppFees.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAppFees.Location = new System.Drawing.Point(639, 117);
-            this.lblAppFees.Name = "lblAppFees";
-            this.lblAppFees.Size = new System.Drawing.Size(42, 24);
-            this.lblAppFees.TabIndex = 43;
-            this.lblAppFees.Text = "{??}";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(447, 117);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(179, 24);
-            this.label6.TabIndex = 42;
-            this.label6.Text = "Application Fees :";
-            // 
-            // lblTotalFees
-            // 
-            this.lblTotalFees.AutoSize = true;
-            this.lblTotalFees.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotalFees.Location = new System.Drawing.Point(639, 158);
-            this.lblTotalFees.Name = "lblTotalFees";
-            this.lblTotalFees.Size = new System.Drawing.Size(42, 24);
-            this.lblTotalFees.TabIndex = 45;
-            this.lblTotalFees.Text = "{??}";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(447, 158);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(121, 24);
-            this.label9.TabIndex = 44;
-            this.label9.Text = "Total Fees :";
-            // 
-            // lblAppID
-            // 
-            this.lblAppID.AutoSize = true;
-            this.lblAppID.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAppID.Location = new System.Drawing.Point(200, 158);
-            this.lblAppID.Name = "lblAppID";
-            this.lblAppID.Size = new System.Drawing.Size(42, 24);
-            this.lblAppID.TabIndex = 47;
-            this.lblAppID.Text = "{??}";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(8, 158);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(151, 24);
-            this.label11.TabIndex = 46;
-            this.label11.Text = "Application ID :";
-            // 
             // frmReleasedLicense
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -352,6 +352,7 @@
             this.Controls.Add(this.driverLicense1);
             this.Name = "frmReleasedLicense";
             this.Text = "frmReleasedLicense";
+            this.Load += new System.EventHandler(this.frmReleasedLicense_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);

@@ -19,7 +19,7 @@ namespace BusinessLayer
         public int DriverID { set; get; }
         public int PersonID { set; get; }
         public int CreatedByUserID { set; get; }
-        public DateTime CreatedDate { get; }
+        public DateTime CreatedDate { get; set; }
 
 
         public clsDriverBusiness()
@@ -92,7 +92,7 @@ namespace BusinessLayer
             return DriverInfo.UpdateDriver();
         }
 
-        bool Save()
+        public bool Save()
         {
             switch (Mode)
             {

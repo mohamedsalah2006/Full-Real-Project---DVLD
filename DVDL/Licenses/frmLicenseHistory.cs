@@ -13,18 +13,18 @@ namespace DVDL_Project
 {
     public partial class frmLicenseHistory : Form
     {
-        string _NationalNo;
-        public frmLicenseHistory(string NationalNo)
+        int _DriverID;
+        public frmLicenseHistory(int DriverID)
         {
             InitializeComponent();
-            _NationalNo = NationalNo;
+            _DriverID = DriverID;
         }
 
         private void frmLicenseHistory_Load(object sender, EventArgs e)
         {
-            personInfo1.LoadPersonInfo(_NationalNo);
-            dgvLocalLicenses.DataSource = clsLicenseBusiness.GetPersonLocalLicense(_NationalNo);
-            dgvInternationalLicenses.DataSource = clsInternationalLicenseBusiness.GetAllInternationalLicenseToPerson(_NationalNo);
+            personInfo1.LoadPersonInfo(clsDriverBusiness.GetDriverInfoByDriverID(_DriverID).PersonID);
+            dgvLocalLicenses.DataSource = clsLicenseBusiness.GetDriverLocalLicense(_DriverID);
+            dgvInternationalLicenses.DataSource = clsInternationalLicenseBusiness.GetAllInternationalLicenseToPerson(_DriverID);
 
             
         }

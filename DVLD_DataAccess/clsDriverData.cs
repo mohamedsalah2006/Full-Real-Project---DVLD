@@ -10,6 +10,7 @@ namespace DataAccessLayer
 {
     public class clsDriverData
     {
+
         public int DriverID { set; get; }
         public int PersonID { set; get; }
         public int CreatedByUserID { set; get; }
@@ -38,9 +39,10 @@ namespace DataAccessLayer
                 if (reader.Read())
                 {
 
-                    // The record was found
                     isFound = true;
 
+
+                    DriverInfo.PersonID = (int)reader["PersonID"];
                     DriverInfo.DriverID = (int)reader["DriverID"];
                     DriverInfo.CreatedByUserID = (int)reader["CreatedByUserID"];
                     DriverInfo.CreatedDate = (DateTime)reader["CreatedDate"];
@@ -49,7 +51,7 @@ namespace DataAccessLayer
                 }
                 else
                 {
-                    // The record was not found
+                    
                     isFound = false;
                 }
 
@@ -59,7 +61,6 @@ namespace DataAccessLayer
             }
             catch (Exception ex)
             {
-                //Console.WriteLine("Error: " + ex.Message);
                 isFound = false;
             }
             finally
@@ -92,6 +93,7 @@ namespace DataAccessLayer
                     // The record was found
                     isFound = true;
 
+                    DriverInfo.PersonID = (int)reader["PersonID"];
                     DriverInfo.DriverID = (int)reader["DriverID"];
                     DriverInfo.CreatedByUserID = (int)reader["CreatedByUserID"];
                     DriverInfo.CreatedDate = (DateTime)reader["CreatedDate"];

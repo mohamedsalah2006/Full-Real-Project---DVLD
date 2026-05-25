@@ -127,6 +127,12 @@
     <Compile Include="Applications\Local License\LocalDrivingLicenseAppInfo.Designer.cs">
       <DependentUpon>LocalDrivingLicenseAppInfo.cs</DependentUpon>
     </Compile>
+    <Compile Include="Licenses\Local License\DriverLicenseWithFilter.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Licenses\Local License\DriverLicenseWithFilter.Designer.cs">
+      <DependentUpon>DriverLicenseWithFilter.cs</DependentUpon>
+    </Compile>
     <Compile Include="People\FindPerson.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -175,11 +181,11 @@
     <Compile Include="Users\frmAddOrUpdateUser.Designer.cs">
       <DependentUpon>frmAddOrUpdateUser.cs</DependentUpon>
     </Compile>
-    <Compile Include="Licenses\Local License\frmDriverLicense.cs">
+    <Compile Include="Licenses\Local License\frmShowDriverLicense.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Licenses\Local License\frmDriverLicense.Designer.cs">
-      <DependentUpon>frmDriverLicense.cs</DependentUpon>
+    <Compile Include="Licenses\Local License\frmShowDriverLicense.Designer.cs">
+      <DependentUpon>frmShowDriverLicense.cs</DependentUpon>
     </Compile>
     <Compile Include="Applications\Applictions Type\frmEditApplicationsTypes.cs">
       <SubType>Form</SubType>
@@ -330,6 +336,9 @@
     <EmbeddedResource Include="Applications\Local License\LocalDrivingLicenseAppInfo.resx">
       <DependentUpon>LocalDrivingLicenseAppInfo.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Licenses\Local License\DriverLicenseWithFilter.resx">
+      <DependentUpon>DriverLicenseWithFilter.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="People\FindPerson.resx">
       <DependentUpon>FindPerson.cs</DependentUpon>
     </EmbeddedResource>
@@ -354,8 +363,8 @@
     <EmbeddedResource Include="Users\frmAddOrUpdateUser.resx">
       <DependentUpon>frmAddOrUpdateUser.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Licenses\Local License\frmDriverLicense.resx">
-      <DependentUpon>frmDriverLicense.cs</DependentUpon>
+    <EmbeddedResource Include="Licenses\Local License\frmShowDriverLicense.resx">
+      <DependentUpon>frmShowDriverLicense.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Applications\Applictions Type\frmEditApplicationsTypes.resx">
       <DependentUpon>frmEditApplicationsTypes.cs</DependentUpon>

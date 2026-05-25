@@ -266,13 +266,15 @@ namespace DVDL_Project
 
         private void ShowLicense_Click(object sender, EventArgs e)
         {
-            frmDriverLicense frm = new frmDriverLicense(Convert.ToInt32(dgvLocalLicense.CurrentRow.Cells[0].Value));
+            int LocalDriverLicenseAppId = Convert.ToInt32(dgvLocalLicense.CurrentRow.Cells[0].Value);
+            int LicenseID= clsLocalDrivingLicenseApplicationsBusiness.FindByLocalDrivingAppLicenseID(LocalDriverLicenseAppId).GetActiveLicenseID();
+            frmShowDriverLicense frm = new frmShowDriverLicense(LicenseID);
             frm.ShowDialog();
         }
         private void ShowPersonLicenseHistory_Click(object sender, EventArgs e)
         {
-            frmLicenseHistory frm = new frmLicenseHistory((string)dgvLocalLicense.CurrentRow.Cells[2].Value);
-            frm.ShowDialog();
+            //frmLicenseHistory frm = new frmLicenseHistory((string)dgvLocalLicense.CurrentRow.Cells[2].Value);
+            //frm.ShowDialog();
         }
         private void IssueLicense_Click(object sender, EventArgs e)
         {
