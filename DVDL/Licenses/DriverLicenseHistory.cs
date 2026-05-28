@@ -102,13 +102,13 @@ namespace DVDL_Project.Licenses
         }
         private void showDriverLicenseInfoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmShowDriverLicense frm = new frmShowDriverLicense((int)dgvLocalLicensesHistory.CurrentRow.Cells[0].Value);
+            frmShowLicenseInfo frm = new frmShowLicenseInfo((int)dgvLocalLicensesHistory.CurrentRow.Cells[0].Value);
             frm.ShowDialog();
         }
 
         private void showDriverLicenseInfoToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            frmInternationalLicenseInfo frm = new frmInternationalLicenseInfo((int)dgvInternationalLicensesHistory.CurrentRow.Cells[2].Value);
+            frmShowInternationalLicenseInfo frm = new frmShowInternationalLicenseInfo((int)dgvInternationalLicensesHistory.CurrentRow.Cells[0].Value);
             frm.ShowDialog();
         }
 

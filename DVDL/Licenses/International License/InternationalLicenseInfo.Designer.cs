@@ -91,7 +91,6 @@
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "International Driver License Info";
-            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // lblApplication
             // 
@@ -349,7 +348,6 @@
             this.Controls.Add(this.groupBox1);
             this.Name = "InternationalLicenseInfo";
             this.Size = new System.Drawing.Size(913, 368);
-            this.Load += new System.EventHandler(this.InternationalLicenseInfo_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

@@ -1,6 +1,6 @@
 ﻿namespace DVDL_Project
 {
-    partial class frmShowDriverLicense
+    partial class frmShowLicenseInfo
     {
         /// <summary>
         /// Required designer variable.

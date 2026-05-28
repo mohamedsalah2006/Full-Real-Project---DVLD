@@ -268,7 +268,7 @@ namespace DVDL_Project
         {
             int LocalDriverLicenseAppId = Convert.ToInt32(dgvLocalLicense.CurrentRow.Cells[0].Value);
             int LicenseID= clsLocalDrivingLicenseApplicationsBusiness.FindByLocalDrivingAppLicenseID(LocalDriverLicenseAppId).GetActiveLicenseID();
-            frmShowDriverLicense frm = new frmShowDriverLicense(LicenseID);
+            frmShowLicenseInfo frm = new frmShowLicenseInfo(LicenseID);
             frm.ShowDialog();
         }
         private void ShowPersonLicenseHistory_Click(object sender, EventArgs e)

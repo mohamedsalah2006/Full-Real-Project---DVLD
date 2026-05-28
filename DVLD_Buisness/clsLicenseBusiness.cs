@@ -79,7 +79,7 @@ namespace BusinessLayer
 
             this.DriverInfo = clsDriverBusiness.GetDriverInfoByDriverID(this.DriverID);
             this.LicenseClassIfo = clsLicenseClassesBusiness.GetLicenseClassInfo(this.LicenseClass);
-            this.DetainedInfo = clsDetainLicenseBusiness.GetDetainLicenseInfo(this.LicenseID);
+            this.DetainedInfo = clsDetainLicenseBusiness.GetDetainLicenseInfoByLicenseID(this.LicenseID);
 
             Mode = enMode.Update;
         }
@@ -214,9 +214,9 @@ namespace BusinessLayer
 
 
         
-        public bool Detain()
+        public int Detain(int fees,int user_id)
         {
-            return clsDetainLicenseBusiness.DetainLicense(this.LicenseID,this.PaidFees,this.CreatedByUserID);
+            return clsDetainLicenseBusiness.DetainLicense(this.LicenseID, fees, user_id);
         }
 
 
@@ -250,7 +250,7 @@ namespace BusinessLayer
         public bool ReleaseDetainedLicense(int ReleasedByUserID, ref int ApplicationID)
         {
             clsApplicationsBusiness Application = _AddApp(ReleasedByUserID,enApplicationType.ReleaseDetainedDrivingLicsense);
-
+            ApplicationID = Application.ApplicationID;
             if (Application==null)
             {
                 return false;

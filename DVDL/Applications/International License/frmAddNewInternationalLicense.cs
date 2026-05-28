@@ -8,11 +8,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BusinessLayer;
+using DVDL_Project.Global_Classes;
 
 namespace DVDL_Project
 {
     public partial class frmAddNewInternationalLicense : Form
     {
+
+        int _LocalLicenseID;
+        int _InternationalLicenseID;
         public frmAddNewInternationalLicense()
         {
             InitializeComponent();
@@ -20,103 +24,112 @@ namespace DVDL_Project
 
 
 
-        string _NationalNo;
-
-        clsApplicationsBusiness _NewApp = new clsApplicationsBusiness();
-        clsLicenseBusiness _LicenseInfo;
-        
-        private void btnFindLocalLicense_Click(object sender, EventArgs e)
+       
+        private void btnClose_Click(object sender, EventArgs e)
         {
-            int LicenseID = Convert.ToInt32(txtLicenseID.Text);
-           // _LicenseInfo = clsLicenseBusiness.FindActiveLicenseByID_ClassID(LicenseID);
+            this.Close();
+        }
 
-            if (_LicenseInfo == null)
+        private void frmAddNewInternationalLicense_Load(object sender, EventArgs e)
+        {
+            lblDate.Text = DateTime.Now.ToString();
+            lblExpDate.Text = DateTime.Now.AddYears(1).ToString();
+            lblFees.Text =clsApplicationsTypesBusiness.GetApplicationTypeInfoByID((int)clsApplicationsBusiness.enApplicationType.NewInternationalLicense).Fees.ToString();
+            lblIssueDate.Text = DateTime.Now.ToString();
+            lblUser.Text=clsGlobal.CurrentUser.UserName;
+        }
+
+        private void driverLicenseWithFilter1_OnLicenseSelected(int obj)
+        {
+            _LocalLicenseID = obj;
+
+            if (_LocalLicenseID == -1)
             {
-                MessageBox.Show("This License Not Correct");
                 return;
             }
 
+            lblLocalLicenseID.Text = _LocalLicenseID.ToString();
+            linklblShowLicenseHistory.Enabled = true;
 
-            if(clsInternationalLicenseBusiness.IsPersonHasInternationalLicense(LicenseID))
+            if (driverLicenseWithFilter1.LicenseInfo.LicenseClass < 3)
             {
-                //applicationBasicInfo1.LoadApplicationInfoByAppID(AppID);
-                clsDriverLicenseBusiness DriverLicense = clsDriverLicenseBusiness.GetDriverLicenseInfoBY_LocalLicenseID(LicenseID);
-                //driverLicense1.LoadDriverLicenseInfo(_DriverLicenseID);
-
-
-                _NationalNo = DriverLicense.NationalNo;
-
-                linklblbShowLicense.Enabled = true;
-                linklblShowLicenseHistory.Enabled = true;
-                btnSave.Enabled = false;
-                MessageBox.Show("This Person Has International License Already");
-
+                MessageBox.Show("Selected License should be Class 3, select another one.", "Not allowed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
-            else
+
+            if (driverLicenseWithFilter1.LicenseInfo.IsActive == 0 )
             {
-
-               // _NewApp.ApplicationStatus = 1;
-                _NewApp.ApplicationDate = DateTime.Now;
-                _NewApp.ApplicationType = clsApplicationsBusiness.enApplicationType.NewInternationalLicense;
-                _NewApp.LastStatusDate = DateTime.Now;
-                _NewApp.PaidFees = clsApplicationsTypesBusiness.GetApplicationTypeInfoByID(6).Fees;
-                _NewApp.CreatedByUser = 1;
-                _NewApp.PersonID = _LicenseInfo.DriverInfo.PersonID;
-                _NewApp.Save();
-                
-                
-
-                //============================================
-
-
-                //driverLicense1.driverLicense = clsDriverLicenseBusiness.GetDriverLicenseInfoBY_LocalLicenseID(LicenseID);
-
+                MessageBox.Show("Selected License Is Not Active.", "Not allowed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
-            
+
+            btnIssue.Enabled = true;
         }
 
-        private void btnSave_Click(object sender, EventArgs e)
+        private void lblIssue_Click(object sender, EventArgs e)
         {
-            clsInternationalLicenseBusiness I_License = new clsInternationalLicenseBusiness();
 
-            
-            I_License.ApplicationID = _NewApp.ApplicationID;
-            I_License.DriverID = _LicenseInfo.DriverID;
-            I_License.CreatedByUserID = 1;
-            I_License.IssueDate = DateTime.Now;
-            I_License.ExpirationDate = DateTime.Now.AddYears(1);
-            I_License.IsActive = 1;
-            I_License.IssuedUsingLocalLicenseID = _LicenseInfo.LicenseID;
-
-
-            if (I_License.InsertInternationalLicense())
+            if (MessageBox.Show("Are you sure you want to issue the license?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
             {
-                linklblbShowLicense.Enabled = true;
-                linklblShowLicenseHistory.Enabled = true;
-                MessageBox.Show("International License Added Successfully");
-
+                return;
             }
-            else
+
+            clsApplicationsBusiness NewInternationalApp = new clsApplicationsBusiness();
+
+            NewInternationalApp.ApplicationStatus = clsApplicationsBusiness.enApplicationStatus.Completed;
+            NewInternationalApp.ApplicationDate = DateTime.Now;
+            NewInternationalApp.ApplicationType = clsApplicationsBusiness.enApplicationType.NewInternationalLicense;
+            NewInternationalApp.LastStatusDate = DateTime.Now;
+            NewInternationalApp.PaidFees = clsApplicationsTypesBusiness.GetApplicationTypeInfoByID((int)(clsApplicationsBusiness.enApplicationType.NewInternationalLicense)).Fees;
+            NewInternationalApp.CreatedByUser = clsGlobal.CurrentUser.UserID;
+            NewInternationalApp.PersonID = driverLicenseWithFilter1.LicenseInfo.DriverInfo.PersonID;
+
+            if(!NewInternationalApp.Save())
             {
-                MessageBox.Show("International License Added Successfully");
-            }
-        }
+                MessageBox.Show("Failed to Add International License Application", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            frmInternationalLicenseInfo frm = new frmInternationalLicenseInfo(_LicenseInfo.LicenseID);
-            frm.ShowDialog();
+                return;
+            }
+
+            clsInternationalLicenseBusiness InternationalLicense = new clsInternationalLicenseBusiness();
+
+            InternationalLicense.ApplicationID = NewInternationalApp.ApplicationID;
+            InternationalLicense.DriverID = driverLicenseWithFilter1.LicenseInfo.DriverInfo.DriverID;
+            InternationalLicense.IssuedUsingLocalLicenseID = _LocalLicenseID;
+            InternationalLicense.IssueDate = DateTime.Now;
+            InternationalLicense.ExpirationDate = DateTime.Now.AddYears(1);
+            InternationalLicense.IsActive = 1;
+            InternationalLicense.CreatedByUserID = clsGlobal.CurrentUser.UserID;
+
+            if (!InternationalLicense.Save())
+            {
+                MessageBox.Show("Failed to Issue International License", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                return;
+            }
+
+            lblAppID.Text = InternationalLicense.ApplicationID.ToString();
+            _InternationalLicenseID = InternationalLicense.InternationalLicenseID;
+            lbl_I_LicenseID.Text = InternationalLicense.InternationalLicenseID.ToString();
+            MessageBox.Show("International License Issued Successfully with ID=" + InternationalLicense.InternationalLicenseID.ToString(), "License Issued", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            btnIssue.Enabled = false;
+            driverLicenseWithFilter1.FilterEnabled = false;
+            linklblbShowLicense.Enabled = true;
+
         }
 
         private void linklblShowLicenseHistory_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            //frmLicenseHistory frm = new frmLicenseHistory(_NationalNo);
-            //frm.ShowDialog();
+            frmLicenseHistory frm = new frmLicenseHistory(driverLicenseWithFilter1.LicenseInfo.DriverID);
+            frm.ShowDialog();
         }
 
-        private void btnClose_Click(object sender, EventArgs e)
+        private void linklblbShowLicense_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            this.Close();
+            frmShowInternationalLicenseInfo frm = new frmShowInternationalLicenseInfo(_InternationalLicenseID);
+            frm.ShowDialog();
+
         }
     }
 }

@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BusinessLayer;
+using DVDL_Project.Global_Classes;
 
 namespace DVDL_Project
 {
@@ -18,71 +19,114 @@ namespace DVDL_Project
         {
             InitializeComponent();
         }
-        int _DriverLicenseID;
-        string _NationalNo;
-        private void btnCheckLicense_Click(object sender, EventArgs e)
-        {
-            _DriverLicenseID = Convert.ToInt32(txtLicenseID.Text);
-            clsDriverLicenseBusiness DriverLicense = clsDriverLicenseBusiness.GetDriverLicenseInfoBY_LocalLicenseID(_DriverLicenseID);
-            driverLicense1.LoadDriverLicenseInfo(_DriverLicenseID);
-            _NationalNo=DriverLicense.NationalNo;
-
-            lblAppDate.Text = DateTime.Now.ToString();
-            lblLicenseID.Text = _DriverLicenseID.ToString();
-            lblUser.Text = "1";
-
-            link_lblLiceseHistory.Enabled = true;
-            link_lblNewLicenseInfo.Enabled = true;
-
-            if (!clsLicenseBusiness.IsTheLicenseActive(_DriverLicenseID))
-            {
-                btnDetain.Enabled = false;
-                MessageBox.Show("Select License Is Not Active In System ", "Not Active", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            if (clsDetainLicenseBusiness.IsTheLicenseDetained(_DriverLicenseID))
-            {
-                btnDetain.Enabled = false;
-                MessageBox.Show("This License IS Already Detained");
-                return;
-            }
-            btnDetain.Enabled = true;
-            
-        }
-
+        int _LicenseID;
+        int _DetainedID;
+       
         private void btnDetain_Click(object sender, EventArgs e)
         {
-            int DetainFees =Convert.ToInt32(txtFees.Text);
-
-           
-
-            if (clsDetainLicenseBusiness.DetainLicense(_DriverLicenseID, DetainFees, 1))
+            if (MessageBox.Show("Are you sure you want to detain this license?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
             {
-                MessageBox.Show("This License Detained Successfully");
+                return;
             }
-            else
+
+            _DetainedID = driverLicenseWithFilter1.LicenseInfo.Detain(Convert.ToInt32(txtFees.Text), clsGlobal.CurrentUser.UserID);
+            if (_DetainedID==-1)
             {
-                MessageBox.Show("This License Not Detained");
+                MessageBox.Show("Failed to Detain License", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                return;
             }
+            lblDetainID.Text = _DetainedID.ToString();
+            MessageBox.Show("License Detained Successfully with ID=" + _DetainedID.ToString(), "License Issued", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
             btnDetain.Enabled = false;
+            driverLicenseWithFilter1.FilterEnabled = false;
+            txtFees.Enabled = false;
+
         }
 
         private void link_lblLicenseHistory_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
 
-            //frmLicenseHistory frm = new frmLicenseHistory(_NationalNo);
-            //frm.ShowDialog();
+            frmLicenseHistory frm = new frmLicenseHistory(driverLicenseWithFilter1.LicenseInfo.DriverID);
+            frm.ShowDialog();
         }
 
         private void link_lblNewLicenseInfo_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            //frmDriverLicense frm = new frmDriverLicense(_DriverLicenseID, true);
-            //frm.ShowDialog();
+            frmShowLicenseInfo frm = new frmShowLicenseInfo(driverLicenseWithFilter1.LicenseID);
+            frm.ShowDialog();
         }
 
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();   
+        }
+
+        private void frmDetainLicense_Load(object sender, EventArgs e)
+        {
+            lblAppDate.Text = DateTime.Now.ToString();
+            lblUser.Text=clsGlobal.CurrentUser.UserName;
+        }
+
+        private void driverLicenseWithFilter1_OnLicenseSelected(int obj)
+        {
+            _LicenseID=obj;
+
+            if(_LicenseID==-1)
+            {
+                return;
+            }
+
+            lblLicenseID.Text = _LicenseID.ToString();
+
+            link_lblLiceseHistory.Enabled = true;
+            link_lblNewLicenseInfo.Enabled = true;
+
+            if(driverLicenseWithFilter1.LicenseInfo.IsDetained==true)
+            {
+                MessageBox.Show("License Already Detained");
+                return;
+            }
+            btnDetain.Enabled = true;
+            txtFees.Enabled = true; 
+            txtFees.Focus();
+
+
+        }
+
+        private void frmDetainLicense_Activated(object sender, EventArgs e)
+        {
+            driverLicenseWithFilter1.txtLicenseIDFocus();
+        }
+
+        private void txtFees_Validating(object sender, CancelEventArgs e)
+        {
+
+            if (string.IsNullOrEmpty(txtFees.Text.Trim()))
+            {
+                e.Cancel = true;
+                errorProvider1.SetError(txtFees, "Fees cannot be empty!");
+                return;
+            }
+            else
+            {
+                errorProvider1.SetError(txtFees, null);
+
+            }
+            ;
+
+
+            if (!clsValidation.IsNumber(txtFees.Text))
+            {
+                e.Cancel = true;
+                errorProvider1.SetError(txtFees, "Invalid Number.");
+            }
+            else
+            {
+                errorProvider1.SetError(txtFees, null);
+            }
+            
         }
     }
 }

@@ -17,8 +17,8 @@ namespace DataAccessLayer
         public int CreateByUserID {  get; set; }
         public int IsReleased {  get; set; }
         public DateTime? ReleasedDate { get;set; }
-        public int ReleasedByUserID {  get; set; }
-        public int ReleasedAppID {  get; set; }
+        public int? ReleasedByUserID {  get; set; }
+        public int? ReleasedAppID {  get; set; }
 
 
 
@@ -28,7 +28,8 @@ namespace DataAccessLayer
         {
             SqlConnection connection = new SqlConnection(ConnectionString);
 
-            string query = @"select * from DetainedLicenses";
+            string query = "select * from detainedLicenses_View order by IsReleased ,DetainID;";
+
             SqlCommand command = new SqlCommand(query, connection);
 
             DataTable dt = new DataTable();
@@ -156,13 +157,13 @@ namespace DataAccessLayer
             }
             return IsFound;
         }
-        static public bool GetDetainLicenseInfo(int DetainLicenseID,ref clsDetainLicenseData DetainLicenseData)
+        static public bool GetDetainLicenseInfoByLicenseID(int LicenseID,ref clsDetainLicenseData DetainLicenseData)
         {
             SqlConnection connection= new SqlConnection(ConnectionString);
             string query = @"select * from DetainedLicenses
-                            where LicenseID=@LicenseID and IsReleased = 0";
+                            where LicenseID=@LicenseID";
             SqlCommand command= new SqlCommand(query, connection);
-            command.Parameters.AddWithValue("@LicenseID", DetainLicenseID);
+            command.Parameters.AddWithValue("@LicenseID", LicenseID);
 
             bool IsFound = true;
             try
@@ -181,33 +182,58 @@ namespace DataAccessLayer
                     DetainLicenseData.CreateByUserID = Convert.ToInt32(reader["CreatedByUserID"]);
                     DetainLicenseData.IsReleased = Convert.ToInt32(reader["IsReleased"]);
 
+                    DetainLicenseData.ReleasedDate= reader["ReleaseDate"] != DBNull.Value? (DateTime?)reader["ReleaseDate"] : null;
+                    DetainLicenseData.ReleasedAppID= reader["ReleaseApplicationID"] != DBNull.Value ? (int?)reader["ReleaseApplicationID"] : null;
+                    DetainLicenseData.ReleasedByUserID=  reader["ReleasedByUserID"] != DBNull.Value ? (int?)reader["ReleasedByUserID"] : null;
 
-                    //if (reader["ReleasedDate"] != DBNull.Value)
-                    //{
-                    //    DetainLicenseData.ReleasedDate = Convert.ToDateTime(reader["ReleasedDate"]);
-                    //}
-                    //else
-                    //{
-                    //    DetainLicenseData.ReleasedDate = null;
-                    //}
+                }
+                else
+                {
+                    IsFound = false;
+                }
+                reader.Close();
 
-                    //if (reader["ReleasedByUserID"] != DBNull.Value)
-                    //{
-                    //    DetainLicenseData.ReleasedByUserID = Convert.ToInt32(reader["ReleasedByUserID"]);
-                    //}
-                    //else
-                    //{
-                    //    DetainLicenseData.ReleasedDate = null; 
-                    //}
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error " + ex.Message);
 
-                    //if (reader["ReleasedAppID"] != DBNull.Value)
-                    //{
-                    //    DetainLicenseData.ReleasedAppID = Convert.ToInt32(reader["ReleasedAppID"]);
-                    //}
-                    //else
-                    //{
-                    //    DetainLicenseData.ReleasedDate = null;
-                    //}
+                IsFound = false;
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return IsFound;
+
+        }
+        static public bool GetDetainLicenseInfoByDetainID(int DetainID, ref clsDetainLicenseData DetainLicenseData)
+        {
+            SqlConnection connection = new SqlConnection(ConnectionString);
+            string query = @"select * from DetainedLicenses
+                            where DetainID=@DetainID ";
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@DetainID", DetainID);
+
+            bool IsFound = true;
+            try
+            {
+                connection.Open();
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.Read())
+                {
+
+                    DetainLicenseData.DetainID = Convert.ToInt32(reader["DetainID"]);
+                    DetainLicenseData.LicenseID = Convert.ToInt32(reader["LicenseID"]);
+                    DetainLicenseData.DetainDate = Convert.ToDateTime(reader["DetainDate"]);
+                    DetainLicenseData.FineFees = Convert.ToInt32(reader["FineFees"]);
+                    DetainLicenseData.CreateByUserID = Convert.ToInt32(reader["CreatedByUserID"]);
+                    DetainLicenseData.IsReleased = Convert.ToInt32(reader["IsReleased"]);
+                    DetainLicenseData.ReleasedDate = Convert.ToDateTime(reader["ReleaseDate"]);
+                    DetainLicenseData.ReleasedAppID = Convert.ToInt32(reader["ReleaseApplicationID"]);
+                    DetainLicenseData.ReleasedByUserID = Convert.ToInt32(reader["ReleasedByUserID"]);
 
 
 

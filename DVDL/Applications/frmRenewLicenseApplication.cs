@@ -115,7 +115,7 @@ namespace DVDL_Project
 
         private void link_lblNewLicenseInfo_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            frmShowDriverLicense frm = new frmShowDriverLicense(_NewLicenseID);
+            frmShowLicenseInfo frm = new frmShowLicenseInfo(_NewLicenseID);
             frm.ShowDialog();
         }
 

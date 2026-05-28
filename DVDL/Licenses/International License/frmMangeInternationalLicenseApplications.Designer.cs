@@ -29,41 +29,48 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.txtFilterValue = new System.Windows.Forms.TextBox();
+            this.cbFilter = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.btnAddPerson = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.dgvInterLicense = new System.Windows.Forms.DataGridView();
+            this.dgvInternationalLicenses = new System.Windows.Forms.DataGridView();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.showPersonDetailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.showLicenseDetailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.showPersonLicenseHistoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvInterLicense)).BeginInit();
+            this.cbIsReleased = new System.Windows.Forms.ComboBox();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvInternationalLicenses)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // textBox1
+            // txtFilterValue
             // 
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(315, 126);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(187, 32);
-            this.textBox1.TabIndex = 20;
+            this.txtFilterValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtFilterValue.Location = new System.Drawing.Point(502, 126);
+            this.txtFilterValue.Name = "txtFilterValue";
+            this.txtFilterValue.Size = new System.Drawing.Size(187, 32);
+            this.txtFilterValue.TabIndex = 20;
+            this.txtFilterValue.TextChanged += new System.EventHandler(this.txtFilterValue_TextChanged);
+            this.txtFilterValue.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtFilterValue_KeyPress);
             // 
-            // comboBox1
+            // cbFilter
             // 
-            this.comboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "Nathional No",
-            "ID",
-            "Name"});
-            this.comboBox1.Location = new System.Drawing.Point(156, 126);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(123, 34);
-            this.comboBox1.TabIndex = 19;
+            this.cbFilter.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbFilter.FormattingEnabled = true;
+            this.cbFilter.Items.AddRange(new object[] {
+            "None",
+            "International License ID",
+            "Application ID",
+            "Driver ID",
+            "Local License ID",
+            "Is Active"});
+            this.cbFilter.Location = new System.Drawing.Point(156, 126);
+            this.cbFilter.Name = "cbFilter";
+            this.cbFilter.Size = new System.Drawing.Size(291, 34);
+            this.cbFilter.TabIndex = 19;
+            this.cbFilter.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // label2
             // 
@@ -87,7 +94,7 @@
             this.btnAddPerson.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnAddPerson.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnAddPerson.UseVisualStyleBackColor = false;
-            this.btnAddPerson.Click += new System.EventHandler(this.btnAddPerson_Click);
+            this.btnAddPerson.Click += new System.EventHandler(this.btnAddNewInternationalLicense_Click);
             // 
             // btnClose
             // 
@@ -106,26 +113,26 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Red;
-            this.label1.Location = new System.Drawing.Point(222, 43);
+            this.label1.Location = new System.Drawing.Point(346, 20);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(786, 48);
             this.label1.TabIndex = 15;
             this.label1.Text = "International Driving License Applications";
             // 
-            // dgvInterLicense
+            // dgvInternationalLicenses
             // 
-            this.dgvInterLicense.AllowUserToAddRows = false;
-            this.dgvInterLicense.AllowUserToDeleteRows = false;
-            this.dgvInterLicense.AllowUserToOrderColumns = true;
-            this.dgvInterLicense.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvInterLicense.ContextMenuStrip = this.contextMenuStrip1;
-            this.dgvInterLicense.Location = new System.Drawing.Point(12, 190);
-            this.dgvInterLicense.Name = "dgvInterLicense";
-            this.dgvInterLicense.ReadOnly = true;
-            this.dgvInterLicense.RowHeadersWidth = 51;
-            this.dgvInterLicense.RowTemplate.Height = 24;
-            this.dgvInterLicense.Size = new System.Drawing.Size(1206, 406);
-            this.dgvInterLicense.TabIndex = 14;
+            this.dgvInternationalLicenses.AllowUserToAddRows = false;
+            this.dgvInternationalLicenses.AllowUserToDeleteRows = false;
+            this.dgvInternationalLicenses.AllowUserToOrderColumns = true;
+            this.dgvInternationalLicenses.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvInternationalLicenses.ContextMenuStrip = this.contextMenuStrip1;
+            this.dgvInternationalLicenses.Location = new System.Drawing.Point(12, 190);
+            this.dgvInternationalLicenses.Name = "dgvInternationalLicenses";
+            this.dgvInternationalLicenses.ReadOnly = true;
+            this.dgvInternationalLicenses.RowHeadersWidth = 51;
+            this.dgvInternationalLicenses.RowTemplate.Height = 24;
+            this.dgvInternationalLicenses.Size = new System.Drawing.Size(1422, 406);
+            this.dgvInternationalLicenses.TabIndex = 14;
             // 
             // contextMenuStrip1
             // 
@@ -135,7 +142,7 @@
             this.showLicenseDetailsToolStripMenuItem,
             this.showPersonLicenseHistoryToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(265, 104);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(265, 76);
             // 
             // showPersonDetailsToolStripMenuItem
             // 
@@ -158,22 +165,39 @@
             this.showPersonLicenseHistoryToolStripMenuItem.Text = "Show Person License History";
             this.showPersonLicenseHistoryToolStripMenuItem.Click += new System.EventHandler(this.showPersonLicenseHistoryToolStripMenuItem_Click);
             // 
+            // cbIsReleased
+            // 
+            this.cbIsReleased.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbIsReleased.FormattingEnabled = true;
+            this.cbIsReleased.Items.AddRange(new object[] {
+            "All",
+            "Yes",
+            "No"});
+            this.cbIsReleased.Location = new System.Drawing.Point(465, 126);
+            this.cbIsReleased.Name = "cbIsReleased";
+            this.cbIsReleased.Size = new System.Drawing.Size(123, 34);
+            this.cbIsReleased.TabIndex = 21;
+            this.cbIsReleased.SelectedIndexChanged += new System.EventHandler(this.cbIsReleased_SelectedIndexChanged);
+            // 
             // frmMangeInternationalLicenseApplications
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1250, 675);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.comboBox1);
+            this.ClientSize = new System.Drawing.Size(1446, 675);
+            this.Controls.Add(this.cbIsReleased);
+            this.Controls.Add(this.txtFilterValue);
+            this.Controls.Add(this.cbFilter);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnAddPerson);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.dgvInterLicense);
+            this.Controls.Add(this.dgvInternationalLicenses);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "frmMangeInternationalLicenseApplications";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmMangeInternationalLicenseApplications";
             this.Load += new System.EventHandler(this.frmMangeInternationalLicenseApplications_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvInterLicense)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvInternationalLicenses)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -182,16 +206,17 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.TextBox txtFilterValue;
+        private System.Windows.Forms.ComboBox cbFilter;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnAddPerson;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DataGridView dgvInterLicense;
+        private System.Windows.Forms.DataGridView dgvInternationalLicenses;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem showPersonDetailsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem showLicenseDetailsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem showPersonLicenseHistoryToolStripMenuItem;
+        private System.Windows.Forms.ComboBox cbIsReleased;
     }
 }

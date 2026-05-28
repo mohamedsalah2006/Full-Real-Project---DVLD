@@ -11,12 +11,11 @@ using BusinessLayer;
 
 namespace DVDL_Project
 {
-    public partial class frmShowDriverLicense : Form
+    public partial class frmShowLicenseInfo : Form
     {
         int _LicenseId;
 
-        clsDriverLicenseBusiness driverLicense;
-        public frmShowDriverLicense(int LicenseID)
+        public frmShowLicenseInfo(int LicenseID)
         {
             InitializeComponent();
             _LicenseId = LicenseID;

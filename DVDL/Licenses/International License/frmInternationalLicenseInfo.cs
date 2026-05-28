@@ -11,19 +11,19 @@ using BusinessLayer;
 
 namespace DVDL_Project
 {
-    public partial class frmInternationalLicenseInfo : Form
+    public partial class frmShowInternationalLicenseInfo : Form
     {
-        int _LocalLicenseID;
-        public frmInternationalLicenseInfo(int LocalLicenseID)
+        int _INT_LicenseInfo;
+        public frmShowInternationalLicenseInfo(int INT_LicenseInfo)
         {
             InitializeComponent();
-            _LocalLicenseID = LocalLicenseID;
+            _INT_LicenseInfo = INT_LicenseInfo;
         }
 
         
         private void frmInternationalLicenseInfo_Load(object sender, EventArgs e)
         {
-            internationalLicenseInfo1.InternationalDrivingLicense = clsInternationalDrivingLicenseBusiness.GetInternationalDrivingLicense(_LocalLicenseID);
+            internationalLicenseInfo1.LoadInternationalLicenseInfo(_INT_LicenseInfo);
         }
 
         private void btnClose_Click(object sender, EventArgs e)

@@ -44,10 +44,8 @@
     <Compile Include="clsApplicationsBusiness.cs" />
     <Compile Include="clsApplicationsTypesBusiness.cs" />
     <Compile Include="clsDetainLicenseBusiness.cs" />
-    <Compile Include="clsInternationalDrivingLicenseBusiness.cs" />
     <Compile Include="clsInternationalLicenseBusiness.cs" />
     <Compile Include="clsDriverBusiness.cs" />
-    <Compile Include="clsDriverLicenseBusiness.cs" />
     <Compile Include="clsLicenseBusiness.cs" />
     <Compile Include="clsLicenseClassesBusiness.cs" />
     <Compile Include="clsLocalDrivingLicenseApplicationsBusiness.cs" />

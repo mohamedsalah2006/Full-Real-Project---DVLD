@@ -10,17 +10,17 @@ namespace BusinessLayer
 {
     public class clsDetainLicenseBusiness
     {
-        public int DetainID;
-        public int LicenseID;
-   public DateTime DetainDate;
-        public float FineFees;
-        public int CreateByUserID;
-        public int IsReleased;
-        public DateTime? ReleasedDate;
-        public int ReleasedByUserID;
-        public int ReleasedAppID;
+        public int DetainID {  get; set; }
+        public int LicenseID {  get; set; }
+        public DateTime DetainDate {  get; set; }
+        public float FineFees {  get; set; }
+        public int CreateByUserID {  get; set; }
+        public int IsReleased {  get; set; }
+        public DateTime? ReleasedDate {  get; set; }
+        public int? ReleasedByUserID {  get; set; }
+        public int? ReleasedAppID {  get; set; }
 
-        clsDetainLicenseBusiness(int detainID, int licenseID, DateTime detainDate, float fineFees, int createByUserID, int isReleased, DateTime? releasedDate, int releasedByUserID, int releasedAppID)
+        clsDetainLicenseBusiness(int detainID, int licenseID, DateTime detainDate, float fineFees, int createByUserID, int isReleased, DateTime? releasedDate, int? releasedByUserID, int? releasedAppID)
         {
             DetainID = detainID;
             LicenseID = licenseID;
@@ -32,7 +32,7 @@ namespace BusinessLayer
             ReleasedByUserID = releasedByUserID;
             ReleasedAppID = releasedAppID;
         }
-        clsDetainLicenseBusiness()
+        public clsDetainLicenseBusiness()
         {
             this.DetainID = -1;
             this.LicenseID = -1;
@@ -50,9 +50,9 @@ namespace BusinessLayer
         {
             return clsDetainLicenseData.GetAllDetainedLicense();
         }
-        static public bool DetainLicense(int LicenseID, float FineFees, int CreateByUserID)
+        static public int DetainLicense(int LicenseID, float FineFees, int CreateByUserID)
         {
-            return clsDetainLicenseData.DetainLicense(LicenseID, FineFees, CreateByUserID) != -1;
+            return clsDetainLicenseData.DetainLicense(LicenseID, FineFees, CreateByUserID) ;
         }
         static public bool ReleasedLicense(int LicenseID, int ReleasedByUserID, int ReleasedAppID)
         {
@@ -62,11 +62,11 @@ namespace BusinessLayer
         {
             return clsDetainLicenseData.IsTheLicenseDetained(LicenseID);
         }
-        static public clsDetainLicenseBusiness GetDetainLicenseInfo(int DetainLicenseID)
+        static public clsDetainLicenseBusiness GetDetainLicenseInfoByLicenseID(int LicenseID)
         {
             clsDetainLicenseData DetainLicenseData = new clsDetainLicenseData();
 
-            if(clsDetainLicenseData.GetDetainLicenseInfo(DetainLicenseID,ref DetainLicenseData))
+            if(clsDetainLicenseData.GetDetainLicenseInfoByLicenseID(LicenseID,ref DetainLicenseData))
             {
                 return new clsDetainLicenseBusiness(DetainLicenseData.DetainID, DetainLicenseData.LicenseID, DetainLicenseData.DetainDate, DetainLicenseData.FineFees, DetainLicenseData.CreateByUserID, DetainLicenseData.IsReleased,DetainLicenseData.ReleasedDate, DetainLicenseData.ReleasedByUserID, DetainLicenseData.ReleasedAppID);
             }

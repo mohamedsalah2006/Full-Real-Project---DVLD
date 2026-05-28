@@ -1,6 +1,6 @@
 ﻿namespace DVDL_Project
 {
-    partial class frmInternationalLicenseInfo
+    partial class frmShowInternationalLicenseInfo
     {
         /// <summary>
         /// Required designer variable.
@@ -39,7 +39,7 @@
             // 
             // internationalLicenseInfo1
             // 
-            this.internationalLicenseInfo1.Location = new System.Drawing.Point(50, 264);
+            this.internationalLicenseInfo1.Location = new System.Drawing.Point(50, 260);
             this.internationalLicenseInfo1.Name = "internationalLicenseInfo1";
             this.internationalLicenseInfo1.Size = new System.Drawing.Size(913, 368);
             this.internationalLicenseInfo1.TabIndex = 0;
@@ -79,7 +79,7 @@
             // 
             this.btnClose.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.btnClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClose.Location = new System.Drawing.Point(760, 625);
+            this.btnClose.Location = new System.Drawing.Point(821, 625);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(110, 53);
             this.btnClose.TabIndex = 14;

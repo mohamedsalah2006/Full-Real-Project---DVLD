@@ -73,10 +73,10 @@
     <Compile Include="Licenses\DriverLicenseHistory.Designer.cs">
       <DependentUpon>DriverLicenseHistory.cs</DependentUpon>
     </Compile>
-    <Compile Include="Licenses\DriverLicenseInfo.cs">
+    <Compile Include="Drivers\DriverLicenseInfo.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Licenses\DriverLicenseInfo.Designer.cs">
+    <Compile Include="Drivers\DriverLicenseInfo.Designer.cs">
       <DependentUpon>DriverLicenseInfo.cs</DependentUpon>
     </Compile>
     <Compile Include="Licenses\Detain License\frmDetainLicense.cs">
@@ -315,7 +315,7 @@
     <EmbeddedResource Include="Licenses\DriverLicenseHistory.resx">
       <DependentUpon>DriverLicenseHistory.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Licenses\DriverLicenseInfo.resx">
+    <EmbeddedResource Include="Drivers\DriverLicenseInfo.resx">
       <DependentUpon>DriverLicenseInfo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Licenses\Detain License\frmDetainLicense.resx">

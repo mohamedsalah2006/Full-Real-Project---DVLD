@@ -49,13 +49,9 @@
             this.lblDetainFees = new System.Windows.Forms.Label();
             this.lblDetainID = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnCheckLicense = new System.Windows.Forms.Button();
-            this.txtLicenseID = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.driverLicense1 = new DVDL_Project.DriverLicenseInfo();
+            this.lblTitle = new System.Windows.Forms.Label();
+            this.driverLicenseWithFilter1 = new DVDL_Project.Licenses.Local_License.DriverLicenseWithFilter();
             this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // link_lblNewLicenseInfo
@@ -63,12 +59,13 @@
             this.link_lblNewLicenseInfo.AutoSize = true;
             this.link_lblNewLicenseInfo.Enabled = false;
             this.link_lblNewLicenseInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.link_lblNewLicenseInfo.Location = new System.Drawing.Point(260, 700);
+            this.link_lblNewLicenseInfo.Location = new System.Drawing.Point(240, 788);
             this.link_lblNewLicenseInfo.Name = "link_lblNewLicenseInfo";
             this.link_lblNewLicenseInfo.Size = new System.Drawing.Size(164, 24);
             this.link_lblNewLicenseInfo.TabIndex = 40;
             this.link_lblNewLicenseInfo.TabStop = true;
             this.link_lblNewLicenseInfo.Text = "Show License Info";
+            this.link_lblNewLicenseInfo.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.link_lblNewLicenseInfo_LinkClicked);
             // 
             // lblUser
             // 
@@ -103,8 +100,9 @@
             // btnRelease
             // 
             this.btnRelease.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btnRelease.Enabled = false;
             this.btnRelease.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRelease.Location = new System.Drawing.Point(570, 693);
+            this.btnRelease.Location = new System.Drawing.Point(570, 772);
             this.btnRelease.Name = "btnRelease";
             this.btnRelease.Size = new System.Drawing.Size(110, 53);
             this.btnRelease.TabIndex = 37;
@@ -145,13 +143,15 @@
             // btnClose
             // 
             this.btnClose.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClose.Location = new System.Drawing.Point(721, 693);
+            this.btnClose.Location = new System.Drawing.Point(705, 772);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(110, 53);
             this.btnClose.TabIndex = 38;
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = false;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // label4
             // 
@@ -168,12 +168,13 @@
             this.link_lblLiceseHistory.AutoSize = true;
             this.link_lblLiceseHistory.Enabled = false;
             this.link_lblLiceseHistory.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.link_lblLiceseHistory.Location = new System.Drawing.Point(38, 700);
+            this.link_lblLiceseHistory.Location = new System.Drawing.Point(20, 788);
             this.link_lblLiceseHistory.Name = "link_lblLiceseHistory";
             this.link_lblLiceseHistory.Size = new System.Drawing.Size(191, 24);
             this.link_lblLiceseHistory.TabIndex = 39;
             this.link_lblLiceseHistory.TabStop = true;
             this.link_lblLiceseHistory.Text = "Show License History";
+            this.link_lblLiceseHistory.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.link_lblLiceseHistory_LinkClicked);
             // 
             // groupBox1
             // 
@@ -193,12 +194,12 @@
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.lblDetainID);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(12, 492);
+            this.groupBox1.Location = new System.Drawing.Point(12, 566);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(889, 195);
             this.groupBox1.TabIndex = 35;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Detain Info";
+            this.groupBox1.Text = "Realse Info";
             // 
             // lblAppID
             // 
@@ -216,9 +217,9 @@
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.Location = new System.Drawing.Point(8, 158);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(151, 24);
+            this.label11.Size = new System.Drawing.Size(155, 24);
             this.label11.TabIndex = 46;
-            this.label11.Text = "Application ID :";
+            this.label11.Text = "Realse App ID :";
             // 
             // lblTotalFees
             // 
@@ -290,73 +291,50 @@
             this.label1.TabIndex = 17;
             this.label1.Text = "Detain ID :";
             // 
-            // btnCheckLicense
+            // lblTitle
             // 
-            this.btnCheckLicense.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.btnCheckLicense.Image = global::DVDL_Project.Properties.Resources.id;
-            this.btnCheckLicense.Location = new System.Drawing.Point(414, 21);
-            this.btnCheckLicense.Name = "btnCheckLicense";
-            this.btnCheckLicense.Size = new System.Drawing.Size(100, 56);
-            this.btnCheckLicense.TabIndex = 15;
-            this.btnCheckLicense.UseVisualStyleBackColor = false;
-            this.btnCheckLicense.Click += new System.EventHandler(this.btnCheckLicense_Click);
+            this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblTitle.Location = new System.Drawing.Point(16, 25);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(870, 39);
+            this.lblTitle.TabIndex = 187;
+            this.lblTitle.Text = "Release Detained License";
+            this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // txtLicenseID
+            // driverLicenseWithFilter1
             // 
-            this.txtLicenseID.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtLicenseID.Location = new System.Drawing.Point(161, 36);
-            this.txtLicenseID.Name = "txtLicenseID";
-            this.txtLicenseID.Size = new System.Drawing.Size(200, 32);
-            this.txtLicenseID.TabIndex = 1;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(22, 36);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(121, 25);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "LicenseID :";
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.btnCheckLicense);
-            this.groupBox2.Controls.Add(this.txtLicenseID);
-            this.groupBox2.Controls.Add(this.label2);
-            this.groupBox2.Location = new System.Drawing.Point(12, 12);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(882, 100);
-            this.groupBox2.TabIndex = 36;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Filter";
-            // 
-            // driverLicense1
-            // 
-            this.driverLicense1.Location = new System.Drawing.Point(3, 118);
-            this.driverLicense1.Name = "driverLicense1";
-            this.driverLicense1.Size = new System.Drawing.Size(916, 355);
-            this.driverLicense1.TabIndex = 34;
+            this.driverLicenseWithFilter1.FilterEnabled = true;
+            this.driverLicenseWithFilter1.LicenseID = 0;
+            this.driverLicenseWithFilter1.LicenseInfo = null;
+            this.driverLicenseWithFilter1.Location = new System.Drawing.Point(12, 92);
+            this.driverLicenseWithFilter1.Name = "driverLicenseWithFilter1";
+            this.driverLicenseWithFilter1.Size = new System.Drawing.Size(909, 468);
+            this.driverLicenseWithFilter1.TabIndex = 41;
+            this.driverLicenseWithFilter1.OnLicenseSelected += new System.Action<int>(this.driverLicenseWithFilter1_OnLicenseSelected);
             // 
             // frmReleasedLicense
             // 
+            this.AcceptButton = this.btnRelease;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(940, 759);
+            this.CancelButton = this.btnClose;
+            this.ClientSize = new System.Drawing.Size(940, 845);
+            this.Controls.Add(this.lblTitle);
+            this.Controls.Add(this.driverLicenseWithFilter1);
             this.Controls.Add(this.link_lblNewLicenseInfo);
             this.Controls.Add(this.btnRelease);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.link_lblLiceseHistory);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.driverLicense1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "frmReleasedLicense";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmReleasedLicense";
+            this.Activated += new System.EventHandler(this.frmReleasedLicense_Activated);
             this.Load += new System.EventHandler(this.frmReleasedLicense_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -379,16 +357,13 @@
         private System.Windows.Forms.Label lblDetainFees;
         private System.Windows.Forms.Label lblDetainID;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button btnCheckLicense;
-        private System.Windows.Forms.TextBox txtLicenseID;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private DriverLicenseInfo driverLicense1;
         private System.Windows.Forms.Label lblAppID;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label lblTotalFees;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label lblAppFees;
         private System.Windows.Forms.Label label6;
+        private Licenses.Local_License.DriverLicenseWithFilter driverLicenseWithFilter1;
+        private System.Windows.Forms.Label lblTitle;
     }
 }
